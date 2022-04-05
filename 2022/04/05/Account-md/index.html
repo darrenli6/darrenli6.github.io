@@ -9,7 +9,7 @@
     
     <title>
         
-            Account.md |
+            ETH账户 |
         
         Blog
     </title>
@@ -271,7 +271,7 @@ mjx-container[display="true"] + br {
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Account.md</span>
+            <span class="title-hover-animation">ETH账户</span>
         </div>
 
         
@@ -321,7 +321,7 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>119 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>363 Words</span>
         </span>
     
     
@@ -365,6 +365,41 @@ mjx-container[display="true"] + br {
 <td>合约专属，自身的存储信息，具有永久性</td>
 </tr>
 </tbody></table>
+<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
+<ul>
+<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
+<li></li>
+</ul>
+<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
+<li><p>多重签名 </p>
+<blockquote>
+<p>创建一个合约，必须多个人同意 。</p>
+</blockquote>
+</li>
+<li><p>检查是否是合约地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过API获取合约是否是地址</p>
+</li>
+<li><p>通过Ether.js 判断</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
+<blockquote>
+<p>不正确。可能合约注销或者没有部署</p>
+</blockquote>
+<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
+<p>keystore加密存储账户私钥的。</p>
+</blockquote>
+<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth account new </span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -372,7 +407,7 @@ mjx-container[display="true"] + br {
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Account.md</li>
+        <li>Post title：ETH账户</li>
         <li>Post author：DarrenLi</li>
         <li>Create time：2022-04-05 19:49:50</li>
         <li>
@@ -580,7 +615,7 @@ mjx-container[display="true"] + br {
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E6%88%B7%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81%E6%88%90%E5%91%98"><span class="nav-number">1.</span> <span class="nav-text">账户内部状态成员</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E6%88%B7%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81%E6%88%90%E5%91%98"><span class="nav-number">1.</span> <span class="nav-text">账户内部状态成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E6%88%B7%E7%8A%B6%E6%80%81%E6%9E%84%E6%88%90%E4%BA%86%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E4%B8%96%E7%95%8C%E6%80%81"><span class="nav-number">2.</span> <span class="nav-text">账户状态构成了以太坊的世界态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">以太坊账户的两种类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%B4%A6%E6%88%B7-EOA"><span class="nav-number">3.1.</span> <span class="nav-text">外部账户  EOA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E7%BA%A6%E8%B4%A6%E6%88%B7"><span class="nav-number">3.2.</span> <span class="nav-text">合约账户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">思考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KeyStore%E5%8E%9F%E7%90%86"><span class="nav-number"></span> <span class="nav-text">KeyStore原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E8%B4%A6%E6%88%B7"><span class="nav-number">1.</span> <span class="nav-text">新建账户</span></a></li></ol>
     </div>
 </div>
         </aside>
