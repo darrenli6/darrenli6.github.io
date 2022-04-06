@@ -1,6 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ETH账户</title>
+    <url>/2022/04/05/Account-md/</url>
+    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nonce</td>
+<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>余额</td>
+</tr>
+<tr>
+<td>code</td>
+<td>账户可以执行的代码，编译后的代码（合约专属）</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>合约专属，自身的存储信息，具有永久性</td>
+</tr>
+</tbody></table>
+<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
+<ul>
+<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
+<li></li>
+</ul>
+<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
+<li><p>多重签名 </p>
+<blockquote>
+<p>创建一个合约，必须多个人同意 。</p>
+</blockquote>
+</li>
+<li><p>检查是否是合约地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过API获取合约是否是地址</p>
+</li>
+<li><p>通过Ether.js 判断</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
+<blockquote>
+<p>不正确。可能合约注销或者没有部署</p>
+</blockquote>
+<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
+<p>keystore加密存储账户私钥的。</p>
+</blockquote>
+<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
+<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
+
+<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
+<ul>
+<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
+<li>可用性：仅需要密码库文件和密码来使用资金。</li>
+</ul>
+<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
+
+<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
+<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
+<ul>
+<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
+<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
+<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
+<li>CTR：AES算法中的机密模式。</li>
+</ul>
+</li>
+<li>ciphertext:账户私钥密文</li>
+<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
+</ul>
+<p><img src="/images/web3/keystore2.png" alt="image"></p>
+<p>解密密钥从哪里来的？</p>
+<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
+<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
+<li>kdfparams:<ul>
+<li>dklen:解密密钥的长度，32字节。</li>
+<li>n：迭代计算次数。</li>
+<li>p：并行化因子，这里是1，只能串行计算n次。</li>
+<li>r：底层哈希运算的块大小。</li>
+<li>salt：kdf的随机盐</li>
+</ul>
+</li>
+</ul>
+<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
+<p><img src="/images/web3/keystore3.png" alt="image"></p>
+<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
+<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
+<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
+</ul>
+<p><img src="/images/web3/keystore4.png" alt="image"></p>
+<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
+<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
+<li>它是冗余校验的一种形式。</li>
+<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
+</ul>
+<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>应用场景 ： <ul>
+<li>下载，与其他地方的下载文件同官方文件进行比较</li>
+<li>备份</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Web3</category>
+      </categories>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>compound</title>
     <url>/2022/04/03/compound/</url>
     <content><![CDATA[<h1 id="open-price-feed"><a href="#open-price-feed" class="headerlink" title="open price feed"></a>open price feed</h1><p><a class="link"   href="https://compound.finance/docs/prices" >https://compound.finance/docs/prices<i class="fas fa-external-link-alt"></i></a></p>
@@ -303,7 +433,7 @@
       </tags>
   </entry>
   <entry>
-    <title>1.interest.md</title>
+    <title>Time value of money</title>
     <url>/2022/04/05/interest-md/</url>
     <content><![CDATA[<h1 id="Interest-rate"><a href="#Interest-rate" class="headerlink" title="Interest rate"></a>Interest rate</h1><ul>
 <li><p>required rate of returns is </p>
@@ -391,6 +521,15 @@
 <p>triple 三倍 </p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">correct C </span><br><span class="line"></span><br><span class="line">Using the general time value of money formula, for sales, solve for r in the equation</span><br><span class="line"></span><br><span class="line">Revenue:</span><br><span class="line"></span><br><span class="line">(1＋g)^5=3</span><br><span class="line"></span><br><span class="line">g=25%</span><br><span class="line">Net profit margin:</span><br><span class="line"></span><br><span class="line">(1＋g)^5=2</span><br><span class="line"></span><br><span class="line">g=15%</span><br></pre></td></tr></table></figure>
+
+<h1 id="Annuity-spadesuit"><a href="#Annuity-spadesuit" class="headerlink" title="Annuity $    \spadesuit$"></a>Annuity <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.294ex" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.939ex" role="img" focusable="false" viewBox="0 -727 778 857"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="2660" d="M181 -21Q134 -21 96 27T55 193Q55 224 58 247T82 317T143 410Q172 443 234 498Q282 543 314 598T360 687T380 725Q386 727 389 727Q395 727 398 725T406 716T413 702T423 677T439 641Q481 556 544 498Q633 420 678 353T723 204Q723 142 711 94T669 12T590 -21Q520 -21 490 8T459 66V70H409V62Q409 22 416 -17T430 -82T437 -112Q437 -131 407 -131Q403 -131 397 -131T389 -130T382 -130T372 -131Q341 -131 341 -111Q341 -107 348 -82T362 -18T369 62V70H319V66Q319 57 314 44T297 16T257 -10T191 -21H181Z"></path></g></g></g></svg></mjx-container></h1><h2 id="what’s-annuities"><a href="#what’s-annuities" class="headerlink" title="what’s annuities ?"></a>what’s annuities ?</h2><ul>
+<li>is a finite et of level sequential cash floaws <ul>
+<li>equal intervals </li>
+<li>equal amount of cash flows</li>
+<li>same direction</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>CFA</category>
@@ -661,136 +800,6 @@
       </categories>
       <tags>
         <tag>Uniswap V3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ETH账户</title>
-    <url>/2022/04/05/Account-md/</url>
-    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nonce</td>
-<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
-</tr>
-<tr>
-<td>balance</td>
-<td>余额</td>
-</tr>
-<tr>
-<td>code</td>
-<td>账户可以执行的代码，编译后的代码（合约专属）</td>
-</tr>
-<tr>
-<td>storage</td>
-<td>合约专属，自身的存储信息，具有永久性</td>
-</tr>
-</tbody></table>
-<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
-<ul>
-<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
-<li></li>
-</ul>
-<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
-<li><p>多重签名 </p>
-<blockquote>
-<p>创建一个合约，必须多个人同意 。</p>
-</blockquote>
-</li>
-<li><p>检查是否是合约地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>通过API获取合约是否是地址</p>
-</li>
-<li><p>通过Ether.js 判断</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
-<blockquote>
-<p>不正确。可能合约注销或者没有部署</p>
-</blockquote>
-<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
-<p>keystore加密存储账户私钥的。</p>
-</blockquote>
-<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
-<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
-
-<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
-<ul>
-<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
-<li>可用性：仅需要密码库文件和密码来使用资金。</li>
-</ul>
-<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
-
-<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
-<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
-<ul>
-<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
-<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
-<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
-<li>CTR：AES算法中的机密模式。</li>
-</ul>
-</li>
-<li>ciphertext:账户私钥密文</li>
-<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
-</ul>
-<p><img src="/images/web3/keystore2.png" alt="image"></p>
-<p>解密密钥从哪里来的？</p>
-<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
-<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
-<li>kdfparams:<ul>
-<li>dklen:解密密钥的长度，32字节。</li>
-<li>n：迭代计算次数。</li>
-<li>p：并行化因子，这里是1，只能串行计算n次。</li>
-<li>r：底层哈希运算的块大小。</li>
-<li>salt：kdf的随机盐</li>
-</ul>
-</li>
-</ul>
-<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
-<p><img src="/images/web3/keystore3.png" alt="image"></p>
-<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
-<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
-<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
-</ul>
-<p><img src="/images/web3/keystore4.png" alt="image"></p>
-<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
-<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
-<li>它是冗余校验的一种形式。</li>
-<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
-</ul>
-<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<ul>
-<li>应用场景 ： <ul>
-<li>下载，与其他地方的下载文件同官方文件进行比较</li>
-<li>备份</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Web3</category>
-      </categories>
-      <tags>
-        <tag>ETH</tag>
       </tags>
   </entry>
 </search>
