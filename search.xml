@@ -707,6 +707,23 @@
 </li>
 </ul>
 <p><img src="/images/web3/fei7.png" alt="image"></p>
+<h1 id="dao治理"><a href="#dao治理" class="headerlink" title="dao治理"></a>dao治理</h1><p>DAO:Decentralized Autonomous Organization 去中心化自治组织 围绕一个共同目的(一个旗号)而(自发)形成的(加密原<br> 生)团体<br>治理:怎样的方式来管理系统(协议)<br>决策由集体做出(通常根据ß代币投票)</p>
+<h2 id="dao治理的内容"><a href="#dao治理的内容" class="headerlink" title="dao治理的内容"></a>dao治理的内容</h2><ul>
+<li>参数修改</li>
+<li>bug修复</li>
+<li>系统升级</li>
+<li>资金管理</li>
+</ul>
+<h2 id="dao治理方式"><a href="#dao治理方式" class="headerlink" title="dao治理方式"></a>dao治理方式</h2><ul>
+<li>管理员多签</li>
+<li>质押投票</li>
+<li>治理代币投票</li>
+<li>snapshot签名投票（线下治理）<ul>
+<li>割裂的</li>
+</ul>
+</li>
+<li>乐观投票（线下投票，线上执行）</li>
+</ul>
 ]]></content>
       <categories>
         <category>Web3</category>
