@@ -132,7 +132,7 @@
   </entry>
   <entry>
     <title>compound</title>
-    <url>/2022/04/06/compound/</url>
+    <url>/2022/04/03/compound/</url>
     <content><![CDATA[<h1 id="open-price-feed"><a href="#open-price-feed" class="headerlink" title="open price feed"></a>open price feed</h1><p><a class="link"   href="https://compound.finance/docs/prices" >https://compound.finance/docs/prices<i class="fas fa-external-link-alt"></i></a></p>
 <blockquote>
 <p>The Open Price Feed accounts price data for the Compound protocol. The protocol’s Comptroller contract uses it as a source of truth for prices. Prices are updated by Chainlink Price Feeds. The codebase is hosted on GitHub, and maintained by the community.</p>
@@ -176,10 +176,10 @@
 </ul>
 </li>
 </ul>
-<p><img src="/image/web3/interest1.png" alt="image"></p>
+<p><img src="/images/web3/interest1.png" alt="image"></p>
 <p>绿色就是存款利率，是根据借款利率算出<br>黑线就是资金利用率<br>紫色是借款利率<br>reserveFactor 储备金的系数 </p>
 <p>资金利用率达到80% ，开始第二段拐点型</p>
-<h3 id="拐点型利率模型"><a href="#拐点型利率模型" class="headerlink" title="拐点型利率模型"></a>拐点型利率模型</h3><p><img src="/image/web3/interest2.png" alt="image"></p>
+<h3 id="拐点型利率模型"><a href="#拐点型利率模型" class="headerlink" title="拐点型利率模型"></a>拐点型利率模型</h3><p><img src="/images/web3/interest2.png" alt="image"></p>
 <ul>
 <li>借款利率曲线为两段直线</li>
 <li>第一段的借款利率：<ul>
@@ -527,6 +527,146 @@
       </categories>
       <tags>
         <tag>Time value of money</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>perpetual</title>
+    <url>/2022/04/04/perpetual/</url>
+    <content><![CDATA[<h1 id="Perpetual-Protocol（永续协议）"><a href="#Perpetual-Protocol（永续协议）" class="headerlink" title="Perpetual Protocol（永续协议）"></a>Perpetual Protocol（永续协议）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/perpetual-protocol/perpetual-protocol</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>vAmm：虚拟流动性提供极高流动性，免于做市场的依赖</li>
+<li>没有真实的资金池：借的是虚拟币，获取的虚拟头寸</li>
+<li>多空双方互为对手</li>
+<li>通过Chainlink喂价，结算资金费来保持价格不偏离</li>
+</ul>
+<p><img src="/images/web3/perpetual1.png" alt="image"></p>
+<p>交易员，将100USD,用了2x杠杆，其中100USD放到了Vault ,另外一个虚拟的200USD放入虚拟的池子里。</p>
+<blockquote>
+<p>X*Y&#x3D;K price &#x3D;y&#x2F;x</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>ETH&#x2F;USDT  (x)</th>
+<th>USDT(y)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>init state</td>
+<td>100</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>Alice open 1.96 Long</td>
+<td>98.04</td>
+<td>10200</td>
+</tr>
+</tbody></table>
+<ul>
+<li>下来</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>ETH&#x2F;USDT  (x)</th>
+<th>USDT(y)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bob open 1.89 Long</td>
+<td>95.15</td>
+<td>10400</td>
+</tr>
+<tr>
+<td>Alice closes Long and earns 208-200 USD</td>
+<td>98.11</td>
+<td>10102</td>
+</tr>
+<tr>
+<td>Bob closes Long and earns 192-200 USD</td>
+<td>100</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<p>这是零和博弈，Alice赚钱就是Bob亏钱的 。</p>
+<h1 id="稳定币"><a href="#稳定币" class="headerlink" title="稳定币"></a>稳定币</h1><ul>
+<li><p>抵押型稳定币，</p>
+<ul>
+<li>稳定币作为债务形式存在。  </li>
+<li>链下以美元抵押(中心化)，如:USDC</li>
+</ul>
+<p> -以链上资产做抵押，通过利息调节供应，如:DAI ，存入ETH,贷出DAI.如果ETH下跌太厉害，利息变高。</p>
+</li>
+<li><p>算法稳定币:</p>
+<p> 通过算法调节供需关系:AMPL BAS FRAX FEI OHM 等</p>
+</li>
+</ul>
+<h2 id="算法稳定币先驱Ampleforth"><a href="#算法稳定币先驱Ampleforth" class="headerlink" title="算法稳定币先驱Ampleforth"></a>算法稳定币先驱Ampleforth</h2><ul>
+<li><p>基于供需影响价格的理论</p>
+</li>
+<li><p>价格&gt;1，增加AMPL供给*（用户余额变多）</p>
+</li>
+<li><p>价格&lt;1，减少AMPL供给，用于余额减少</p>
+</li>
+<li><p>每天Rebase</p>
+<blockquote>
+<p>缺点 正向、反向（死亡）螺旋</p>
+</blockquote>
+</li>
+<li><p>Rebase引起的余额变化，影响生态发展。</p>
+</li>
+</ul>
+<blockquote>
+<p>余额变化困扰</p>
+</blockquote>
+<h3 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function balanceof(address who) external view returns (uint256)&#123;</span><br><span class="line">return _gonBalances[who].div(_gonsPerFragment);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$$  y&#x3D; \frac {1}{k} * x $$<br>y 看到的余额<br>k rebase调节<br>x 保存的 </p>
+<p>如果 k&#x3D;1 x &#x3D;10W ,看到y&#x3D;10w,<br>如果 k&#x3D;1.2  看到y会变小<br>那么就会调节K，supply变大</p>
+<p>$$ k&#x3D; \frac {TOTAL}{supply}  $$</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rebase(epoch,supplyDelta)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>epoch 会调节平稳。</p>
+<p><img src="/images/web3/am1.png" alt="image"></p>
+<p>orchestrator </p>
+<p>ampleforth-contracts&#x2F;contracts&#x2F;Orchestrator.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line">    * @notice Main entry point to initiate a rebase operation.</span><br><span class="line">    *         The Orchestrator calls rebase on the policy and notifies downstream applications.</span><br><span class="line">    *         Contracts are guarded from calling, to avoid flash loan attacks on liquidity</span><br><span class="line">    *         providers.</span><br><span class="line">    *         If a transaction in the transaction list fails, Orchestrator will stop execution</span><br><span class="line">    *         and revert to prevent a gas underprice attack.</span><br><span class="line">    */</span><br><span class="line">   function rebase() external &#123;</span><br><span class="line">       require(msg.sender == tx.origin); // solhint-disable-line avoid-tx-origin</span><br><span class="line"></span><br><span class="line">       policy.rebase();</span><br><span class="line"></span><br><span class="line">       for (uint256 i = 0; i &lt; transactions.length; i++) &#123;</span><br><span class="line">           Transaction storage t = transactions[i];</span><br><span class="line">           if (t.enabled) &#123;</span><br><span class="line">               (bool result, ) = t.destination.call(t.data);</span><br><span class="line">               if (!result) &#123;</span><br><span class="line">                   revert(&quot;Transaction Failed&quot;);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>会调用uniswapV2 sync()<br>这样就可以防止套利空间</p>
+<h2 id="Basis-Cash"><a href="#Basis-Cash" class="headerlink" title="Basis Cash"></a>Basis Cash</h2><ul>
+<li><p>除BAC外， 引入债券Basis Bond(BAB)，Basis Shares(BAS)</p>
+</li>
+<li><p>当BAC&lt;$1时，可折价兑换BAB（BAB价格&#x3D;BAC价格的平方），等BAC, 回到I美元的时候，可以1：1赎回BAC（减轻用户币变少的心理负担）</p>
+</li>
+<li><p>当BAC&gt;$1时，若赎回之后，仍&gt;$1增发BAC作为分红给质押的BAS</p>
+</li>
+<li><p>号称”野生美联储”，大量的fork，监管要求关闭，</p>
+</li>
+<li><p>问题 </p>
+<ul>
+<li>真正抛售</li>
+</ul>
+</li>
+</ul>
+<h2 id="Frax"><a href="#Frax" class="headerlink" title="Frax"></a>Frax</h2><blockquote>
+<p>纯算法稳定币，在早期缺乏信心时，容易进入螺旋死亡，FRAX采用渐进式实现算法稳定。 部分抵押，引入套利模式:</p>
+</blockquote>
+<ul>
+<li><p>当 FRAX &lt; $ 1，套利者会购买FRAX，并以FRAX去赎回USDC和FXS，并通过出售FXS获利。对 FRAX 的购买需求将让汇率恢复。 </p>
+</li>
+<li><p>当 FRAX &gt; $ 1 : 套利者将通过USDC和FXS去创建FRAX，并卖出FRAX而获利，卖出压力将促使汇率恢复</p>
+</li>
+</ul>
+<p><img src="/images/web3/frax.png" alt="image"></p>
+]]></content>
+      <categories>
+        <category>Web3</category>
+      </categories>
+      <tags>
+        <tag>ETH</tag>
       </tags>
   </entry>
   <entry>
