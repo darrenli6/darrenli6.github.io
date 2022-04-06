@@ -215,12 +215,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>873 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
         </span>
     
     
@@ -367,6 +367,37 @@
 <p><img src="/images/web3/fei1.png" alt="image"></p>
 <p>用户用ETH购买FEI,然后将ETH存到Uniswap,AAVE,compound .因此都是项目方提供流动性FEI-ETH。很容易调节价格。很多人卖的话，将流动性撤出来，用出来的流动性买上去。</p>
 <p><img src="/images/web3/fei2.png" alt="image"></p>
+<p>Bongding curve: scale 就是发行目标</p>
+<ul>
+<li>PCV：协议控制价值<ul>
+<li>确保流动性不流失</li>
+<li>Reweight 调节价格(UniswapPCVController)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/web3/fei3.png" alt="image"></p>
+<p>假如  3500 FEI&#x2F;ETH，涨到5000FEI&#x2F;ETH</p>
+<p>从 1000ETH - 3500000FEI拿出90%，池子中90%ETH购买FEI,这样就会下跌，调节到3500 FEI&#x2F;ETH，重新90%的 ETH&#x2F;FEI 存入进去，多余出来的FEI burn</p>
+<ul>
+<li>首先市场进行调节 <ul>
+<li>直接激励： 促使价格回归。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/web3/fei4.png" alt="image"></p>
+<p>fei下跌，买fei的话，就会得到额外奖励2% ，卖的话，就会惩罚  -4% 。</p>
+<ul>
+<li>高于1美元通过套利回归</li>
+</ul>
+<p><img src="/images/web3/fei5.png" alt="image"></p>
+<p>1.01 fei 买入，在交易所卖掉。循环一下。</p>
+<ul>
+<li><p>动态锚定<br><img src="/images/web3/fei6.png" alt="image"></p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<p><img src="/images/web3/fei7.png" alt="image"></p>
 
         </div>
 
