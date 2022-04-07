@@ -122,6 +122,7 @@
 </ul>
 </li>
 </ul>
+<h2 id="EIP-55-Mixed-case-checksum-address-encoding-提案"><a href="#EIP-55-Mixed-case-checksum-address-encoding-提案" class="headerlink" title="EIP-55:Mixed-case checksum address encoding 提案"></a>EIP-55:Mixed-case checksum address encoding 提案</h2><p>EIP-55规定：在将账户地址转换为十六进制字符时，<br>当十六进制地址的第i位是字母（即abcdef之一）时：<br>如果小写的十六进制地址的哈希值的第i*4位比特为1，则大写形式打印，否则小写形式<br>打印。<br>你要明白：<br>1.在十六进制中大写和小写的字母，都能代表相同的字节。<br>2.大小不同字母的哈希结果完全不一致。</p>
 ]]></content>
       <categories>
         <category>Web3</category>
@@ -434,7 +435,7 @@
   </entry>
   <entry>
     <title>Time value of money</title>
-    <url>/2022/04/05/interest-md/</url>
+    <url>/2022/03/26/interest-md/</url>
     <content><![CDATA[<h1 id="Interest-rate"><a href="#Interest-rate" class="headerlink" title="Interest rate"></a>Interest rate</h1><ul>
 <li><p>required rate of returns is </p>
 <ul>
@@ -523,11 +524,14 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">correct C </span><br><span class="line"></span><br><span class="line">Using the general time value of money formula, for sales, solve for r in the equation</span><br><span class="line"></span><br><span class="line">Revenue:</span><br><span class="line"></span><br><span class="line">(1＋g)^5=3</span><br><span class="line"></span><br><span class="line">g=25%</span><br><span class="line">Net profit margin:</span><br><span class="line"></span><br><span class="line">(1＋g)^5=2</span><br><span class="line"></span><br><span class="line">g=15%</span><br></pre></td></tr></table></figure>
 
 <h1 id="Annuity-spadesuit"><a href="#Annuity-spadesuit" class="headerlink" title="Annuity $    \spadesuit$"></a>Annuity <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.294ex" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.939ex" role="img" focusable="false" viewBox="0 -727 778 857"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="2660" d="M181 -21Q134 -21 96 27T55 193Q55 224 58 247T82 317T143 410Q172 443 234 498Q282 543 314 598T360 687T380 725Q386 727 389 727Q395 727 398 725T406 716T413 702T423 677T439 641Q481 556 544 498Q633 420 678 353T723 204Q723 142 711 94T669 12T590 -21Q520 -21 490 8T459 66V70H409V62Q409 22 416 -17T430 -82T437 -112Q437 -131 407 -131Q403 -131 397 -131T389 -130T382 -130T372 -131Q341 -131 341 -111Q341 -107 348 -82T362 -18T369 62V70H319V66Q319 57 314 44T297 16T257 -10T191 -21H181Z"></path></g></g></g></svg></mjx-container></h1><h2 id="what’s-annuities"><a href="#what’s-annuities" class="headerlink" title="what’s annuities ?"></a>what’s annuities ?</h2><ul>
-<li>is a finite et of level sequential cash floaws <ul>
+<li><p>is a finite et of level sequential cash floaws </p>
+<ul>
 <li>equal intervals </li>
 <li>equal amount of cash flows</li>
 <li>same direction</li>
 </ul>
+</li>
+<li><p>Elements of anunuity</p>
 </li>
 </ul>
 ]]></content>
@@ -722,8 +726,37 @@
 <li>割裂的</li>
 </ul>
 </li>
-<li>乐观投票（线下投票，线上执行）</li>
+<li>乐观投票（线下投票，线上执行）<ul>
+<li>由声望的人投票，如果作弊，可以申述</li>
 </ul>
+</li>
+</ul>
+<p><img src="/images/web3/dao1.png" alt="image"></p>
+<ul>
+<li>转移owner</li>
+<li>多签签名 <ul>
+<li>gnosis-safe</li>
+</ul>
+</li>
+<li>owner转移给合约</li>
+</ul>
+<p><img src="/images/web3/dao2.png" alt="image"></p>
+<p>timelock 延迟队列</p>
+<ul>
+<li>公示的作用</li>
+</ul>
+<h2 id="投票治理"><a href="#投票治理" class="headerlink" title="投票治理"></a>投票治理</h2><p> 提案:提交执行的动作(调用哪个合约的哪个方法)<br> 统计投票数:怎样的方式来管理系统(协议)<br> 执行提案<br>问题1:治理合约不知道未来有什么提案，如何执行所有可能的函数调用。 利用底层 call 调用，如调用合约的setFee<br>(uint256) 方法:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bytes memory payload = abi.encodeWithSignature(&quot;setFee(uint256)&quot;, 10);</span><br><span class="line"> (bool success, bytes memory returnData) = address(target).call(payload);</span><br><span class="line">          require(success);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="如何计票"><a href="#如何计票" class="headerlink" title="如何计票?"></a>如何计票?</h2><p>问题2:用户会频繁转账，如果防止转账后，重复投票? </p>
+<p>在每次转账的时候，记录一个检查点，检查点上写入区块高度，及对应的票数。</p>
+<p>A投票，转账到B ,然后B投票</p>
+<p><img src="/images/web3/dao3.png" alt="image"></p>
+<p>compound getPriorVotes() 记录某一个区块高度的区块数。<br>通常timelock 充当协议的owner </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">compound-protocol/contracts/Governance/Comp.sol</span><br></pre></td></tr></table></figure>
+
+
 ]]></content>
       <categories>
         <category>Web3</category>

@@ -215,12 +215,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
         </span>
     
     
@@ -413,8 +413,37 @@
 <li>割裂的</li>
 </ul>
 </li>
-<li>乐观投票（线下投票，线上执行）</li>
+<li>乐观投票（线下投票，线上执行）<ul>
+<li>由声望的人投票，如果作弊，可以申述</li>
 </ul>
+</li>
+</ul>
+<p><img src="/images/web3/dao1.png" alt="image"></p>
+<ul>
+<li>转移owner</li>
+<li>多签签名 <ul>
+<li>gnosis-safe</li>
+</ul>
+</li>
+<li>owner转移给合约</li>
+</ul>
+<p><img src="/images/web3/dao2.png" alt="image"></p>
+<p>timelock 延迟队列</p>
+<ul>
+<li>公示的作用</li>
+</ul>
+<h2 id="投票治理"><a href="#投票治理" class="headerlink" title="投票治理"></a>投票治理</h2><p> 提案:提交执行的动作(调用哪个合约的哪个方法)<br> 统计投票数:怎样的方式来管理系统(协议)<br> 执行提案<br>问题1:治理合约不知道未来有什么提案，如何执行所有可能的函数调用。 利用底层 call 调用，如调用合约的setFee<br>(uint256) 方法:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bytes memory payload = abi.encodeWithSignature(&quot;setFee(uint256)&quot;, 10);</span><br><span class="line"> (bool success, bytes memory returnData) = address(target).call(payload);</span><br><span class="line">          require(success);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="如何计票"><a href="#如何计票" class="headerlink" title="如何计票?"></a>如何计票?</h2><p>问题2:用户会频繁转账，如果防止转账后，重复投票? </p>
+<p>在每次转账的时候，记录一个检查点，检查点上写入区块高度，及对应的票数。</p>
+<p>A投票，转账到B ,然后B投票</p>
+<p><img src="/images/web3/dao3.png" alt="image"></p>
+<p>compound getPriorVotes() 记录某一个区块高度的区块数。<br>通常timelock 充当协议的owner </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compound-protocol/contracts/Governance/Comp.sol</span><br></pre></td></tr></table></figure>
+
+
 
         </div>
 
@@ -465,6 +494,21 @@
                         </a>
                     </div>
                 
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/26/interest-md/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Time value of money</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -630,7 +674,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Perpetual-Protocol%EF%BC%88%E6%B0%B8%E7%BB%AD%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">Perpetual Protocol（永续协议）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E5%B8%81"><span class="nav-number">2.</span> <span class="nav-text">稳定币</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%A8%B3%E5%AE%9A%E5%B8%81%E5%85%88%E9%A9%B1Ampleforth"><span class="nav-number">2.1.</span> <span class="nav-text">算法稳定币先驱Ampleforth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rebase"><span class="nav-number">2.1.1.</span> <span class="nav-text">Rebase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basis-Cash"><span class="nav-number">2.2.</span> <span class="nav-text">Basis Cash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frax"><span class="nav-number">2.3.</span> <span class="nav-text">Frax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FEI"><span class="nav-number">2.4.</span> <span class="nav-text">FEI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">dao治理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">3.1.</span> <span class="nav-text">dao治理的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">dao治理方式</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Perpetual-Protocol%EF%BC%88%E6%B0%B8%E7%BB%AD%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">Perpetual Protocol（永续协议）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E5%B8%81"><span class="nav-number">2.</span> <span class="nav-text">稳定币</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%A8%B3%E5%AE%9A%E5%B8%81%E5%85%88%E9%A9%B1Ampleforth"><span class="nav-number">2.1.</span> <span class="nav-text">算法稳定币先驱Ampleforth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rebase"><span class="nav-number">2.1.1.</span> <span class="nav-text">Rebase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basis-Cash"><span class="nav-number">2.2.</span> <span class="nav-text">Basis Cash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frax"><span class="nav-number">2.3.</span> <span class="nav-text">Frax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FEI"><span class="nav-number">2.4.</span> <span class="nav-text">FEI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">dao治理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">3.1.</span> <span class="nav-text">dao治理的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dao%E6%B2%BB%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">dao治理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E7%A5%A8%E6%B2%BB%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">投票治理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%A5%A8"><span class="nav-number">3.4.</span> <span class="nav-text">如何计票?</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
