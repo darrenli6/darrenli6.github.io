@@ -9,7 +9,7 @@
     
     <title>
         
-            Archive: 2022/2 |
+            NFT_masterclass |
         
         Blog
     </title>
@@ -69,7 +69,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/archives"
                             >
                                 ARCHIVES
@@ -127,7 +127,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/archives">ARCHIVES</a>
                 </li>
             
@@ -162,94 +162,196 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="archive-container ">
-        $archive-year-font-size = 1.8rem;
-$archive-year-count-font-size = 1.2rem;
-$article-title-font-size = 1.2rem;
-$article-date-font-size = 1rem;
+    <div class="article-content-container">
 
-.archive-list-container {
+        <div class="article-title">
+            <span class="title-hover-animation">NFT_masterclass</span>
+        </div>
 
-  .archive-item {
-    margin-bottom: $component-spacing-value;
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/me.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">DarrenLi</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-02-19 20:03:53</span>
+        <span class="mobile">2022-02-19 20:03</span>
+    </span>
+    
+    
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>30 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+        </span>
+    
+    
+</div>
 
-    .archive-item-header {
-      margin-bottom: 10px;
+                    </div>
+                </div>
+            </div>
+        
 
-      .archive-year {
-        font-size: $archive-year-font-size;
+        <div class="article-content markdown-body">
+            <h1 id="NFT"><a href="#NFT" class="headerlink" title="NFT"></a>NFT</h1><ul>
+<li>fungible Vs Non-fungible <ul>
+<li>fungible<ul>
+<li>not unique</li>
+<li>work the same</li>
+<li>no hierarchy  </li>
+<li>for example : btc dollar</li>
+</ul>
+</li>
+<li>non-fungible<ul>
+<li>unique</li>
+<li>work different</li>
+<li>hierarchy </li>
+<li>unique id</li>
+<li>for example : real eatate ,art</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-        +keep-tablet() {
-          font-size: $archive-year-font-size - 0.2rem;
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：NFT_masterclass</li>
+        <li>Post author：DarrenLi</li>
+        <li>Create time：2022-02-19 20:03:53</li>
+        <li>
+            Post link：https://www.ai-lijia.com/2022/02/19/NFT-masterclass/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/02/perpetual/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">perpetual</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/02/04/hack-solidity/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">hack-solidity</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script 
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script >
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '1d734d55b657ee3b84d9',
+                    clientSecret: '9fff6e6af74dde8847b2dcce34f90726b793f65f',
+                    repo: 'darrenli6.github.io',
+                    owner: 'darrenli6',
+                    admin: ['darrenli6'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
         }
 
-        color: var(--second-text-color);
-        font-weight: 600;
-        margin-right: 6px;
-      }
-
-
-      .archive-year-post-count {
-        font-size: $archive-year-count-font-size;
-        font-weight: 500;
-        color: var(--second-text-color);
-
-        +keep-tablet() {
-          font-size: $archive-year-count-font-size * 0.9;
+        if ('false') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
         }
-      }
-
-    }
-
-
-    .article-list {
-
-      padding-left: 10px;
-
-      +keep-tablet() {
-        padding-left: 0;
-      }
-
-      .article-item {
-        font-size: 1rem;
-        margin-top: 18px;
-
-        +keep-tablet() {
-          margin-top: 16px;
-        }
-
-        +keep-mobile() {
-          margin-top: 14px;
-        }
-
-        &:hover {
-          a.article-title, .article-date {
-            color: var(--primary-color);
-          }
-        }
-
-
-        a.article-title {
-          color: var(--default-text-color);
-        }
-
-        .article-date {
-          font-size: $article-date-font-size;
-          float: right;
-        }
-      }
-    }
-  }
-}
+    </script>
 
 
 
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
+
 
                 
             </div>
@@ -279,6 +381,27 @@ $article-date-font-size = 1rem;
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -325,6 +448,14 @@ $article-date-font-size = 1rem;
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NFT"><span class="nav-number">1.</span> <span class="nav-text">NFT</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -390,6 +521,14 @@ $article-date-font-size = 1rem;
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 
