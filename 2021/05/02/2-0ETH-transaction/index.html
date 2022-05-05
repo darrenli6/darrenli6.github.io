@@ -9,7 +9,7 @@
     
     <title>
         
-            2-0ETH_transaction |
+            以太坊交易 |
         
         Blog
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">2-0ETH_transaction</span>
+            <span class="title-hover-animation">以太坊交易</span>
         </div>
 
         
@@ -204,12 +204,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>720 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
         </span>
     
     
@@ -288,6 +288,106 @@
 
 eth.getTransaction(xxx)
 </code></pre>
+<h1 id="交易声明周期"><a href="#交易声明周期" class="headerlink" title="交易声明周期"></a>交易声明周期</h1><p><img src="/images/web3/tx3.png" alt="image"></p>
+<h2 id="新交易分类"><a href="#新交易分类" class="headerlink" title="新交易分类"></a>新交易分类</h2><ul>
+<li><p>本地交易 </p>
+<ul>
+<li>通过有当前节点API发送的交易</li>
+<li>eth_sendRawTransaction,eth_sendTransaction</li>
+</ul>
+</li>
+<li><p>远程交易  remoteTransaction</p>
+<ul>
+<li>接受自网络的交易</li>
+</ul>
+</li>
+</ul>
+<h2 id="交易检查条件"><a href="#交易检查条件" class="headerlink" title="交易检查条件"></a>交易检查条件</h2><ul>
+<li>必须正确的签名</li>
+<li>交易数据大小不能超过32kb</li>
+<li>交易GasLimit 必须低于gaslimit</li>
+<li>交易gasprice 必须高于挖矿要求</li>
+<li>交易的Nonce必须高于发送者的Nonce</li>
+<li>发送者必须有足够的ETH支付手续费和转账</li>
+</ul>
+<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>只有有效的交易进行广播，进入交易池</p>
+<h1 id="交易池动态调整规则"><a href="#交易池动态调整规则" class="headerlink" title="交易池动态调整规则"></a>交易池动态调整规则</h1><ul>
+<li>等待区<ul>
+<li>交易等候的状态</li>
+</ul>
+</li>
+<li>排队区<ul>
+<li>这一部分，旷工即将要打包</li>
+</ul>
+</li>
+</ul>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ul>
+<li>1 第一笔交易{sender:A,price:20wei,none&#x3D;1} 进入交易池</li>
+</ul>
+<p>排队区：A1<br>等候区：</p>
+<ul>
+<li>2 连续收到A发来的2笔交易，价格还是20gwei</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：</p>
+<ul>
+<li>3 连续收到A发来的第4笔交易{sender:A,price:20wei,nonce &#x3D;4}</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4</p>
+<ul>
+<li>4 收到新交易{sender:B,price:21gwei,nonce &#x3D;3}</li>
+</ul>
+<p>排队区：A1，A2,B3<br>等候区：A3,A4  </p>
+<p>price比较高，价格优先</p>
+<ul>
+<li>5 收到新交易{sender:B price:19 gwei,nonce &#x3D;2} 虽然B3的价格21高于A的交易，但是需要在B3之前处理交易B2的价格19低于A的价格，因此B2和B3都被调整到等候区</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3</p>
+<ul>
+<li>6 收到新交易{sender:C,price:25 gwei,nonce&#x3D;3},{sender:C,price 18 gwei,nonce&#x3D;4 } 可是C无法进入排队区，因此C账户在区块状态中它的最后一个Nonce&#x3D;1,下一笔交易是C2,因此C3和C4在等候区等待。</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3，C3,C4</p>
+<ul>
+<li>7 收到新交易 {sender:C,price 25gwei,nonce&#x3D;2}<br>此时 C2出现，可以将价高的C2C3放到排队区了</li>
+</ul>
+<p>排队区：A1，C2,C3<br>等候区：A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>8 {sender:D1,price 1gwei,nonce&#x3D;1}<br>虽然D1的价格最低，但是D是旷工节点的本地账户。<br>交易池默认将优先处理本地交易。</li>
+</ul>
+<p>排队区：D1，C2,C3<br>等候区：A1,A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>9 {sender:A,price:30 gwei,nonce&#x3D;1},{sender:A,price:30 gwei,nonce &#x3D;2} 来覆盖A1和A2  A发现自己的交易处理太慢，期望快一些处理，此时A可以重新发送一笔交易来覆盖A,要求新的交易的价格必须比旧交易的价格高。<br>此时，交易将C2和C3挤掉，</li>
+</ul>
+<p>排队区：D1，A1,A2<br>等候区：A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li>10 旷工发现，交易持排队区经常被A的交易占领。</li>
+</ul>
+<p>虽然A价格高，但是还是希望能够平衡下其他账户的交易，因此对交易池进行设置，在排队区的每一个账号的交易不能超过1笔。<br>经过设置，交易池重新调整。</p>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li><p>11 处理交易，在处理之前根据“本地有序，价格优先，Nonce有序” 原则进行排序交易。</p>
+</li>
+<li><p>12 节点接受新区块{number:233,txs:[A1,C2,A2]}<br>此时 节点需要从交易中移除已被包含到新区块中的交易，并且从新开新一轮的挖矿。</p>
+</li>
+</ul>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<p>排队区：D1，C3，C4<br>等候区：A2,A3，A4,B2,B3,C2,</p>
+<ul>
+<li>13 过了三个小时，交易一直没有被处理，系统将自动移除等候区的中已经驻留超过三个小时的交易</li>
+</ul>
+<p>排队区：D1，C3，C4<br>等候区：B3</p>
+<h2 id="交易调整规则总结"><a href="#交易调整规则总结" class="headerlink" title="交易调整规则总结"></a>交易调整规则总结</h2><p>1.交易规则：<br>1.本地交易优先于远程交易；<br>2.价格优先、时间优先；<br>2.Nonce必须连续，不允许跳数；<br>3.网络交易价格必须高于矿工设置的最低价格要求；<br>4.排队区、等候区、单账户均有容量限制。节点可根据内存大小自行调整。以下是节点默认<br>1.排队区容量：4096。<br>2.排队区单账户交易容量：16。<br>3．等候区容量：1024。<br>4.等候区单账户交易容量：64。<br>5.网络交易不允许长期驻留在内存中。默认只允许驻留3小时。</p>
+<h2 id="交易池的参数"><a href="#交易池的参数" class="headerlink" title="交易池的参数"></a>交易池的参数</h2><p>–txpool<br>geth –txpool </p>
+<h1 id="本地交易持久化"><a href="#本地交易持久化" class="headerlink" title="本地交易持久化"></a>本地交易持久化</h1><h2 id="交易池，内存"><a href="#交易池，内存" class="headerlink" title="交易池，内存"></a>交易池，内存</h2><h2 id="交易持久化"><a href="#交易持久化" class="headerlink" title="交易持久化"></a>交易持久化</h2><p>只对本地交易有效。</p>
+<p>作用：</p>
+<ul>
+<li>确保交易不丢失</li>
+<li>支持外部订阅</li>
+</ul>
+<h1 id="查看交易相关信息"><a href="#查看交易相关信息" class="headerlink" title="查看交易相关信息"></a>查看交易相关信息</h1><ul>
+<li>logbloom </li>
+<li>blockNumber: 区块号码</li>
+<li>cumulativeGasUsed:累计的gas</li>
+</ul>
 
         </div>
 
@@ -295,7 +395,7 @@ eth.getTransaction(xxx)
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：2-0ETH_transaction</li>
+        <li>Post title：以太坊交易</li>
         <li>Post author：DarrenLi</li>
         <li>Create time：2021-05-02 10:03:52</li>
         <li>
@@ -326,13 +426,13 @@ eth.getTransaction(xxx)
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/08/28/1-0React-redux/"
+                           href="/2021/05/03/2-1ETH-Crypto/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">1-0React-redux</span>
+                                <span class="post-nav-title-item">2-1ETH_Crypto</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -518,7 +618,7 @@ eth.getTransaction(xxx)
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">以太币单位转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%9A%84number%E5%AD%98%E5%82%A8%E6%9C%89%E9%99%90"><span class="nav-number">1.1.</span> <span class="nav-text">JS的number存储有限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2-1"><span class="nav-number">1.3.</span> <span class="nav-text">以太币单位转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E4%BA%A4%E6%98%93%E6%9C%BA%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">费用交易机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.1.</span> <span class="nav-text">以太币的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">交易费用机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A%E7%87%83%E6%96%99%E5%92%8C%E8%B4%B9%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">概念：燃料和费用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gasUsed-and-gasLimit"><span class="nav-number">2.4.</span> <span class="nav-text">gasUsed and gasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E8%BF%98%E5%89%A9%E4%BD%99%E7%87%83%E6%96%99"><span class="nav-number">2.5.</span> <span class="nav-text">退还剩余燃料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AE%BE%E8%AE%A1Gas-LIMIT"><span class="nav-number">2.6.</span> <span class="nav-text">为什么需要设计Gas LIMIT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8-%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%846%E4%BB%B6%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">交易费用 不可不知的6件事情</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%BC%94%E7%A4%BA"><span class="nav-number">3.1.</span> <span class="nav-text">交易演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8%E5%B0%B1%E6%98%AF%E6%97%B7%E5%B7%A5%E8%B4%B9%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">1. 交易费用就是旷工费用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%82%E4%B8%8EToken%E9%94%80%E5%94%AE%E7%9A%84%E6%97%B6%E8%AE%BE%E5%AE%9AGasLimit"><span class="nav-number">3.3.</span> <span class="nav-text">2.参与Token销售的时设定GasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8B%BF%E5%9B%9E%E6%B2%A1%E6%9C%89%E7%94%A8%E7%9A%84gas"><span class="nav-number">3.4.</span> <span class="nav-text">3.你可以拿回没有用的gas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%A6%82%E6%9E%9C%E6%83%B3%E5%B0%91%E5%87%BA%EF%BC%8C%E6%97%B7%E5%B7%A5%E8%B4%B9%E7%94%A8%EF%BC%8C%E8%B0%83%E4%BD%8Egasprice-%E8%80%8C%E4%B8%8D%E6%98%AFgasLimit"><span class="nav-number">3.5.</span> <span class="nav-text">4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%8D%B3%E4%BD%BF%E4%BA%A4%E6%98%93%E5%A4%B1%E8%B4%A5%EF%BC%8C%E4%B9%9F%E4%BC%9A%E6%8D%9F%E5%A4%B1%E6%97%B7%E5%B7%A5%E8%B4%B9%E3%80%82"><span class="nav-number">3.6.</span> <span class="nav-text">5 即使交易失败，也会损失旷工费。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%88%A9%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%90%88%E7%90%86%E8%AE%BE%E7%BD%AEgas-price"><span class="nav-number">3.7.</span> <span class="nav-text">6 利用小工具，合理设置gas price</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E5%91%A8%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">交易周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%B8%80%E7%AC%94%E4%BA%A4%E6%98%93%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88-%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">发送一笔交易会出现什么 ？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E7%BB%84%E6%88%90%E4%BA%A4%E6%98%93"><span class="nav-number">5.</span> <span class="nav-text">交易组成交易</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%BA%A4%E6%98%93%E6%97%B6%EF%BC%8C%E9%92%B1%E5%8C%85%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">发送交易时，钱包发生了什么？</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">以太币单位转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E7%9A%84number%E5%AD%98%E5%82%A8%E6%9C%89%E9%99%90"><span class="nav-number">1.1.</span> <span class="nav-text">JS的number存储有限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2-1"><span class="nav-number">1.3.</span> <span class="nav-text">以太币单位转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E4%BA%A4%E6%98%93%E6%9C%BA%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">费用交易机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%B8%81%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.1.</span> <span class="nav-text">以太币的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">交易费用机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A%E7%87%83%E6%96%99%E5%92%8C%E8%B4%B9%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">概念：燃料和费用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gasUsed-and-gasLimit"><span class="nav-number">2.4.</span> <span class="nav-text">gasUsed and gasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E8%BF%98%E5%89%A9%E4%BD%99%E7%87%83%E6%96%99"><span class="nav-number">2.5.</span> <span class="nav-text">退还剩余燃料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AE%BE%E8%AE%A1Gas-LIMIT"><span class="nav-number">2.6.</span> <span class="nav-text">为什么需要设计Gas LIMIT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8-%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%846%E4%BB%B6%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">交易费用 不可不知的6件事情</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%BC%94%E7%A4%BA"><span class="nav-number">3.1.</span> <span class="nav-text">交易演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%A4%E6%98%93%E8%B4%B9%E7%94%A8%E5%B0%B1%E6%98%AF%E6%97%B7%E5%B7%A5%E8%B4%B9%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">1. 交易费用就是旷工费用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%82%E4%B8%8EToken%E9%94%80%E5%94%AE%E7%9A%84%E6%97%B6%E8%AE%BE%E5%AE%9AGasLimit"><span class="nav-number">3.3.</span> <span class="nav-text">2.参与Token销售的时设定GasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8B%BF%E5%9B%9E%E6%B2%A1%E6%9C%89%E7%94%A8%E7%9A%84gas"><span class="nav-number">3.4.</span> <span class="nav-text">3.你可以拿回没有用的gas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%A6%82%E6%9E%9C%E6%83%B3%E5%B0%91%E5%87%BA%EF%BC%8C%E6%97%B7%E5%B7%A5%E8%B4%B9%E7%94%A8%EF%BC%8C%E8%B0%83%E4%BD%8Egasprice-%E8%80%8C%E4%B8%8D%E6%98%AFgasLimit"><span class="nav-number">3.5.</span> <span class="nav-text">4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%8D%B3%E4%BD%BF%E4%BA%A4%E6%98%93%E5%A4%B1%E8%B4%A5%EF%BC%8C%E4%B9%9F%E4%BC%9A%E6%8D%9F%E5%A4%B1%E6%97%B7%E5%B7%A5%E8%B4%B9%E3%80%82"><span class="nav-number">3.6.</span> <span class="nav-text">5 即使交易失败，也会损失旷工费。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%88%A9%E7%94%A8%E5%B0%8F%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%90%88%E7%90%86%E8%AE%BE%E7%BD%AEgas-price"><span class="nav-number">3.7.</span> <span class="nav-text">6 利用小工具，合理设置gas price</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E5%91%A8%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">交易周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%B8%80%E7%AC%94%E4%BA%A4%E6%98%93%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88-%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">发送一笔交易会出现什么 ？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E7%BB%84%E6%88%90%E4%BA%A4%E6%98%93"><span class="nav-number">5.</span> <span class="nav-text">交易组成交易</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%BA%A4%E6%98%93%E6%97%B6%EF%BC%8C%E9%92%B1%E5%8C%85%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">发送交易时，钱包发生了什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F"><span class="nav-number">7.</span> <span class="nav-text">交易声明周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E4%BA%A4%E6%98%93%E5%88%86%E7%B1%BB"><span class="nav-number">7.1.</span> <span class="nav-text">新交易分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%A3%80%E6%9F%A5%E6%9D%A1%E4%BB%B6"><span class="nav-number">7.2.</span> <span class="nav-text">交易检查条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD"><span class="nav-number">7.3.</span> <span class="nav-text">广播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%B1%A0%E5%8A%A8%E6%80%81%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%99"><span class="nav-number">8.</span> <span class="nav-text">交易池动态调整规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA"><span class="nav-number">8.1.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%99%E6%80%BB%E7%BB%93"><span class="nav-number">8.2.</span> <span class="nav-text">交易调整规则总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%B1%A0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">8.3.</span> <span class="nav-text">交易池的参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%BA%A4%E6%98%93%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">9.</span> <span class="nav-text">本地交易持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%B1%A0%EF%BC%8C%E5%86%85%E5%AD%98"><span class="nav-number">9.1.</span> <span class="nav-text">交易池，内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">9.2.</span> <span class="nav-text">交易持久化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BA%A4%E6%98%93%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="nav-number">10.</span> <span class="nav-text">查看交易相关信息</span></a></li></ol>
     </div>
 </div>
         </aside>
