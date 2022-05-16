@@ -172,6 +172,137 @@ Redux与React没有关系，Redux支持react , angular jquery
       </tags>
   </entry>
   <entry>
+    <title>ETH账户</title>
+    <url>/2022/04/05/2-2Account-md/</url>
+    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nonce</td>
+<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>余额</td>
+</tr>
+<tr>
+<td>code</td>
+<td>账户可以执行的代码，编译后的代码（合约专属）</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>合约专属，自身的存储信息，具有永久性</td>
+</tr>
+</tbody></table>
+<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
+<ul>
+<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
+<li></li>
+</ul>
+<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
+<li><p>多重签名 </p>
+<blockquote>
+<p>创建一个合约，必须多个人同意 。</p>
+</blockquote>
+</li>
+<li><p>检查是否是合约地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过API获取合约是否是地址</p>
+</li>
+<li><p>通过Ether.js 判断</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
+<blockquote>
+<p>不正确。可能合约注销或者没有部署</p>
+</blockquote>
+<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
+<p>keystore加密存储账户私钥的。</p>
+</blockquote>
+<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
+<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
+
+<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
+<ul>
+<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
+<li>可用性：仅需要密码库文件和密码来使用资金。</li>
+</ul>
+<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
+
+<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
+<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
+<ul>
+<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
+<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
+<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
+<li>CTR：AES算法中的机密模式。</li>
+</ul>
+</li>
+<li>ciphertext:账户私钥密文</li>
+<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
+</ul>
+<p><img src="/images/web3/keystore2.png" alt="image"></p>
+<p>解密密钥从哪里来的？</p>
+<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
+<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
+<li>kdfparams:<ul>
+<li>dklen:解密密钥的长度，32字节。</li>
+<li>n：迭代计算次数。</li>
+<li>p：并行化因子，这里是1，只能串行计算n次。</li>
+<li>r：底层哈希运算的块大小。</li>
+<li>salt：kdf的随机盐</li>
+</ul>
+</li>
+</ul>
+<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
+<p><img src="/images/web3/keystore3.png" alt="image"></p>
+<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
+<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
+<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
+</ul>
+<p><img src="/images/web3/keystore4.png" alt="image"></p>
+<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
+<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
+<li>它是冗余校验的一种形式。</li>
+<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
+</ul>
+<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>应用场景 ： <ul>
+<li>下载，与其他地方的下载文件同官方文件进行比较</li>
+<li>备份</li>
+</ul>
+</li>
+</ul>
+<h2 id="EIP-55-Mixed-case-checksum-address-encoding-提案"><a href="#EIP-55-Mixed-case-checksum-address-encoding-提案" class="headerlink" title="EIP-55:Mixed-case checksum address encoding 提案"></a>EIP-55:Mixed-case checksum address encoding 提案</h2><p>EIP-55规定：在将账户地址转换为十六进制字符时，<br>当十六进制地址的第i位是字母（即abcdef之一）时：<br>如果小写的十六进制地址的哈希值的第i*4位比特为1，则大写形式打印，否则小写形式<br>打印。<br>你要明白：<br>1.在十六进制中大写和小写的字母，都能代表相同的字节。<br>2.大小不同字母的哈希结果完全不一致。</p>
+]]></content>
+      <categories>
+        <category>Web3</category>
+      </categories>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3-0Go_basic</title>
     <url>/2020/05/04/3-0Go-basic/</url>
     <content><![CDATA[<h1 id="golang的优势"><a href="#golang的优势" class="headerlink" title="golang的优势"></a>golang的优势</h1><ul>
@@ -317,9 +448,197 @@ Redux与React没有关系，Redux支持react , angular jquery
 <h1 id="27-goroutine创建"><a href="#27-goroutine创建" class="headerlink" title="27 goroutine创建"></a>27 goroutine创建</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	// 用go创建一个一参数为空 返回值为空的函数</span><br><span class="line">	/*</span><br><span class="line">		go func() &#123;</span><br><span class="line">			defer fmt.Println(&quot;A.defer&quot;)</span><br><span class="line"></span><br><span class="line">			func() &#123;</span><br><span class="line">				defer fmt.Println(&quot;B.defer&quot;)</span><br><span class="line">				runtime.Goexit()</span><br><span class="line">				fmt.Println(&quot;B&quot;)</span><br><span class="line">			&#125;()</span><br><span class="line"></span><br><span class="line">			fmt.Println(&quot;A&quot;)</span><br><span class="line"></span><br><span class="line">		&#125;()</span><br><span class="line">	*/</span><br><span class="line"></span><br><span class="line">	go func(a int, b int) bool &#123;</span><br><span class="line"></span><br><span class="line">		fmt.Println(&quot;a = &quot;, a, &quot;   b = &quot;, b)</span><br><span class="line">		return true</span><br><span class="line">	&#125;(10, 20)</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		time.Sleep(1 * time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
+<h1 id="28-channel的基本定义与使用"><a href="#28-channel的基本定义与使用" class="headerlink" title="28 channel的基本定义与使用"></a>28 channel的基本定义与使用</h1><p>make(chan Type);</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	//定义一个 channel</span><br><span class="line">	c := make(chan int)</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line">		defer fmt.Println(&quot;goroutne结束&quot;)</span><br><span class="line"></span><br><span class="line">		fmt.Println(&quot;goroutine 正在运行&quot;)</span><br><span class="line"></span><br><span class="line">		c &lt;- 666 //将666 发送给c  阻塞</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	// 从c接受数据  发生阻塞</span><br><span class="line">	num := &lt;-c</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;numer =&quot;, num)</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;main goroutine 正在运行&quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h1 id="29-chnnel有缓冲与无缓冲同步问题"><a href="#29-chnnel有缓冲与无缓冲同步问题" class="headerlink" title="29 chnnel有缓冲与无缓冲同步问题"></a>29 chnnel有缓冲与无缓冲同步问题</h1><p>无缓冲的，就是channel中没有存储goroutine ，所以一方开启goroutine的时候，会进行锁住。</p>
+<p>有缓冲的，就是channel中存储goroutine ，不会锁住</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	c := make(chan int, 3)</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;len(c)&quot;, len(c), &quot;, cap(c) = &quot;, cap(c))</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line">		defer fmt.Println(&quot;sub goroutine exit &quot;)</span><br><span class="line">        // 如果=4 这样就会阻塞</span><br><span class="line">		for i := 0; i &lt; 4; i++ &#123;</span><br><span class="line">			c &lt;- i</span><br><span class="line">			fmt.Println(&quot;sub goroutine 正在运行,ele= &quot;, i, &quot; len(c)&quot;, len(c), &quot;  cap(c)=&quot;, cap(c))</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	time.Sleep(2 * time.Second)</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt; 4; i++ &#123;</span><br><span class="line">		numer := &lt;-c</span><br><span class="line">		fmt.Println(&quot;number = &quot;, numer)</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;main goroutine exit &quot;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当channel已经满，再往里面写入，就会阻塞。<br>当channel为空，从里面取数据，也会阻塞。</p>
+<h1 id="30-channel关闭的特点"><a href="#30-channel关闭的特点" class="headerlink" title="30 channel关闭的特点"></a>30 channel关闭的特点</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	c := make(chan int)</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line"></span><br><span class="line">		for i := 0; i &lt; 5; i++ &#123;</span><br><span class="line">			c &lt;- i</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		// 确认数据没有发送了， 就关闭它  否则会发生死锁 fatal error: all goroutines are asleep - deadlock!</span><br><span class="line">		// 如果向正在关闭的channel 触发panic panic: send on closed channel</span><br><span class="line">		// nil chanel 会产生阻塞</span><br><span class="line">		close(c)</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		//  ok 如果为true表示channel没有关闭，如果是false表示 channel已经关闭</span><br><span class="line"></span><br><span class="line">		if data, ok := &lt;-c; ok &#123;</span><br><span class="line">			fmt.Println(data)</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			break</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;main finishing &quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="31-channel-与range"><a href="#31-channel-与range" class="headerlink" title="31 channel 与range"></a>31 channel 与range</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	c := make(chan int)</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line"></span><br><span class="line">		for i := 0; i &lt; 5; i++ &#123;</span><br><span class="line">			c &lt;- i</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		close(c)</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	 // range 迭代</span><br><span class="line">	for data := range c &#123;</span><br><span class="line">		fmt.Println(data)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(&quot;main finishing &quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="32-channel-与select"><a href="#32-channel-与select" class="headerlink" title="32 channel 与select"></a>32 channel 与select</h1><p>同时处理多个channel的状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func fibonacci(c, quit chan int) &#123;</span><br><span class="line">	x, y := 1, 1</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		select &#123;</span><br><span class="line">		//写入</span><br><span class="line">		case c &lt;- x:</span><br><span class="line">			x = y</span><br><span class="line">			y = x + y</span><br><span class="line">			// 读</span><br><span class="line">		case &lt;-quit:</span><br><span class="line">			fmt.Println(&quot;quit&quot;)</span><br><span class="line">			return</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	c := make(chan int)</span><br><span class="line">	quit := make(chan int)</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line">		for i := 0; i &lt; 10; i++ &#123;</span><br><span class="line">			// 读</span><br><span class="line">			fmt.Println(&lt;-c)</span><br><span class="line">		&#125;</span><br><span class="line">		// 写</span><br><span class="line">		quit &lt;- 0</span><br><span class="line">	&#125;()</span><br><span class="line">	fibonacci(c, quit)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
+  </entry>
+  <entry>
+    <title>以太坊交易</title>
+    <url>/2021/05/02/2-0ETH-transaction/</url>
+    <content><![CDATA[<h1 id="以太币单位转换"><a href="#以太币单位转换" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h1><h2 id="JS的number存储有限"><a href="#JS的number存储有限" class="headerlink" title="JS的number存储有限"></a>JS的number存储有限</h2><p>JS中证书存储的是一个双精度浮点数，使用64位（8字节）存储。<br>安全存储范围：$[- (2^{53} -1),(2^{53} -1)]$, 小于$10^{17}$</p>
+<p>在DAPP中，还是以太坊项目中关于金额数据均使用BigInt类型。</p>
+<p>不是所有的浏览器兼容bigint </p>
+<h2 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h2><p>bn.js bignumber.js </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var y =10 **17</span><br><span class="line">console.log(y==y+1)  //  true</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="以太币单位转换-1"><a href="#以太币单位转换-1" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h2><p>@  “ethers”: “^4.0.5”</p>
+<ul>
+<li>parseUints()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//value 0x61923bbe2c31028000</span><br><span class="line">const ethers =require(&#x27;ethers&#x27;)</span><br><span class="line"></span><br><span class="line">const utils = ethers.utils;</span><br><span class="line"></span><br><span class="line">const log =console.log;</span><br><span class="line">let value =utils.bigNumberify(&quot;0x61923bbe2c31028000&quot;);</span><br><span class="line">log(utils.formatUnits(value,&quot;ether&quot;))  //1799.8714</span><br><span class="line">log(utils.commify(utils.formatUnits(value,&quot;ether&quot;)))  //1,799.8714</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//32wei</span><br><span class="line">let gasPrice = utils.parseUnits(&quot;35&quot;,&quot;wei&quot;);</span><br><span class="line">let gasUsed =utils.bigNumberify(21000);</span><br><span class="line">//fee  0.000735 = gasprice * gasUsed </span><br><span class="line">let fee =gasPrice.mul(gasUsed)</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;ether&#x27;))</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;gwei&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="费用交易机制"><a href="#费用交易机制" class="headerlink" title="费用交易机制"></a>费用交易机制</h1><h2 id="以太币的用途"><a href="#以太币的用途" class="headerlink" title="以太币的用途"></a>以太币的用途</h2><p>提供一种支付交易费用的机制，防止用户滥用交易。</p>
+<h2 id="交易费用机制"><a href="#交易费用机制" class="headerlink" title="交易费用机制"></a>交易费用机制</h2><p>指令级，按步先扣gas费，再执行。</p>
+<h2 id="概念：燃料和费用"><a href="#概念：燃料和费用" class="headerlink" title="概念：燃料和费用"></a>概念：燃料和费用</h2><p>gas * gasprice  &#x3D; fee </p>
+<p>1gas的燃料售价是6.32gwei</p>
+<h2 id="gasUsed-and-gasLimit"><a href="#gasUsed-and-gasLimit" class="headerlink" title="gasUsed and gasLimit"></a>gasUsed and gasLimit</h2><p>gas limit * gas price &#x3D; 交易手续费的上限 </p>
+<p>gas used * gas price &#x3D; 交易支付手续费</p>
+<h2 id="退还剩余燃料"><a href="#退还剩余燃料" class="headerlink" title="退还剩余燃料"></a>退还剩余燃料</h2><p>当在EVM中执行完，就会被退还<br>退还 &#x3D; （Gas limit -Gas Used） * Gas price </p>
+<p>如果gas limit 不足，会交易失败（out of gas），会出现 gas used &#x3D; gas limit<br>不会修改以太坊的状态，会还原到交易之前。</p>
+<h2 id="为什么需要设计Gas-LIMIT"><a href="#为什么需要设计Gas-LIMIT" class="headerlink" title="为什么需要设计Gas LIMIT"></a>为什么需要设计Gas LIMIT</h2><p>帮助用户止损 </p>
+<p>gas奖励旷工。</p>
+<h1 id="交易费用-不可不知的6件事情"><a href="#交易费用-不可不知的6件事情" class="headerlink" title="交易费用 不可不知的6件事情"></a>交易费用 不可不知的6件事情</h1><h2 id="交易演示"><a href="#交易演示" class="headerlink" title="交易演示"></a>交易演示</h2><p>metamask转账</p>
+<h2 id="1-交易费用就是旷工费用"><a href="#1-交易费用就是旷工费用" class="headerlink" title="1. 交易费用就是旷工费用"></a>1. 交易费用就是旷工费用</h2><p>交易完毕之后，就支付给了处理本交易的旷工费用。</p>
+<h2 id="2-参与Token销售的时设定GasLimit"><a href="#2-参与Token销售的时设定GasLimit" class="headerlink" title="2.参与Token销售的时设定GasLimit"></a>2.参与Token销售的时设定GasLimit</h2><h2 id="3-你可以拿回没有用的gas"><a href="#3-你可以拿回没有用的gas" class="headerlink" title="3.你可以拿回没有用的gas"></a>3.你可以拿回没有用的gas</h2><p>可以gas limit适当的设置高一些。</p>
+<h2 id="4-如果想少出，旷工费用，调低gasprice-而不是gasLimit"><a href="#4-如果想少出，旷工费用，调低gasprice-而不是gasLimit" class="headerlink" title="4 如果想少出，旷工费用，调低gasprice 而不是gasLimit"></a>4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</h2><h2 id="5-即使交易失败，也会损失旷工费。"><a href="#5-即使交易失败，也会损失旷工费。" class="headerlink" title="5 即使交易失败，也会损失旷工费。"></a>5 即使交易失败，也会损失旷工费。</h2><p>没有免费的网络资源</p>
+<h2 id="6-利用小工具，合理设置gas-price"><a href="#6-利用小工具，合理设置gas-price" class="headerlink" title="6 利用小工具，合理设置gas price"></a>6 利用小工具，合理设置gas price</h2><p>gasprice 由交易发送者，旷工和智能合约设计者根据市场的供应来决定的。</p>
+<p><a class="link"   href="https://ethgasstation.info/" >https://ethgasstation.info<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   href="https://etherscan.io/gastracker" >https://etherscan.io/gastracker<i class="fas fa-external-link-alt"></i></a> </p>
+<h1 id="交易周期"><a href="#交易周期" class="headerlink" title="交易周期"></a>交易周期</h1><h2 id="发送一笔交易会出现什么-？"><a href="#发送一笔交易会出现什么-？" class="headerlink" title="发送一笔交易会出现什么 ？"></a>发送一笔交易会出现什么 ？</h2><p>输入交易信息 —&gt; 签名交易 —&gt; 本地存储 —&gt; 广播 —&gt; 交易池排序 —&gt; 执行交易 —&gt; pow挖矿 —&gt; 广播新区块 —&gt; 接受新区块 —&gt; 交易确认 —&gt; 交易稳定 </p>
+<h1 id="交易组成交易"><a href="#交易组成交易" class="headerlink" title="交易组成交易"></a>交易组成交易</h1><p><img src="/images/web3/tx1.png" alt="image"></p>
+<p>交易id+ 交易内容 &#x3D; txHash  </p>
+<h1 id="发送交易时，钱包发生了什么？"><a href="#发送交易时，钱包发生了什么？" class="headerlink" title="发送交易时，钱包发生了什么？"></a>发送交易时，钱包发生了什么？</h1><p><img src="/images/web3/tx2.png" alt="image"></p>
+<p><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>txData<ul>
+<li>receiver ,value</li>
+<li>inputData<ul>
+<li>当为执行合约方法的时候，方法ID+方法入参</li>
+</ul>
+</li>
+<li>GasPrice <ul>
+<li><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li>GasLimit <ul>
+<li>估算gas API:eth_estimateGas</li>
+</ul>
+</li>
+<li>Nonce <ul>
+<li>&#x3D; eth_getTransactionCount(sender)</li>
+</ul>
+</li>
+<li>R S V<ul>
+<li>ECDSA.sign(txData,chainid,0,0)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>客户端 </p>
+<pre><code>geth attach http://127.0.0.1:7545
+
+eth.getTransaction(xxx)
+</code></pre>
+<h1 id="交易声明周期"><a href="#交易声明周期" class="headerlink" title="交易声明周期"></a>交易声明周期</h1><p><img src="/images/web3/tx3.png" alt="image"></p>
+<h2 id="新交易分类"><a href="#新交易分类" class="headerlink" title="新交易分类"></a>新交易分类</h2><ul>
+<li><p>本地交易 </p>
+<ul>
+<li>通过有当前节点API发送的交易</li>
+<li>eth_sendRawTransaction,eth_sendTransaction</li>
+</ul>
+</li>
+<li><p>远程交易  remoteTransaction</p>
+<ul>
+<li>接受自网络的交易</li>
+</ul>
+</li>
+</ul>
+<h2 id="交易检查条件"><a href="#交易检查条件" class="headerlink" title="交易检查条件"></a>交易检查条件</h2><ul>
+<li>必须正确的签名</li>
+<li>交易数据大小不能超过32kb</li>
+<li>交易GasLimit 必须低于gaslimit</li>
+<li>交易gasprice 必须高于挖矿要求</li>
+<li>交易的Nonce必须高于发送者的Nonce</li>
+<li>发送者必须有足够的ETH支付手续费和转账</li>
+</ul>
+<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>只有有效的交易进行广播，进入交易池</p>
+<h1 id="交易池动态调整规则"><a href="#交易池动态调整规则" class="headerlink" title="交易池动态调整规则"></a>交易池动态调整规则</h1><ul>
+<li>等待区<ul>
+<li>交易等候的状态</li>
+</ul>
+</li>
+<li>排队区<ul>
+<li>这一部分，旷工即将要打包</li>
+</ul>
+</li>
+</ul>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ul>
+<li>1 第一笔交易{sender:A,price:20wei,none&#x3D;1} 进入交易池</li>
+</ul>
+<p>排队区：A1<br>等候区：</p>
+<ul>
+<li>2 连续收到A发来的2笔交易，价格还是20gwei</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：</p>
+<ul>
+<li>3 连续收到A发来的第4笔交易{sender:A,price:20wei,nonce &#x3D;4}</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4</p>
+<ul>
+<li>4 收到新交易{sender:B,price:21gwei,nonce &#x3D;3}</li>
+</ul>
+<p>排队区：A1，A2,B3<br>等候区：A3,A4  </p>
+<p>price比较高，价格优先</p>
+<ul>
+<li>5 收到新交易{sender:B price:19 gwei,nonce &#x3D;2} 虽然B3的价格21高于A的交易，但是需要在B3之前处理交易B2的价格19低于A的价格，因此B2和B3都被调整到等候区</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3</p>
+<ul>
+<li>6 收到新交易{sender:C,price:25 gwei,nonce&#x3D;3},{sender:C,price 18 gwei,nonce&#x3D;4 } 可是C无法进入排队区，因此C账户在区块状态中它的最后一个Nonce&#x3D;1,下一笔交易是C2,因此C3和C4在等候区等待。</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3，C3,C4</p>
+<ul>
+<li>7 收到新交易 {sender:C,price 25gwei,nonce&#x3D;2}<br>此时 C2出现，可以将价高的C2C3放到排队区了</li>
+</ul>
+<p>排队区：A1，C2,C3<br>等候区：A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>8 {sender:D1,price 1gwei,nonce&#x3D;1}<br>虽然D1的价格最低，但是D是旷工节点的本地账户。<br>交易池默认将优先处理本地交易。</li>
+</ul>
+<p>排队区：D1，C2,C3<br>等候区：A1,A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>9 {sender:A,price:30 gwei,nonce&#x3D;1},{sender:A,price:30 gwei,nonce &#x3D;2} 来覆盖A1和A2  A发现自己的交易处理太慢，期望快一些处理，此时A可以重新发送一笔交易来覆盖A,要求新的交易的价格必须比旧交易的价格高。<br>此时，交易将C2和C3挤掉，</li>
+</ul>
+<p>排队区：D1，A1,A2<br>等候区：A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li>10 旷工发现，交易持排队区经常被A的交易占领。</li>
+</ul>
+<p>虽然A价格高，但是还是希望能够平衡下其他账户的交易，因此对交易池进行设置，在排队区的每一个账号的交易不能超过1笔。<br>经过设置，交易池重新调整。</p>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li><p>11 处理交易，在处理之前根据“本地有序，价格优先，Nonce有序” 原则进行排序交易。</p>
+</li>
+<li><p>12 节点接受新区块{number:233,txs:[A1,C2,A2]}<br>此时 节点需要从交易中移除已被包含到新区块中的交易，并且从新开新一轮的挖矿。</p>
+</li>
+</ul>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<p>排队区：D1，C3，C4<br>等候区：A2,A3，A4,B2,B3,C2,</p>
+<ul>
+<li>13 过了三个小时，交易一直没有被处理，系统将自动移除等候区的中已经驻留超过三个小时的交易</li>
+</ul>
+<p>排队区：D1，C3，C4<br>等候区：B3</p>
+<h2 id="交易调整规则总结"><a href="#交易调整规则总结" class="headerlink" title="交易调整规则总结"></a>交易调整规则总结</h2><p>1.交易规则：<br>1.本地交易优先于远程交易；<br>2.价格优先、时间优先；<br>2.Nonce必须连续，不允许跳数；<br>3.网络交易价格必须高于矿工设置的最低价格要求；<br>4.排队区、等候区、单账户均有容量限制。节点可根据内存大小自行调整。以下是节点默认<br>1.排队区容量：4096。<br>2.排队区单账户交易容量：16。<br>3．等候区容量：1024。<br>4.等候区单账户交易容量：64。<br>5.网络交易不允许长期驻留在内存中。默认只允许驻留3小时。</p>
+<h2 id="交易池的参数"><a href="#交易池的参数" class="headerlink" title="交易池的参数"></a>交易池的参数</h2><p>–txpool<br>geth –txpool </p>
+<h1 id="本地交易持久化"><a href="#本地交易持久化" class="headerlink" title="本地交易持久化"></a>本地交易持久化</h1><h2 id="交易池，内存"><a href="#交易池，内存" class="headerlink" title="交易池，内存"></a>交易池，内存</h2><h2 id="交易持久化"><a href="#交易持久化" class="headerlink" title="交易持久化"></a>交易持久化</h2><p>只对本地交易有效。</p>
+<p>作用：</p>
+<ul>
+<li>确保交易不丢失</li>
+<li>支持外部订阅</li>
+</ul>
+<h1 id="查看交易相关信息"><a href="#查看交易相关信息" class="headerlink" title="查看交易相关信息"></a>查看交易相关信息</h1><ul>
+<li>logbloom </li>
+<li>blockNumber: 区块号码</li>
+<li>cumulativeGasUsed:累计的gas</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
   </entry>
   <entry>
     <title>4-0solidity</title>
@@ -496,11 +815,6 @@ Redux与React没有关系，Redux支持react , angular jquery
       <tags>
         <tag>Rust</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>7-0How_to_hack_smart_contract</title>
-    <url>/2021/05/11/7-0How-to-hack-smart-contract/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Time value of money</title>
@@ -747,6 +1061,30 @@ Redux与React没有关系，Redux支持react , angular jquery
       </tags>
   </entry>
   <entry>
+    <title>7-0How_to_hack_smart_contract</title>
+    <url>/2021/05/11/7-0How-to-hack-smart-contract/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>ETH</title>
+    <url>/2022/03/07/ETH/</url>
+    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
+
+<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
+<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
+<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
+<li>共识层：规定通过何种方式实现交易记录的过程 </li>
+<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
+<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
+<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
+</ul>
+<p><img src="/images/web3/eth.png" alt="image"></p>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NFT_masterclass</title>
     <url>/2022/02/19/NFT-masterclass/</url>
     <content><![CDATA[<h1 id="NFT"><a href="#NFT" class="headerlink" title="NFT"></a>NFT</h1><ul>
@@ -778,331 +1116,6 @@ Redux与React没有关系，Redux支持react , angular jquery
 <blockquote>
 <p>源码<br><a class="link"   href="https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles" >https://github.com/darrenli6/defi_example/tree/master/eattheblocks/defi-development-mastery/1-defi-building-blocks/6-oracles<i class="fas fa-external-link-alt"></i></a></p>
 </blockquote>
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ETH账户</title>
-    <url>/2022/04/05/2-2Account-md/</url>
-    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nonce</td>
-<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
-</tr>
-<tr>
-<td>balance</td>
-<td>余额</td>
-</tr>
-<tr>
-<td>code</td>
-<td>账户可以执行的代码，编译后的代码（合约专属）</td>
-</tr>
-<tr>
-<td>storage</td>
-<td>合约专属，自身的存储信息，具有永久性</td>
-</tr>
-</tbody></table>
-<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
-<ul>
-<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
-<li></li>
-</ul>
-<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
-<li><p>多重签名 </p>
-<blockquote>
-<p>创建一个合约，必须多个人同意 。</p>
-</blockquote>
-</li>
-<li><p>检查是否是合约地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>通过API获取合约是否是地址</p>
-</li>
-<li><p>通过Ether.js 判断</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
-<blockquote>
-<p>不正确。可能合约注销或者没有部署</p>
-</blockquote>
-<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
-<p>keystore加密存储账户私钥的。</p>
-</blockquote>
-<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
-<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
-
-<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
-<ul>
-<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
-<li>可用性：仅需要密码库文件和密码来使用资金。</li>
-</ul>
-<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
-
-<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
-<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
-<ul>
-<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
-<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
-<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
-<li>CTR：AES算法中的机密模式。</li>
-</ul>
-</li>
-<li>ciphertext:账户私钥密文</li>
-<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
-</ul>
-<p><img src="/images/web3/keystore2.png" alt="image"></p>
-<p>解密密钥从哪里来的？</p>
-<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
-<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
-<li>kdfparams:<ul>
-<li>dklen:解密密钥的长度，32字节。</li>
-<li>n：迭代计算次数。</li>
-<li>p：并行化因子，这里是1，只能串行计算n次。</li>
-<li>r：底层哈希运算的块大小。</li>
-<li>salt：kdf的随机盐</li>
-</ul>
-</li>
-</ul>
-<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
-<p><img src="/images/web3/keystore3.png" alt="image"></p>
-<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
-<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
-<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
-</ul>
-<p><img src="/images/web3/keystore4.png" alt="image"></p>
-<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
-<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
-<li>它是冗余校验的一种形式。</li>
-<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
-</ul>
-<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<ul>
-<li>应用场景 ： <ul>
-<li>下载，与其他地方的下载文件同官方文件进行比较</li>
-<li>备份</li>
-</ul>
-</li>
-</ul>
-<h2 id="EIP-55-Mixed-case-checksum-address-encoding-提案"><a href="#EIP-55-Mixed-case-checksum-address-encoding-提案" class="headerlink" title="EIP-55:Mixed-case checksum address encoding 提案"></a>EIP-55:Mixed-case checksum address encoding 提案</h2><p>EIP-55规定：在将账户地址转换为十六进制字符时，<br>当十六进制地址的第i位是字母（即abcdef之一）时：<br>如果小写的十六进制地址的哈希值的第i*4位比特为1，则大写形式打印，否则小写形式<br>打印。<br>你要明白：<br>1.在十六进制中大写和小写的字母，都能代表相同的字节。<br>2.大小不同字母的哈希结果完全不一致。</p>
-]]></content>
-      <categories>
-        <category>Web3</category>
-      </categories>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>以太坊交易</title>
-    <url>/2021/05/02/2-0ETH-transaction/</url>
-    <content><![CDATA[<h1 id="以太币单位转换"><a href="#以太币单位转换" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h1><h2 id="JS的number存储有限"><a href="#JS的number存储有限" class="headerlink" title="JS的number存储有限"></a>JS的number存储有限</h2><p>JS中证书存储的是一个双精度浮点数，使用64位（8字节）存储。<br>安全存储范围：$[- (2^{53} -1),(2^{53} -1)]$, 小于$10^{17}$</p>
-<p>在DAPP中，还是以太坊项目中关于金额数据均使用BigInt类型。</p>
-<p>不是所有的浏览器兼容bigint </p>
-<h2 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h2><p>bn.js bignumber.js </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var y =10 **17</span><br><span class="line">console.log(y==y+1)  //  true</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="以太币单位转换-1"><a href="#以太币单位转换-1" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h2><p>@  “ethers”: “^4.0.5”</p>
-<ul>
-<li>parseUints()</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//value 0x61923bbe2c31028000</span><br><span class="line">const ethers =require(&#x27;ethers&#x27;)</span><br><span class="line"></span><br><span class="line">const utils = ethers.utils;</span><br><span class="line"></span><br><span class="line">const log =console.log;</span><br><span class="line">let value =utils.bigNumberify(&quot;0x61923bbe2c31028000&quot;);</span><br><span class="line">log(utils.formatUnits(value,&quot;ether&quot;))  //1799.8714</span><br><span class="line">log(utils.commify(utils.formatUnits(value,&quot;ether&quot;)))  //1,799.8714</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//32wei</span><br><span class="line">let gasPrice = utils.parseUnits(&quot;35&quot;,&quot;wei&quot;);</span><br><span class="line">let gasUsed =utils.bigNumberify(21000);</span><br><span class="line">//fee  0.000735 = gasprice * gasUsed </span><br><span class="line">let fee =gasPrice.mul(gasUsed)</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;ether&#x27;))</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;gwei&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="费用交易机制"><a href="#费用交易机制" class="headerlink" title="费用交易机制"></a>费用交易机制</h1><h2 id="以太币的用途"><a href="#以太币的用途" class="headerlink" title="以太币的用途"></a>以太币的用途</h2><p>提供一种支付交易费用的机制，防止用户滥用交易。</p>
-<h2 id="交易费用机制"><a href="#交易费用机制" class="headerlink" title="交易费用机制"></a>交易费用机制</h2><p>指令级，按步先扣gas费，再执行。</p>
-<h2 id="概念：燃料和费用"><a href="#概念：燃料和费用" class="headerlink" title="概念：燃料和费用"></a>概念：燃料和费用</h2><p>gas * gasprice  &#x3D; fee </p>
-<p>1gas的燃料售价是6.32gwei</p>
-<h2 id="gasUsed-and-gasLimit"><a href="#gasUsed-and-gasLimit" class="headerlink" title="gasUsed and gasLimit"></a>gasUsed and gasLimit</h2><p>gas limit * gas price &#x3D; 交易手续费的上限 </p>
-<p>gas used * gas price &#x3D; 交易支付手续费</p>
-<h2 id="退还剩余燃料"><a href="#退还剩余燃料" class="headerlink" title="退还剩余燃料"></a>退还剩余燃料</h2><p>当在EVM中执行完，就会被退还<br>退还 &#x3D; （Gas limit -Gas Used） * Gas price </p>
-<p>如果gas limit 不足，会交易失败（out of gas），会出现 gas used &#x3D; gas limit<br>不会修改以太坊的状态，会还原到交易之前。</p>
-<h2 id="为什么需要设计Gas-LIMIT"><a href="#为什么需要设计Gas-LIMIT" class="headerlink" title="为什么需要设计Gas LIMIT"></a>为什么需要设计Gas LIMIT</h2><p>帮助用户止损 </p>
-<p>gas奖励旷工。</p>
-<h1 id="交易费用-不可不知的6件事情"><a href="#交易费用-不可不知的6件事情" class="headerlink" title="交易费用 不可不知的6件事情"></a>交易费用 不可不知的6件事情</h1><h2 id="交易演示"><a href="#交易演示" class="headerlink" title="交易演示"></a>交易演示</h2><p>metamask转账</p>
-<h2 id="1-交易费用就是旷工费用"><a href="#1-交易费用就是旷工费用" class="headerlink" title="1. 交易费用就是旷工费用"></a>1. 交易费用就是旷工费用</h2><p>交易完毕之后，就支付给了处理本交易的旷工费用。</p>
-<h2 id="2-参与Token销售的时设定GasLimit"><a href="#2-参与Token销售的时设定GasLimit" class="headerlink" title="2.参与Token销售的时设定GasLimit"></a>2.参与Token销售的时设定GasLimit</h2><h2 id="3-你可以拿回没有用的gas"><a href="#3-你可以拿回没有用的gas" class="headerlink" title="3.你可以拿回没有用的gas"></a>3.你可以拿回没有用的gas</h2><p>可以gas limit适当的设置高一些。</p>
-<h2 id="4-如果想少出，旷工费用，调低gasprice-而不是gasLimit"><a href="#4-如果想少出，旷工费用，调低gasprice-而不是gasLimit" class="headerlink" title="4 如果想少出，旷工费用，调低gasprice 而不是gasLimit"></a>4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</h2><h2 id="5-即使交易失败，也会损失旷工费。"><a href="#5-即使交易失败，也会损失旷工费。" class="headerlink" title="5 即使交易失败，也会损失旷工费。"></a>5 即使交易失败，也会损失旷工费。</h2><p>没有免费的网络资源</p>
-<h2 id="6-利用小工具，合理设置gas-price"><a href="#6-利用小工具，合理设置gas-price" class="headerlink" title="6 利用小工具，合理设置gas price"></a>6 利用小工具，合理设置gas price</h2><p>gasprice 由交易发送者，旷工和智能合约设计者根据市场的供应来决定的。</p>
-<p><a class="link"   href="https://ethgasstation.info/" >https://ethgasstation.info<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   href="https://etherscan.io/gastracker" >https://etherscan.io/gastracker<i class="fas fa-external-link-alt"></i></a> </p>
-<h1 id="交易周期"><a href="#交易周期" class="headerlink" title="交易周期"></a>交易周期</h1><h2 id="发送一笔交易会出现什么-？"><a href="#发送一笔交易会出现什么-？" class="headerlink" title="发送一笔交易会出现什么 ？"></a>发送一笔交易会出现什么 ？</h2><p>输入交易信息 —&gt; 签名交易 —&gt; 本地存储 —&gt; 广播 —&gt; 交易池排序 —&gt; 执行交易 —&gt; pow挖矿 —&gt; 广播新区块 —&gt; 接受新区块 —&gt; 交易确认 —&gt; 交易稳定 </p>
-<h1 id="交易组成交易"><a href="#交易组成交易" class="headerlink" title="交易组成交易"></a>交易组成交易</h1><p><img src="/images/web3/tx1.png" alt="image"></p>
-<p>交易id+ 交易内容 &#x3D; txHash  </p>
-<h1 id="发送交易时，钱包发生了什么？"><a href="#发送交易时，钱包发生了什么？" class="headerlink" title="发送交易时，钱包发生了什么？"></a>发送交易时，钱包发生了什么？</h1><p><img src="/images/web3/tx2.png" alt="image"></p>
-<p><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></p>
-<ul>
-<li>txData<ul>
-<li>receiver ,value</li>
-<li>inputData<ul>
-<li>当为执行合约方法的时候，方法ID+方法入参</li>
-</ul>
-</li>
-<li>GasPrice <ul>
-<li><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li>GasLimit <ul>
-<li>估算gas API:eth_estimateGas</li>
-</ul>
-</li>
-<li>Nonce <ul>
-<li>&#x3D; eth_getTransactionCount(sender)</li>
-</ul>
-</li>
-<li>R S V<ul>
-<li>ECDSA.sign(txData,chainid,0,0)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>客户端 </p>
-<pre><code>geth attach http://127.0.0.1:7545
-
-eth.getTransaction(xxx)
-</code></pre>
-<h1 id="交易声明周期"><a href="#交易声明周期" class="headerlink" title="交易声明周期"></a>交易声明周期</h1><p><img src="/images/web3/tx3.png" alt="image"></p>
-<h2 id="新交易分类"><a href="#新交易分类" class="headerlink" title="新交易分类"></a>新交易分类</h2><ul>
-<li><p>本地交易 </p>
-<ul>
-<li>通过有当前节点API发送的交易</li>
-<li>eth_sendRawTransaction,eth_sendTransaction</li>
-</ul>
-</li>
-<li><p>远程交易  remoteTransaction</p>
-<ul>
-<li>接受自网络的交易</li>
-</ul>
-</li>
-</ul>
-<h2 id="交易检查条件"><a href="#交易检查条件" class="headerlink" title="交易检查条件"></a>交易检查条件</h2><ul>
-<li>必须正确的签名</li>
-<li>交易数据大小不能超过32kb</li>
-<li>交易GasLimit 必须低于gaslimit</li>
-<li>交易gasprice 必须高于挖矿要求</li>
-<li>交易的Nonce必须高于发送者的Nonce</li>
-<li>发送者必须有足够的ETH支付手续费和转账</li>
-</ul>
-<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>只有有效的交易进行广播，进入交易池</p>
-<h1 id="交易池动态调整规则"><a href="#交易池动态调整规则" class="headerlink" title="交易池动态调整规则"></a>交易池动态调整规则</h1><ul>
-<li>等待区<ul>
-<li>交易等候的状态</li>
-</ul>
-</li>
-<li>排队区<ul>
-<li>这一部分，旷工即将要打包</li>
-</ul>
-</li>
-</ul>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ul>
-<li>1 第一笔交易{sender:A,price:20wei,none&#x3D;1} 进入交易池</li>
-</ul>
-<p>排队区：A1<br>等候区：</p>
-<ul>
-<li>2 连续收到A发来的2笔交易，价格还是20gwei</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：</p>
-<ul>
-<li>3 连续收到A发来的第4笔交易{sender:A,price:20wei,nonce &#x3D;4}</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4</p>
-<ul>
-<li>4 收到新交易{sender:B,price:21gwei,nonce &#x3D;3}</li>
-</ul>
-<p>排队区：A1，A2,B3<br>等候区：A3,A4  </p>
-<p>price比较高，价格优先</p>
-<ul>
-<li>5 收到新交易{sender:B price:19 gwei,nonce &#x3D;2} 虽然B3的价格21高于A的交易，但是需要在B3之前处理交易B2的价格19低于A的价格，因此B2和B3都被调整到等候区</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3</p>
-<ul>
-<li>6 收到新交易{sender:C,price:25 gwei,nonce&#x3D;3},{sender:C,price 18 gwei,nonce&#x3D;4 } 可是C无法进入排队区，因此C账户在区块状态中它的最后一个Nonce&#x3D;1,下一笔交易是C2,因此C3和C4在等候区等待。</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3，C3,C4</p>
-<ul>
-<li>7 收到新交易 {sender:C,price 25gwei,nonce&#x3D;2}<br>此时 C2出现，可以将价高的C2C3放到排队区了</li>
-</ul>
-<p>排队区：A1，C2,C3<br>等候区：A2,A3，A4,B2,B3,C4</p>
-<ul>
-<li>8 {sender:D1,price 1gwei,nonce&#x3D;1}<br>虽然D1的价格最低，但是D是旷工节点的本地账户。<br>交易池默认将优先处理本地交易。</li>
-</ul>
-<p>排队区：D1，C2,C3<br>等候区：A1,A2,A3，A4,B2,B3,C4</p>
-<ul>
-<li>9 {sender:A,price:30 gwei,nonce&#x3D;1},{sender:A,price:30 gwei,nonce &#x3D;2} 来覆盖A1和A2  A发现自己的交易处理太慢，期望快一些处理，此时A可以重新发送一笔交易来覆盖A,要求新的交易的价格必须比旧交易的价格高。<br>此时，交易将C2和C3挤掉，</li>
-</ul>
-<p>排队区：D1，A1,A2<br>等候区：A3，A4,B2,B3,C2,C3，C4</p>
-<ul>
-<li>10 旷工发现，交易持排队区经常被A的交易占领。</li>
-</ul>
-<p>虽然A价格高，但是还是希望能够平衡下其他账户的交易，因此对交易池进行设置，在排队区的每一个账号的交易不能超过1笔。<br>经过设置，交易池重新调整。</p>
-<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
-<ul>
-<li><p>11 处理交易，在处理之前根据“本地有序，价格优先，Nonce有序” 原则进行排序交易。</p>
-</li>
-<li><p>12 节点接受新区块{number:233,txs:[A1,C2,A2]}<br>此时 节点需要从交易中移除已被包含到新区块中的交易，并且从新开新一轮的挖矿。</p>
-</li>
-</ul>
-<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
-<p>排队区：D1，C3，C4<br>等候区：A2,A3，A4,B2,B3,C2,</p>
-<ul>
-<li>13 过了三个小时，交易一直没有被处理，系统将自动移除等候区的中已经驻留超过三个小时的交易</li>
-</ul>
-<p>排队区：D1，C3，C4<br>等候区：B3</p>
-<h2 id="交易调整规则总结"><a href="#交易调整规则总结" class="headerlink" title="交易调整规则总结"></a>交易调整规则总结</h2><p>1.交易规则：<br>1.本地交易优先于远程交易；<br>2.价格优先、时间优先；<br>2.Nonce必须连续，不允许跳数；<br>3.网络交易价格必须高于矿工设置的最低价格要求；<br>4.排队区、等候区、单账户均有容量限制。节点可根据内存大小自行调整。以下是节点默认<br>1.排队区容量：4096。<br>2.排队区单账户交易容量：16。<br>3．等候区容量：1024。<br>4.等候区单账户交易容量：64。<br>5.网络交易不允许长期驻留在内存中。默认只允许驻留3小时。</p>
-<h2 id="交易池的参数"><a href="#交易池的参数" class="headerlink" title="交易池的参数"></a>交易池的参数</h2><p>–txpool<br>geth –txpool </p>
-<h1 id="本地交易持久化"><a href="#本地交易持久化" class="headerlink" title="本地交易持久化"></a>本地交易持久化</h1><h2 id="交易池，内存"><a href="#交易池，内存" class="headerlink" title="交易池，内存"></a>交易池，内存</h2><h2 id="交易持久化"><a href="#交易持久化" class="headerlink" title="交易持久化"></a>交易持久化</h2><p>只对本地交易有效。</p>
-<p>作用：</p>
-<ul>
-<li>确保交易不丢失</li>
-<li>支持外部订阅</li>
-</ul>
-<h1 id="查看交易相关信息"><a href="#查看交易相关信息" class="headerlink" title="查看交易相关信息"></a>查看交易相关信息</h1><ul>
-<li>logbloom </li>
-<li>blockNumber: 区块号码</li>
-<li>cumulativeGasUsed:累计的gas</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ETH</title>
-    <url>/2022/03/07/ETH/</url>
-    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
-
-<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
-<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
-<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
-<li>共识层：规定通过何种方式实现交易记录的过程 </li>
-<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
-<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
-<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
-</ul>
-<p><img src="/images/web3/eth.png" alt="image"></p>
 ]]></content>
       <tags>
         <tag>ETH</tag>
