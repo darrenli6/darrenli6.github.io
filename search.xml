@@ -146,6 +146,181 @@ Redux与React没有关系，Redux支持react , angular jquery
       </tags>
   </entry>
   <entry>
+    <title>以太坊交易</title>
+    <url>/2021/05/02/2-0ETH-transaction/</url>
+    <content><![CDATA[<h1 id="以太币单位转换"><a href="#以太币单位转换" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h1><h2 id="JS的number存储有限"><a href="#JS的number存储有限" class="headerlink" title="JS的number存储有限"></a>JS的number存储有限</h2><p>JS中证书存储的是一个双精度浮点数，使用64位（8字节）存储。<br>安全存储范围：$[- (2^{53} -1),(2^{53} -1)]$, 小于$10^{17}$</p>
+<p>在DAPP中，还是以太坊项目中关于金额数据均使用BigInt类型。</p>
+<p>不是所有的浏览器兼容bigint </p>
+<h2 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h2><p>bn.js bignumber.js </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var y =10 **17</span><br><span class="line">console.log(y==y+1)  //  true</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="以太币单位转换-1"><a href="#以太币单位转换-1" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h2><p>@  “ethers”: “^4.0.5”</p>
+<ul>
+<li>parseUints()</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//value 0x61923bbe2c31028000</span><br><span class="line">const ethers =require(&#x27;ethers&#x27;)</span><br><span class="line"></span><br><span class="line">const utils = ethers.utils;</span><br><span class="line"></span><br><span class="line">const log =console.log;</span><br><span class="line">let value =utils.bigNumberify(&quot;0x61923bbe2c31028000&quot;);</span><br><span class="line">log(utils.formatUnits(value,&quot;ether&quot;))  //1799.8714</span><br><span class="line">log(utils.commify(utils.formatUnits(value,&quot;ether&quot;)))  //1,799.8714</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//32wei</span><br><span class="line">let gasPrice = utils.parseUnits(&quot;35&quot;,&quot;wei&quot;);</span><br><span class="line">let gasUsed =utils.bigNumberify(21000);</span><br><span class="line">//fee  0.000735 = gasprice * gasUsed </span><br><span class="line">let fee =gasPrice.mul(gasUsed)</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;ether&#x27;))</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;gwei&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="费用交易机制"><a href="#费用交易机制" class="headerlink" title="费用交易机制"></a>费用交易机制</h1><h2 id="以太币的用途"><a href="#以太币的用途" class="headerlink" title="以太币的用途"></a>以太币的用途</h2><p>提供一种支付交易费用的机制，防止用户滥用交易。</p>
+<h2 id="交易费用机制"><a href="#交易费用机制" class="headerlink" title="交易费用机制"></a>交易费用机制</h2><p>指令级，按步先扣gas费，再执行。</p>
+<h2 id="概念：燃料和费用"><a href="#概念：燃料和费用" class="headerlink" title="概念：燃料和费用"></a>概念：燃料和费用</h2><p>gas * gasprice  &#x3D; fee </p>
+<p>1gas的燃料售价是6.32gwei</p>
+<h2 id="gasUsed-and-gasLimit"><a href="#gasUsed-and-gasLimit" class="headerlink" title="gasUsed and gasLimit"></a>gasUsed and gasLimit</h2><p>gas limit * gas price &#x3D; 交易手续费的上限 </p>
+<p>gas used * gas price &#x3D; 交易支付手续费</p>
+<h2 id="退还剩余燃料"><a href="#退还剩余燃料" class="headerlink" title="退还剩余燃料"></a>退还剩余燃料</h2><p>当在EVM中执行完，就会被退还<br>退还 &#x3D; （Gas limit -Gas Used） * Gas price </p>
+<p>如果gas limit 不足，会交易失败（out of gas），会出现 gas used &#x3D; gas limit<br>不会修改以太坊的状态，会还原到交易之前。</p>
+<h2 id="为什么需要设计Gas-LIMIT"><a href="#为什么需要设计Gas-LIMIT" class="headerlink" title="为什么需要设计Gas LIMIT"></a>为什么需要设计Gas LIMIT</h2><p>帮助用户止损 </p>
+<p>gas奖励旷工。</p>
+<h1 id="交易费用-不可不知的6件事情"><a href="#交易费用-不可不知的6件事情" class="headerlink" title="交易费用 不可不知的6件事情"></a>交易费用 不可不知的6件事情</h1><h2 id="交易演示"><a href="#交易演示" class="headerlink" title="交易演示"></a>交易演示</h2><p>metamask转账</p>
+<h2 id="1-交易费用就是旷工费用"><a href="#1-交易费用就是旷工费用" class="headerlink" title="1. 交易费用就是旷工费用"></a>1. 交易费用就是旷工费用</h2><p>交易完毕之后，就支付给了处理本交易的旷工费用。</p>
+<h2 id="2-参与Token销售的时设定GasLimit"><a href="#2-参与Token销售的时设定GasLimit" class="headerlink" title="2.参与Token销售的时设定GasLimit"></a>2.参与Token销售的时设定GasLimit</h2><h2 id="3-你可以拿回没有用的gas"><a href="#3-你可以拿回没有用的gas" class="headerlink" title="3.你可以拿回没有用的gas"></a>3.你可以拿回没有用的gas</h2><p>可以gas limit适当的设置高一些。</p>
+<h2 id="4-如果想少出，旷工费用，调低gasprice-而不是gasLimit"><a href="#4-如果想少出，旷工费用，调低gasprice-而不是gasLimit" class="headerlink" title="4 如果想少出，旷工费用，调低gasprice 而不是gasLimit"></a>4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</h2><h2 id="5-即使交易失败，也会损失旷工费。"><a href="#5-即使交易失败，也会损失旷工费。" class="headerlink" title="5 即使交易失败，也会损失旷工费。"></a>5 即使交易失败，也会损失旷工费。</h2><p>没有免费的网络资源</p>
+<h2 id="6-利用小工具，合理设置gas-price"><a href="#6-利用小工具，合理设置gas-price" class="headerlink" title="6 利用小工具，合理设置gas price"></a>6 利用小工具，合理设置gas price</h2><p>gasprice 由交易发送者，旷工和智能合约设计者根据市场的供应来决定的。</p>
+<p><a class="link"   href="https://ethgasstation.info/" >https://ethgasstation.info<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   href="https://etherscan.io/gastracker" >https://etherscan.io/gastracker<i class="fas fa-external-link-alt"></i></a> </p>
+<h1 id="交易周期"><a href="#交易周期" class="headerlink" title="交易周期"></a>交易周期</h1><h2 id="发送一笔交易会出现什么-？"><a href="#发送一笔交易会出现什么-？" class="headerlink" title="发送一笔交易会出现什么 ？"></a>发送一笔交易会出现什么 ？</h2><p>输入交易信息 —&gt; 签名交易 —&gt; 本地存储 —&gt; 广播 —&gt; 交易池排序 —&gt; 执行交易 —&gt; pow挖矿 —&gt; 广播新区块 —&gt; 接受新区块 —&gt; 交易确认 —&gt; 交易稳定 </p>
+<h1 id="交易组成交易"><a href="#交易组成交易" class="headerlink" title="交易组成交易"></a>交易组成交易</h1><p><img src="/images/web3/tx1.png" alt="image"></p>
+<p>交易id+ 交易内容 &#x3D; txHash  </p>
+<h1 id="发送交易时，钱包发生了什么？"><a href="#发送交易时，钱包发生了什么？" class="headerlink" title="发送交易时，钱包发生了什么？"></a>发送交易时，钱包发生了什么？</h1><p><img src="/images/web3/tx2.png" alt="image"></p>
+<p><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>txData<ul>
+<li>receiver ,value</li>
+<li>inputData<ul>
+<li>当为执行合约方法的时候，方法ID+方法入参</li>
+</ul>
+</li>
+<li>GasPrice <ul>
+<li><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li>GasLimit <ul>
+<li>估算gas API:eth_estimateGas</li>
+</ul>
+</li>
+<li>Nonce <ul>
+<li>&#x3D; eth_getTransactionCount(sender)</li>
+</ul>
+</li>
+<li>R S V<ul>
+<li>ECDSA.sign(txData,chainid,0,0)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>客户端 </p>
+<pre><code>geth attach http://127.0.0.1:7545
+
+eth.getTransaction(xxx)
+</code></pre>
+<h1 id="交易声明周期"><a href="#交易声明周期" class="headerlink" title="交易声明周期"></a>交易声明周期</h1><p><img src="/images/web3/tx3.png" alt="image"></p>
+<h2 id="新交易分类"><a href="#新交易分类" class="headerlink" title="新交易分类"></a>新交易分类</h2><ul>
+<li><p>本地交易 </p>
+<ul>
+<li>通过有当前节点API发送的交易</li>
+<li>eth_sendRawTransaction,eth_sendTransaction</li>
+</ul>
+</li>
+<li><p>远程交易  remoteTransaction</p>
+<ul>
+<li>接受自网络的交易</li>
+</ul>
+</li>
+</ul>
+<h2 id="交易检查条件"><a href="#交易检查条件" class="headerlink" title="交易检查条件"></a>交易检查条件</h2><ul>
+<li>必须正确的签名</li>
+<li>交易数据大小不能超过32kb</li>
+<li>交易GasLimit 必须低于gaslimit</li>
+<li>交易gasprice 必须高于挖矿要求</li>
+<li>交易的Nonce必须高于发送者的Nonce</li>
+<li>发送者必须有足够的ETH支付手续费和转账</li>
+</ul>
+<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>只有有效的交易进行广播，进入交易池</p>
+<h1 id="交易池动态调整规则"><a href="#交易池动态调整规则" class="headerlink" title="交易池动态调整规则"></a>交易池动态调整规则</h1><ul>
+<li>等待区<ul>
+<li>交易等候的状态</li>
+</ul>
+</li>
+<li>排队区<ul>
+<li>这一部分，旷工即将要打包</li>
+</ul>
+</li>
+</ul>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ul>
+<li>1 第一笔交易{sender:A,price:20wei,none&#x3D;1} 进入交易池</li>
+</ul>
+<p>排队区：A1<br>等候区：</p>
+<ul>
+<li>2 连续收到A发来的2笔交易，价格还是20gwei</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：</p>
+<ul>
+<li>3 连续收到A发来的第4笔交易{sender:A,price:20wei,nonce &#x3D;4}</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4</p>
+<ul>
+<li>4 收到新交易{sender:B,price:21gwei,nonce &#x3D;3}</li>
+</ul>
+<p>排队区：A1，A2,B3<br>等候区：A3,A4  </p>
+<p>price比较高，价格优先</p>
+<ul>
+<li>5 收到新交易{sender:B price:19 gwei,nonce &#x3D;2} 虽然B3的价格21高于A的交易，但是需要在B3之前处理交易B2的价格19低于A的价格，因此B2和B3都被调整到等候区</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3</p>
+<ul>
+<li>6 收到新交易{sender:C,price:25 gwei,nonce&#x3D;3},{sender:C,price 18 gwei,nonce&#x3D;4 } 可是C无法进入排队区，因此C账户在区块状态中它的最后一个Nonce&#x3D;1,下一笔交易是C2,因此C3和C4在等候区等待。</li>
+</ul>
+<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3，C3,C4</p>
+<ul>
+<li>7 收到新交易 {sender:C,price 25gwei,nonce&#x3D;2}<br>此时 C2出现，可以将价高的C2C3放到排队区了</li>
+</ul>
+<p>排队区：A1，C2,C3<br>等候区：A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>8 {sender:D1,price 1gwei,nonce&#x3D;1}<br>虽然D1的价格最低，但是D是旷工节点的本地账户。<br>交易池默认将优先处理本地交易。</li>
+</ul>
+<p>排队区：D1，C2,C3<br>等候区：A1,A2,A3，A4,B2,B3,C4</p>
+<ul>
+<li>9 {sender:A,price:30 gwei,nonce&#x3D;1},{sender:A,price:30 gwei,nonce &#x3D;2} 来覆盖A1和A2  A发现自己的交易处理太慢，期望快一些处理，此时A可以重新发送一笔交易来覆盖A,要求新的交易的价格必须比旧交易的价格高。<br>此时，交易将C2和C3挤掉，</li>
+</ul>
+<p>排队区：D1，A1,A2<br>等候区：A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li>10 旷工发现，交易持排队区经常被A的交易占领。</li>
+</ul>
+<p>虽然A价格高，但是还是希望能够平衡下其他账户的交易，因此对交易池进行设置，在排队区的每一个账号的交易不能超过1笔。<br>经过设置，交易池重新调整。</p>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<ul>
+<li><p>11 处理交易，在处理之前根据“本地有序，价格优先，Nonce有序” 原则进行排序交易。</p>
+</li>
+<li><p>12 节点接受新区块{number:233,txs:[A1,C2,A2]}<br>此时 节点需要从交易中移除已被包含到新区块中的交易，并且从新开新一轮的挖矿。</p>
+</li>
+</ul>
+<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
+<p>排队区：D1，C3，C4<br>等候区：A2,A3，A4,B2,B3,C2,</p>
+<ul>
+<li>13 过了三个小时，交易一直没有被处理，系统将自动移除等候区的中已经驻留超过三个小时的交易</li>
+</ul>
+<p>排队区：D1，C3，C4<br>等候区：B3</p>
+<h2 id="交易调整规则总结"><a href="#交易调整规则总结" class="headerlink" title="交易调整规则总结"></a>交易调整规则总结</h2><p>1.交易规则：<br>1.本地交易优先于远程交易；<br>2.价格优先、时间优先；<br>2.Nonce必须连续，不允许跳数；<br>3.网络交易价格必须高于矿工设置的最低价格要求；<br>4.排队区、等候区、单账户均有容量限制。节点可根据内存大小自行调整。以下是节点默认<br>1.排队区容量：4096。<br>2.排队区单账户交易容量：16。<br>3．等候区容量：1024。<br>4.等候区单账户交易容量：64。<br>5.网络交易不允许长期驻留在内存中。默认只允许驻留3小时。</p>
+<h2 id="交易池的参数"><a href="#交易池的参数" class="headerlink" title="交易池的参数"></a>交易池的参数</h2><p>–txpool<br>geth –txpool </p>
+<h1 id="本地交易持久化"><a href="#本地交易持久化" class="headerlink" title="本地交易持久化"></a>本地交易持久化</h1><h2 id="交易池，内存"><a href="#交易池，内存" class="headerlink" title="交易池，内存"></a>交易池，内存</h2><h2 id="交易持久化"><a href="#交易持久化" class="headerlink" title="交易持久化"></a>交易持久化</h2><p>只对本地交易有效。</p>
+<p>作用：</p>
+<ul>
+<li>确保交易不丢失</li>
+<li>支持外部订阅</li>
+</ul>
+<h1 id="查看交易相关信息"><a href="#查看交易相关信息" class="headerlink" title="查看交易相关信息"></a>查看交易相关信息</h1><ul>
+<li>logbloom </li>
+<li>blockNumber: 区块号码</li>
+<li>cumulativeGasUsed:累计的gas</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2-1ETH_Crypto</title>
     <url>/2021/05/03/2-1ETH-Crypto/</url>
     <content><![CDATA[<h1 id="数据签名算法"><a href="#数据签名算法" class="headerlink" title="数据签名算法"></a>数据签名算法</h1><h2 id="ECDSA数字签名算法"><a href="#ECDSA数字签名算法" class="headerlink" title="ECDSA数字签名算法"></a>ECDSA数字签名算法</h2><ul>
@@ -463,181 +638,63 @@ Redux与React没有关系，Redux支持react , angular jquery
 <h1 id="32-channel-与select"><a href="#32-channel-与select" class="headerlink" title="32 channel 与select"></a>32 channel 与select</h1><p>同时处理多个channel的状态</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func fibonacci(c, quit chan int) &#123;</span><br><span class="line">	x, y := 1, 1</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		select &#123;</span><br><span class="line">		//写入</span><br><span class="line">		case c &lt;- x:</span><br><span class="line">			x = y</span><br><span class="line">			y = x + y</span><br><span class="line">			// 读</span><br><span class="line">		case &lt;-quit:</span><br><span class="line">			fmt.Println(&quot;quit&quot;)</span><br><span class="line">			return</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	c := make(chan int)</span><br><span class="line">	quit := make(chan int)</span><br><span class="line"></span><br><span class="line">	go func() &#123;</span><br><span class="line">		for i := 0; i &lt; 10; i++ &#123;</span><br><span class="line">			// 读</span><br><span class="line">			fmt.Println(&lt;-c)</span><br><span class="line">		&#125;</span><br><span class="line">		// 写</span><br><span class="line">		quit &lt;- 0</span><br><span class="line">	&#125;()</span><br><span class="line">	fibonacci(c, quit)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-]]></content>
+<h1 id="33-GOPATH工作模式的弊端"><a href="#33-GOPATH工作模式的弊端" class="headerlink" title="33 GOPATH工作模式的弊端"></a>33 GOPATH工作模式的弊端</h1><p>Gomodule 是go语言的依赖解决方案 。</p>
+<p>淘汰了gopath的使用模式 。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro blog % go env | grep GOPATH    </span><br><span class="line">GOPATH=&quot;/Users/darren/go&quot;</span><br></pre></td></tr></table></figure>
+
+<p>下载依赖，无法指定版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go get -u xxx </span><br></pre></td></tr></table></figure>
+
+<h1 id="GoModules模式基础环境说明"><a href="#GoModules模式基础环境说明" class="headerlink" title="GoModules模式基础环境说明"></a>GoModules模式基础环境说明</h1><h2 id="go-mod-命令"><a href="#go-mod-命令" class="headerlink" title="go mod 命令"></a>go mod 命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go mod init </span><br><span class="line">go mod help</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">god mod download 下载go.mod文件中指明的所有依赖 </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>GO111MODULE<br>go1.11 开始的gomodule模式 。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GOPROXY</li>
+</ul>
+<p>阿里云 <a class="link"   href="https://mirrors.aliyun.com/goproxy/" >https://mirrors.aliyun.com/goproxy/<i class="fas fa-external-link-alt"></i></a></p>
+<p>设置为七斗云的</p>
+<p>go env -w GOPROXY&#x3D;<a class="link"   href="https://goproxy.cn,direct/" >https://goproxy.cn,direct<i class="fas fa-external-link-alt"></i></a></p>
+<p>direct 指示Go回源到模块版本的源地址去抓取</p>
+<h2 id="GOSUMDB"><a href="#GOSUMDB" class="headerlink" title="GOSUMDB"></a>GOSUMDB</h2><p>检查版本 </p>
+<h1 id="GOModules初始化项目"><a href="#GOModules初始化项目" class="headerlink" title="GOModules初始化项目"></a>GOModules初始化项目</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro project % mkdir modules_test</span><br><span class="line">darren@darrendeMacBook-Pro project % cd modules_test </span><br><span class="line">darren@darrendeMacBook-Pro modules_test % ls</span><br><span class="line">darren@darrendeMacBook-Pro modules_test % go mod init </span><br><span class="line">go: creating new go.mod: module goland/GolangStudy/project/modules_test</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">	&quot;github.com/aceld/zinx/ziface&quot;</span><br><span class="line">	&quot;github.com/aceld/zinx/znet&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">//ping test 自定义路由</span><br><span class="line">type PingRouter struct &#123;</span><br><span class="line">	znet.BaseRouter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//Ping Handle</span><br><span class="line">func (this *PingRouter) Handle(request ziface.IRequest) &#123;</span><br><span class="line">	//先读取客户端的数据</span><br><span class="line">	fmt.Println(&quot;recv from client : msgId=&quot;, request.GetMsgID(), &quot;, data=&quot;, string(request.GetData()))</span><br><span class="line"></span><br><span class="line">	//再回写ping...ping...ping</span><br><span class="line">	err := request.GetConnection().SendBuffMsg(0, []byte(&quot;ping...ping...ping&quot;))</span><br><span class="line">	if err != nil &#123;</span><br><span class="line">		fmt.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	//1 创建一个server句柄</span><br><span class="line">	s := znet.NewServer()</span><br><span class="line"></span><br><span class="line">	//2 配置路由</span><br><span class="line">	s.AddRouter(0, &amp;PingRouter&#123;&#125;)</span><br><span class="line"></span><br><span class="line">	//3 开启服务</span><br><span class="line">	s.Serve()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下载库，运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro modules_test % go get github.com/aceld/zinx/ziface</span><br><span class="line">go: downloading github.com/aceld/zinx v1.0.1</span><br><span class="line">go get: added github.com/aceld/zinx v1.0.1</span><br><span class="line">darren@darrendeMacBook-Pro modules_test % go get github.com/aceld/zinx/znet</span><br><span class="line">darren@darrendeMacBook-Pro modules_test % go run main.go </span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>go.sum 文件</li>
+</ul>
+<h1 id="36-改变模块的依赖关系"><a href="#36-改变模块的依赖关系" class="headerlink" title="36 改变模块的依赖关系"></a>36 改变模块的依赖关系</h1><p>&#x2F;Users&#x2F;darren&#x2F;go&#x2F;pkg&#x2F;mod&#x2F;github.com&#x2F;aceld</p>
+<p>修改版本修改go.sum的版本 </p>
+<p>go mod -edit -replace&#x3D;xxx</p>
+<p>go mod文件就会被修改</p>
+<h1 id="即时通信系统"><a href="#即时通信系统" class="headerlink" title="即时通信系统"></a>即时通信系统</h1>]]></content>
+      <tags>
+        <tag>Golang</tag>
+      </tags>
   </entry>
   <entry>
-    <title>以太坊交易</title>
-    <url>/2021/05/02/2-0ETH-transaction/</url>
-    <content><![CDATA[<h1 id="以太币单位转换"><a href="#以太币单位转换" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h1><h2 id="JS的number存储有限"><a href="#JS的number存储有限" class="headerlink" title="JS的number存储有限"></a>JS的number存储有限</h2><p>JS中证书存储的是一个双精度浮点数，使用64位（8字节）存储。<br>安全存储范围：$[- (2^{53} -1),(2^{53} -1)]$, 小于$10^{17}$</p>
-<p>在DAPP中，还是以太坊项目中关于金额数据均使用BigInt类型。</p>
-<p>不是所有的浏览器兼容bigint </p>
-<h2 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h2><p>bn.js bignumber.js </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var y =10 **17</span><br><span class="line">console.log(y==y+1)  //  true</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>3-1Go-advance</title>
+    <url>/2020/05/25/3-1Go-advance/</url>
+    <content><![CDATA[<h1 id="Context初识"><a href="#Context初识" class="headerlink" title="Context初识"></a>Context初识</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var notify bool</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f() &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		if notify &#123;</span><br><span class="line">			break</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f()</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line">	notify = true</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="以太币单位转换-1"><a href="#以太币单位转换-1" class="headerlink" title="以太币单位转换"></a>以太币单位转换</h2><p>@  “ethers”: “^4.0.5”</p>
-<ul>
-<li>parseUints()</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//value 0x61923bbe2c31028000</span><br><span class="line">const ethers =require(&#x27;ethers&#x27;)</span><br><span class="line"></span><br><span class="line">const utils = ethers.utils;</span><br><span class="line"></span><br><span class="line">const log =console.log;</span><br><span class="line">let value =utils.bigNumberify(&quot;0x61923bbe2c31028000&quot;);</span><br><span class="line">log(utils.formatUnits(value,&quot;ether&quot;))  //1799.8714</span><br><span class="line">log(utils.commify(utils.formatUnits(value,&quot;ether&quot;)))  //1,799.8714</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//32wei</span><br><span class="line">let gasPrice = utils.parseUnits(&quot;35&quot;,&quot;wei&quot;);</span><br><span class="line">let gasUsed =utils.bigNumberify(21000);</span><br><span class="line">//fee  0.000735 = gasprice * gasUsed </span><br><span class="line">let fee =gasPrice.mul(gasUsed)</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;ether&#x27;))</span><br><span class="line"></span><br><span class="line">log(&quot;fee&quot;,utils.formatUnits(fee,&#x27;gwei&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-<h1 id="费用交易机制"><a href="#费用交易机制" class="headerlink" title="费用交易机制"></a>费用交易机制</h1><h2 id="以太币的用途"><a href="#以太币的用途" class="headerlink" title="以太币的用途"></a>以太币的用途</h2><p>提供一种支付交易费用的机制，防止用户滥用交易。</p>
-<h2 id="交易费用机制"><a href="#交易费用机制" class="headerlink" title="交易费用机制"></a>交易费用机制</h2><p>指令级，按步先扣gas费，再执行。</p>
-<h2 id="概念：燃料和费用"><a href="#概念：燃料和费用" class="headerlink" title="概念：燃料和费用"></a>概念：燃料和费用</h2><p>gas * gasprice  &#x3D; fee </p>
-<p>1gas的燃料售价是6.32gwei</p>
-<h2 id="gasUsed-and-gasLimit"><a href="#gasUsed-and-gasLimit" class="headerlink" title="gasUsed and gasLimit"></a>gasUsed and gasLimit</h2><p>gas limit * gas price &#x3D; 交易手续费的上限 </p>
-<p>gas used * gas price &#x3D; 交易支付手续费</p>
-<h2 id="退还剩余燃料"><a href="#退还剩余燃料" class="headerlink" title="退还剩余燃料"></a>退还剩余燃料</h2><p>当在EVM中执行完，就会被退还<br>退还 &#x3D; （Gas limit -Gas Used） * Gas price </p>
-<p>如果gas limit 不足，会交易失败（out of gas），会出现 gas used &#x3D; gas limit<br>不会修改以太坊的状态，会还原到交易之前。</p>
-<h2 id="为什么需要设计Gas-LIMIT"><a href="#为什么需要设计Gas-LIMIT" class="headerlink" title="为什么需要设计Gas LIMIT"></a>为什么需要设计Gas LIMIT</h2><p>帮助用户止损 </p>
-<p>gas奖励旷工。</p>
-<h1 id="交易费用-不可不知的6件事情"><a href="#交易费用-不可不知的6件事情" class="headerlink" title="交易费用 不可不知的6件事情"></a>交易费用 不可不知的6件事情</h1><h2 id="交易演示"><a href="#交易演示" class="headerlink" title="交易演示"></a>交易演示</h2><p>metamask转账</p>
-<h2 id="1-交易费用就是旷工费用"><a href="#1-交易费用就是旷工费用" class="headerlink" title="1. 交易费用就是旷工费用"></a>1. 交易费用就是旷工费用</h2><p>交易完毕之后，就支付给了处理本交易的旷工费用。</p>
-<h2 id="2-参与Token销售的时设定GasLimit"><a href="#2-参与Token销售的时设定GasLimit" class="headerlink" title="2.参与Token销售的时设定GasLimit"></a>2.参与Token销售的时设定GasLimit</h2><h2 id="3-你可以拿回没有用的gas"><a href="#3-你可以拿回没有用的gas" class="headerlink" title="3.你可以拿回没有用的gas"></a>3.你可以拿回没有用的gas</h2><p>可以gas limit适当的设置高一些。</p>
-<h2 id="4-如果想少出，旷工费用，调低gasprice-而不是gasLimit"><a href="#4-如果想少出，旷工费用，调低gasprice-而不是gasLimit" class="headerlink" title="4 如果想少出，旷工费用，调低gasprice 而不是gasLimit"></a>4 如果想少出，旷工费用，调低gasprice 而不是gasLimit</h2><h2 id="5-即使交易失败，也会损失旷工费。"><a href="#5-即使交易失败，也会损失旷工费。" class="headerlink" title="5 即使交易失败，也会损失旷工费。"></a>5 即使交易失败，也会损失旷工费。</h2><p>没有免费的网络资源</p>
-<h2 id="6-利用小工具，合理设置gas-price"><a href="#6-利用小工具，合理设置gas-price" class="headerlink" title="6 利用小工具，合理设置gas price"></a>6 利用小工具，合理设置gas price</h2><p>gasprice 由交易发送者，旷工和智能合约设计者根据市场的供应来决定的。</p>
-<p><a class="link"   href="https://ethgasstation.info/" >https://ethgasstation.info<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   href="https://etherscan.io/gastracker" >https://etherscan.io/gastracker<i class="fas fa-external-link-alt"></i></a> </p>
-<h1 id="交易周期"><a href="#交易周期" class="headerlink" title="交易周期"></a>交易周期</h1><h2 id="发送一笔交易会出现什么-？"><a href="#发送一笔交易会出现什么-？" class="headerlink" title="发送一笔交易会出现什么 ？"></a>发送一笔交易会出现什么 ？</h2><p>输入交易信息 —&gt; 签名交易 —&gt; 本地存储 —&gt; 广播 —&gt; 交易池排序 —&gt; 执行交易 —&gt; pow挖矿 —&gt; 广播新区块 —&gt; 接受新区块 —&gt; 交易确认 —&gt; 交易稳定 </p>
-<h1 id="交易组成交易"><a href="#交易组成交易" class="headerlink" title="交易组成交易"></a>交易组成交易</h1><p><img src="/images/web3/tx1.png" alt="image"></p>
-<p>交易id+ 交易内容 &#x3D; txHash  </p>
-<h1 id="发送交易时，钱包发生了什么？"><a href="#发送交易时，钱包发生了什么？" class="headerlink" title="发送交易时，钱包发生了什么？"></a>发送交易时，钱包发生了什么？</h1><p><img src="/images/web3/tx2.png" alt="image"></p>
-<p><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></p>
-<ul>
-<li>txData<ul>
-<li>receiver ,value</li>
-<li>inputData<ul>
-<li>当为执行合约方法的时候，方法ID+方法入参</li>
-</ul>
-</li>
-<li>GasPrice <ul>
-<li><a class="link"   href="https://ethgasstation.info/json/ethgasAPI.json" >https://ethgasstation.info/json/ethgasAPI.json<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li>GasLimit <ul>
-<li>估算gas API:eth_estimateGas</li>
-</ul>
-</li>
-<li>Nonce <ul>
-<li>&#x3D; eth_getTransactionCount(sender)</li>
-</ul>
-</li>
-<li>R S V<ul>
-<li>ECDSA.sign(txData,chainid,0,0)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>客户端 </p>
-<pre><code>geth attach http://127.0.0.1:7545
 
-eth.getTransaction(xxx)
-</code></pre>
-<h1 id="交易声明周期"><a href="#交易声明周期" class="headerlink" title="交易声明周期"></a>交易声明周期</h1><p><img src="/images/web3/tx3.png" alt="image"></p>
-<h2 id="新交易分类"><a href="#新交易分类" class="headerlink" title="新交易分类"></a>新交易分类</h2><ul>
-<li><p>本地交易 </p>
-<ul>
-<li>通过有当前节点API发送的交易</li>
-<li>eth_sendRawTransaction,eth_sendTransaction</li>
-</ul>
-</li>
-<li><p>远程交易  remoteTransaction</p>
-<ul>
-<li>接受自网络的交易</li>
-</ul>
-</li>
-</ul>
-<h2 id="交易检查条件"><a href="#交易检查条件" class="headerlink" title="交易检查条件"></a>交易检查条件</h2><ul>
-<li>必须正确的签名</li>
-<li>交易数据大小不能超过32kb</li>
-<li>交易GasLimit 必须低于gaslimit</li>
-<li>交易gasprice 必须高于挖矿要求</li>
-<li>交易的Nonce必须高于发送者的Nonce</li>
-<li>发送者必须有足够的ETH支付手续费和转账</li>
-</ul>
-<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>只有有效的交易进行广播，进入交易池</p>
-<h1 id="交易池动态调整规则"><a href="#交易池动态调整规则" class="headerlink" title="交易池动态调整规则"></a>交易池动态调整规则</h1><ul>
-<li>等待区<ul>
-<li>交易等候的状态</li>
-</ul>
-</li>
-<li>排队区<ul>
-<li>这一部分，旷工即将要打包</li>
-</ul>
-</li>
-</ul>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ul>
-<li>1 第一笔交易{sender:A,price:20wei,none&#x3D;1} 进入交易池</li>
-</ul>
-<p>排队区：A1<br>等候区：</p>
-<ul>
-<li>2 连续收到A发来的2笔交易，价格还是20gwei</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：</p>
-<ul>
-<li>3 连续收到A发来的第4笔交易{sender:A,price:20wei,nonce &#x3D;4}</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4</p>
-<ul>
-<li>4 收到新交易{sender:B,price:21gwei,nonce &#x3D;3}</li>
-</ul>
-<p>排队区：A1，A2,B3<br>等候区：A3,A4  </p>
-<p>price比较高，价格优先</p>
-<ul>
-<li>5 收到新交易{sender:B price:19 gwei,nonce &#x3D;2} 虽然B3的价格21高于A的交易，但是需要在B3之前处理交易B2的价格19低于A的价格，因此B2和B3都被调整到等候区</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3</p>
-<ul>
-<li>6 收到新交易{sender:C,price:25 gwei,nonce&#x3D;3},{sender:C,price 18 gwei,nonce&#x3D;4 } 可是C无法进入排队区，因此C账户在区块状态中它的最后一个Nonce&#x3D;1,下一笔交易是C2,因此C3和C4在等候区等待。</li>
-</ul>
-<p>排队区：A1，A2,A3<br>等候区：A4,B2,B3，C3,C4</p>
-<ul>
-<li>7 收到新交易 {sender:C,price 25gwei,nonce&#x3D;2}<br>此时 C2出现，可以将价高的C2C3放到排队区了</li>
-</ul>
-<p>排队区：A1，C2,C3<br>等候区：A2,A3，A4,B2,B3,C4</p>
-<ul>
-<li>8 {sender:D1,price 1gwei,nonce&#x3D;1}<br>虽然D1的价格最低，但是D是旷工节点的本地账户。<br>交易池默认将优先处理本地交易。</li>
-</ul>
-<p>排队区：D1，C2,C3<br>等候区：A1,A2,A3，A4,B2,B3,C4</p>
-<ul>
-<li>9 {sender:A,price:30 gwei,nonce&#x3D;1},{sender:A,price:30 gwei,nonce &#x3D;2} 来覆盖A1和A2  A发现自己的交易处理太慢，期望快一些处理，此时A可以重新发送一笔交易来覆盖A,要求新的交易的价格必须比旧交易的价格高。<br>此时，交易将C2和C3挤掉，</li>
-</ul>
-<p>排队区：D1，A1,A2<br>等候区：A3，A4,B2,B3,C2,C3，C4</p>
-<ul>
-<li>10 旷工发现，交易持排队区经常被A的交易占领。</li>
-</ul>
-<p>虽然A价格高，但是还是希望能够平衡下其他账户的交易，因此对交易池进行设置，在排队区的每一个账号的交易不能超过1笔。<br>经过设置，交易池重新调整。</p>
-<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
-<ul>
-<li><p>11 处理交易，在处理之前根据“本地有序，价格优先，Nonce有序” 原则进行排序交易。</p>
-</li>
-<li><p>12 节点接受新区块{number:233,txs:[A1,C2,A2]}<br>此时 节点需要从交易中移除已被包含到新区块中的交易，并且从新开新一轮的挖矿。</p>
-</li>
-</ul>
-<p>排队区：D1，A1,C2<br>等候区：A2,A3，A4,B2,B3,C2,C3，C4</p>
-<p>排队区：D1，C3，C4<br>等候区：A2,A3，A4,B2,B3,C2,</p>
-<ul>
-<li>13 过了三个小时，交易一直没有被处理，系统将自动移除等候区的中已经驻留超过三个小时的交易</li>
-</ul>
-<p>排队区：D1，C3，C4<br>等候区：B3</p>
-<h2 id="交易调整规则总结"><a href="#交易调整规则总结" class="headerlink" title="交易调整规则总结"></a>交易调整规则总结</h2><p>1.交易规则：<br>1.本地交易优先于远程交易；<br>2.价格优先、时间优先；<br>2.Nonce必须连续，不允许跳数；<br>3.网络交易价格必须高于矿工设置的最低价格要求；<br>4.排队区、等候区、单账户均有容量限制。节点可根据内存大小自行调整。以下是节点默认<br>1.排队区容量：4096。<br>2.排队区单账户交易容量：16。<br>3．等候区容量：1024。<br>4.等候区单账户交易容量：64。<br>5.网络交易不允许长期驻留在内存中。默认只允许驻留3小时。</p>
-<h2 id="交易池的参数"><a href="#交易池的参数" class="headerlink" title="交易池的参数"></a>交易池的参数</h2><p>–txpool<br>geth –txpool </p>
-<h1 id="本地交易持久化"><a href="#本地交易持久化" class="headerlink" title="本地交易持久化"></a>本地交易持久化</h1><h2 id="交易池，内存"><a href="#交易池，内存" class="headerlink" title="交易池，内存"></a>交易池，内存</h2><h2 id="交易持久化"><a href="#交易持久化" class="headerlink" title="交易持久化"></a>交易持久化</h2><p>只对本地交易有效。</p>
-<p>作用：</p>
-<ul>
-<li>确保交易不丢失</li>
-<li>支持外部订阅</li>
-</ul>
-<h1 id="查看交易相关信息"><a href="#查看交易相关信息" class="headerlink" title="查看交易相关信息"></a>查看交易相关信息</h1><ul>
-<li>logbloom </li>
-<li>blockNumber: 区块号码</li>
-<li>cumulativeGasUsed:累计的gas</li>
-</ul>
-]]></content>
+<p>如何优雅的控制子goroutine退出 ？</p>
+<p>Context版本的 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;context&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var exitChan = make(chan bool, 1)</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f(ctx context.Context) &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line">LOOP:</span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		select &#123;</span><br><span class="line">		case &lt;-ctx.Done():</span><br><span class="line">			break LOOP</span><br><span class="line">		default:</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">	// 初始化channel</span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f(ctx)</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line"></span><br><span class="line">	// 通知</span><br><span class="line">	cancel()</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="消息队列通信模型"><a href="#消息队列通信模型" class="headerlink" title="消息队列通信模型"></a>消息队列通信模型</h1><h2 id="点对点模式queue"><a href="#点对点模式queue" class="headerlink" title="点对点模式queue"></a>点对点模式queue</h2><h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2>]]></content>
       <tags>
-        <tag>ETH</tag>
+        <tag>Golang</tag>
       </tags>
   </entry>
   <entry>
@@ -697,7 +754,29 @@ eth.getTransaction(xxx)
 <ul>
 <li>实例化contract</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity &gt;=0.7.0  &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint256 public number ;</span><br><span class="line"></span><br><span class="line">    string public message;</span><br><span class="line"></span><br><span class="line">    function bFunction(uint256 _number, string memory _message) public  returns(uint256,string memory)&#123;</span><br><span class="line">         number=_number;</span><br><span class="line">         message =_message;</span><br><span class="line">         return (number,message);</span><br><span class="line">    &#125;     </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line"></span><br><span class="line">   function callBFunction(address _address,uint256 _number,string memory _message) public returns(bool)&#123;</span><br><span class="line">         </span><br><span class="line">      </span><br><span class="line">         A ca=A(_address);</span><br><span class="line">         (uint256 num,string memory _msg)= ca.bFunction(_number,_message);</span><br><span class="line"></span><br><span class="line">         return true;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity &gt;=0.7.0  &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint256 public number ;</span><br><span class="line"></span><br><span class="line">    string public message;</span><br><span class="line"></span><br><span class="line">    function bFunction(uint256 _number, string memory _message) public  returns(uint256,string memory)&#123;</span><br><span class="line">         number=_number;</span><br><span class="line">         message =_message;</span><br><span class="line">         return (number,message);</span><br><span class="line">    &#125;     </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line"></span><br><span class="line">   function callBFunction(address _address,uint256 _number,string memory _message) public returns(bool)&#123;</span><br><span class="line">         </span><br><span class="line">      </span><br><span class="line">         A ca=A(_address);</span><br><span class="line">         (uint256 num,string memory _msg)= ca.bFunction(_number,_message);</span><br><span class="line"></span><br><span class="line">         return true;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>4-1openzeppelin</title>
+    <url>/2021/08/17/4-1openzeppelin/</url>
+    <content><![CDATA[<h1 id="快照-snapshot"><a href="#快照-snapshot" class="headerlink" title="快照 snapshot"></a>快照 snapshot</h1><p><a class="link"   href="https://docs.openzeppelin.com/contracts/4.x/wizard" >https://docs.openzeppelin.com/contracts/4.x/wizard<i class="fas fa-external-link-alt"></i></a></p>
+<p>股份投票，防止投票</p>
+<h2 id="快照工作流程"><a href="#快照工作流程" class="headerlink" title="快照工作流程"></a>快照工作流程</h2><p><img src="/images/web3/sn1.png" alt="images"></p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts@4.6.0/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts@4.6.0/token/ERC20/extensions/ERC20Snapshot.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts@4.6.0/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MyToken is ERC20, ERC20Snapshot, Ownable &#123;</span><br><span class="line">    constructor() ERC20(&quot;MyToken&quot;, &quot;MTK&quot;) &#123;</span><br><span class="line">        _mint(msg.sender,1000*10 ** decimals());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function snapshot() public onlyOwner &#123;</span><br><span class="line">        _snapshot();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // The following functions are overrides required by Solidity.</span><br><span class="line"></span><br><span class="line">    function _beforeTokenTransfer(address from, address to, uint256 amount)</span><br><span class="line">        internal</span><br><span class="line">        override(ERC20, ERC20Snapshot)</span><br><span class="line">    &#123;</span><br><span class="line">        super._beforeTokenTransfer(from, to, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Web3</tag>
+        <tag>Openzeppelin</tag>
+      </tags>
   </entry>
   <entry>
     <title>rust</title>
@@ -987,7 +1066,8 @@ eth.getTransaction(xxx)
 <h3 id="Tree-Map-Categorical-Data-树状图"><a href="#Tree-Map-Categorical-Data-树状图" class="headerlink" title="Tree Map: Categorical Data 树状图"></a>Tree Map: Categorical Data 树状图</h3><ul>
 <li>tree-map describes </li>
 <li>colored rectangles</li>
-<li>the area of each rectangel is propotional to the value of the correspoinding group</li>
+<li>the area of each rectangel is propotional to the value of the correspoinding group </li>
+<li>value differences of categorical groups.</li>
 </ul>
 <h3 id="heat-map-Categorical-data"><a href="#heat-map-Categorical-data" class="headerlink" title="heat map: Categorical data"></a>heat map: Categorical data</h3><ul>
 <li>A heat map is a type of graphic </li>
@@ -1051,6 +1131,47 @@ eth.getTransaction(xxx)
 </li>
 </ul>
 </li>
+</ul>
+<h2 id="selection-of-different-Means"><a href="#selection-of-different-Means" class="headerlink" title="selection of different Means"></a>selection of different Means</h2><p>A &gt;= G &gt;= H </p>
+<ul>
+<li><p>算数平均or加权平均 是对未来的估计是最好的。 </p>
+</li>
+<li><p>过去的业绩 ： 几何平均</p>
+</li>
+<li><p>异常值，极端值 ： 调和平均，trimmed mean (截尾平均)，winsorized mean(缩尾平均)</p>
+<ul>
+<li>large deviation 均值</li>
+<li>infrequent occurance 少数 </li>
+<li>is tail or outlier</li>
+</ul>
+</li>
+</ul>
+<h1 id="Quantiles"><a href="#Quantiles" class="headerlink" title="Quantiles"></a>Quantiles</h1><p>quartile 四分位<br>quintile 五分位<br>decile 十分位</p>
+<h2 id="thrid-quartile"><a href="#thrid-quartile" class="headerlink" title="thrid quartile"></a>thrid quartile</h2><ul>
+<li>从小到大</li>
+<li>1/4 * 3 = 75%</li>
+<li>位置n=11 ly= (n+1) * 75% =9</li>
+<li>数第9个数,如果有小数，按段求百分比</li>
+</ul>
+<h1 id="Dispersion"><a href="#Dispersion" class="headerlink" title="Dispersion"></a>Dispersion</h1><h2 id="Absolute-Dispersion"><a href="#Absolute-Dispersion" class="headerlink" title="Absolute Dispersion"></a>Absolute Dispersion</h2><p>大部分是绝对离散程度</p>
+<ul>
+<li>range </li>
+<li>MAD <ul>
+<li>mean absolute diviation  平均绝对偏离</li>
+</ul>
+</li>
+<li>variance 方差</li>
+</ul>
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.577ex" xmlns="http://www.w3.org/2000/svg" width="19.145ex" height="5.785ex" role="img" focusable="false" viewBox="0 -1860 8462.1 2557"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(571,0)"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="mn" transform="translate(33,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mo" transform="translate(1285.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(2341.1,0)"><g data-mml-node="mstyle" transform="translate(220,910)"><g data-mml-node="mo"><path data-c="2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path></g><g data-mml-node="mo" transform="translate(1444,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1833,0)"><path data-c="1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"></path></g><g data-mml-node="mi" transform="translate(2685,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3252.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mi" transform="translate(4252.4,0)"><path data-c="1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></g><g data-mml-node="msup" transform="translate(4855.4,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mn" transform="translate(422,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mi" transform="translate(2760.5,-686)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><rect width="5881" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>  </p>
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.738ex" xmlns="http://www.w3.org/2000/svg" width="18.844ex" height="5.946ex" role="img" focusable="false" viewBox="0 -1860 8329.1 2628"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(469,0)"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="mn" transform="translate(33,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mo" transform="translate(1183.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(2239.1,0)"><g data-mml-node="mstyle" transform="translate(220,910)"><g data-mml-node="mo"><path data-c="2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path></g><g data-mml-node="mo" transform="translate(1444,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1833,0)"><path data-c="1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"></path></g><g data-mml-node="mi" transform="translate(2685,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3252.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(4252.4,0)"><g data-mml-node="mover"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(313.8,332) translate(-250 0)"><path data-c="7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path></g></g></g><g data-mml-node="msup" transform="translate(4824.4,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mn" transform="translate(422,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mrow" transform="translate(1883.8,-686)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(822.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(1822.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><rect width="5850" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>  </p>
+<ul>
+<li>n-1 表示自由度，degree of freedom ,自由取值数据的个数</li>
+</ul>
+<h2 id="Relative-dispersion"><a href="#Relative-dispersion" class="headerlink" title="Relative dispersion"></a>Relative dispersion</h2><p>CV</p>
+<h2 id="calculate"><a href="#calculate" class="headerlink" title="calculate"></a>calculate</h2><ul>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.111ex" height="1.932ex" role="img" focusable="false" viewBox="0 -853.7 1375 853.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(600,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g></g></g></g></g></svg></mjx-container> 7 Data</li>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.111ex" height="1.932ex" role="img" focusable="false" viewBox="0 -853.7 1375 853.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(600,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g></g></g></g></g></svg></mjx-container> CLR WORK</li>
+<li>X01 enter</li>
 </ul>
 ]]></content>
       <categories>
