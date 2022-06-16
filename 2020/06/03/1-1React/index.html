@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="DarrenLi">
+    
+    <title>
+        
+            1-1React |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.ai-lijia.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/me.png","favicon":"/images/favicon.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"path":"search.json","field":"post","content":true,"format":"html","enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">1-1React</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/me.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">DarrenLi</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-06-03 10:13:02</span>
+        <span class="mobile">2020-06-03 10:13</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>23 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="脚手架create-react-app"><a href="#脚手架create-react-app" class="headerlink" title="脚手架create-react-app"></a>脚手架create-react-app</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro .ssh % create-react-app -V</span><br><span class="line">5.0.1</span><br></pre></td></tr></table></figure>
+
+<p>根据上面的提示，通过cd your-app命令进入目录并运行npm start即可运行项目。</p>
+<p>生成项目的目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">L- README.md</span><br><span class="line">使用方法的文档</span><br><span class="line">- node_modules</span><br><span class="line">所有的依赖安装的目录</span><br><span class="line">- package-lock.jscn</span><br><span class="line">锁定安装时的包的版本号，保证团队的依赖能保证一致。</span><br><span class="line">- package.json</span><br><span class="line">静态公共目录,大致版本号</span><br><span class="line">- public</span><br><span class="line">开发用的源代码目录</span><br><span class="line">L_ src</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="编写第一个react程序"><a href="#编写第一个react程序" class="headerlink" title="编写第一个react程序"></a>编写第一个react程序</h1><p>删除src所有的文件 ，新建index.js </p>
+<p>react 组件<br>react-domo组件渲染到页面中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line">import ReactDOM from &#x27;react-dom&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&quot;1111&quot;,document.getElementById(&quot;root&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>如果想要解析，去掉“”</p>
+<p>jsx &#x3D; js  + xml </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(&lt;div&gt;1111&lt;/div&gt;,document.getElementById(&quot;root&quot;))</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="5-JSX语法"><a href="#5-JSX语法" class="headerlink" title="5 JSX语法"></a>5 JSX语法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(React.createElement(&quot;div&quot;,&#123;</span><br><span class="line">  id:&quot;aa&quot;,</span><br><span class="line">  class:&quot;bbb&quot;</span><br><span class="line">&#125;,&quot;1111&quot;),document.getElementById(&quot;root&quot;))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>JSX-使用react构建组件，bable进行编译 –&gt; javascript对象—&gt; reactDOM.render() —&gt;DOM对象 —&gt; 插入页面</p>
+<h1 id="6-组件的创建-类组件"><a href="#6-组件的创建-类组件" class="headerlink" title="6 组件的创建-类组件"></a>6 组件的创建-类组件</h1><p>组件化，为了页面清晰 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">class Test&#123;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">      this.a=1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    testa()&#123;</span><br><span class="line">      console.log(&#x27;testa&#x27;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ChildTest extends Test&#123;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    testb()&#123;</span><br><span class="line">      </span><br><span class="line">     console.log(&quot;testb&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">var obj =new ChildTest()</span><br><span class="line">obj.testa()</span><br><span class="line">obj.testb()</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建APP</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class App extends Component &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;div&gt;hello &lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+
+
+
+<p>引用,自动解析,必须导入的首字母大写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import App from &#x27;./01-base/01-class组件&#x27;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;,document.getElementById(&quot;root&quot;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h1 id="7-组件的创建-函数组件"><a href="#7-组件的创建-函数组件" class="headerlink" title="7 组件的创建-函数组件"></a>7 组件的创建-函数组件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class KerwinApp extends Component &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;div&gt;hello</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default KerwinApp</span><br></pre></td></tr></table></figure>
+
+
+<p>return 不能有多个兄弟tag</p>
+<p>函数组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">    return (</span><br><span class="line">    &lt;div&gt;hello</span><br><span class="line">      &lt;div&gt;1&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 无状态的组件</span><br><span class="line">/*</span><br><span class="line">16.8 无状态组件</span><br><span class="line">16.8之后 react hook</span><br><span class="line">*/</span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+
+<h1 id="组件的创建-嵌套"><a href="#组件的创建-嵌套" class="headerlink" title="组件的创建- 嵌套"></a>组件的创建- 嵌套</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Child extends Component&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (&lt;div&gt;child &lt;/div&gt;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Navbar extends Component&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return &lt;div&gt;navbar</span><br><span class="line"></span><br><span class="line">            &lt;Child&gt;&lt;/Child&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function Swiper()&#123;</span><br><span class="line">    return &lt;div&gt;swiper&lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Tabbar = ()=&gt;&#123;</span><br><span class="line">    return &lt;div&gt;tabbar&lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line"></span><br><span class="line">                App</span><br><span class="line">                &lt;Navbar&gt;</span><br><span class="line"></span><br><span class="line">                &lt;/Navbar&gt;</span><br><span class="line">                &lt;Swiper&gt;&lt;/Swiper&gt;</span><br><span class="line">                &lt;Tabbar&gt;&lt;/Tabbar&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="组件的样式"><a href="#组件的样式" class="headerlink" title="组件的样式"></a>组件的样式</h1><p>react是单向绑定的，vue是双向绑定的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import &#123; Component &#125; from &quot;react&quot;</span><br><span class="line">import &#x27;./css/01-index.css&#x27; // 导入css模板 webpack支持</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        var myname=&quot;darren&quot;</span><br><span class="line">        var obj = &#123;</span><br><span class="line">            background:&quot;yellow&quot;,</span><br><span class="line">            fontSize:&quot;40px&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;&#123;10+2&#125;</span><br><span class="line">              &#123;myname&#125;</span><br><span class="line"></span><br><span class="line">              &#123;10&gt;20?&quot;aa&quot;:&quot;bb&quot;&#125;</span><br><span class="line">              &lt;div style=&#123;obj&#125;&gt;11&lt;/div&gt;</span><br><span class="line">              &lt;div style=&#123;&#123;background:&quot;red&quot;&#125;&#125;&gt;22&lt;/div&gt;</span><br><span class="line">              &lt;div className=&quot;active&quot;&gt;333&lt;/div&gt;</span><br><span class="line">              &lt;div id=&quot;myapp&quot;&gt;444&lt;/div&gt;</span><br><span class="line">              &lt;label htmlFor=&quot;username&quot;&gt;</span><br><span class="line">                用户名</span><br><span class="line">              &lt;/label&gt;</span><br><span class="line">               &#123;</span><br><span class="line">                  /*</span><br><span class="line">                  react注释</span><br><span class="line">                  */</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              &lt;input type=&quot;text&quot; id=&quot;username&quot; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="010-事件处理1"><a href="#010-事件处理1" class="headerlink" title="010-事件处理1"></a>010-事件处理1</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input /&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    // 匿名函数  </span><br><span class="line">                &#125;</span><br><span class="line">                &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                       console.log(&quot;click&quot;)</span><br><span class="line">                &#125;&#125;&gt;add1&lt;/button&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    //不需要加小括号  this.handleClick()</span><br><span class="line">                &#125;</span><br><span class="line">               &lt;button onClick=&#123;this.handleClick &#125;&gt;add2&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;this.handleClick3 &#125;&gt;add3&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                    this.handleClick4()</span><br><span class="line">               &#125; &#125;&gt;add4&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line">        console.log(&quot;click2&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick3= ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click3&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    handleClick4= ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click4&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="011-事件处理-2"><a href="#011-事件处理-2" class="headerlink" title="011  事件处理-2"></a>011  事件处理-2</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    a =100</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input /&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    // 匿名函数  </span><br><span class="line">                &#125;</span><br><span class="line">                &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                       console.log(&quot;click&quot;,&quot;如果逻辑过多，不建议推荐&quot;,this.a)</span><br><span class="line">                &#125;&#125;&gt;add1&lt;/button&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    //不需要加小括号  this.handleClick()</span><br><span class="line">                &#125;</span><br><span class="line">               &lt;button onClick=&#123;this.handleClick.bind(this) &#125;&gt;add2 不推荐&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;this.handleClick3 &#125;&gt;add3 推荐&lt;/button&gt;</span><br><span class="line">               &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                   // 箭头函数</span><br><span class="line">                    this.handleClick4() // 比较推荐</span><br><span class="line">               &#125; &#125;&gt;add4&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line"></span><br><span class="line">        console.log(&quot;click2&quot;,this.a)</span><br><span class="line">        // this是访问不到的</span><br><span class="line">        // 需要bind </span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">          call</span><br><span class="line">          apply</span><br><span class="line">          bind </span><br><span class="line"></span><br><span class="line">        */</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick3= ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click3&quot;,this.a)</span><br><span class="line">    &#125;</span><br><span class="line">    handleClick4= ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click4&quot;,this.a)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var obj1 = &#123;</span><br><span class="line">    name:&quot;obj1&quot;,</span><br><span class="line">    getName()&#123;</span><br><span class="line">        console.log(this.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj2 = &#123;</span><br><span class="line">    name:&quot;obj2&quot;,</span><br><span class="line">    getName()&#123;</span><br><span class="line">        console.log(this.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// obj1.getName()  obj1 </span><br><span class="line">// </span><br><span class="line">//obj1.getName.call(obj2)  // 指向obj2</span><br><span class="line">// obj1.getName.apply(obj2)  // 指向obj2 自动执行函数</span><br><span class="line">obj1.getName.bind(obj2)()  // 不自动执行 如果自动执行 加（）</span><br><span class="line">obj2.getName()</span><br></pre></td></tr></table></figure>
+
+<h1 id="012-事件处理-3"><a href="#012-事件处理-3" class="headerlink" title="012 - 事件处理 -3"></a>012 - 事件处理 -3</h1><p>React并不会真正的绑定事件到每一个具体的元素上，而是采用事件代理的模式。</p>
+<h1 id="013-ref的应用"><a href="#013-ref的应用" class="headerlink" title="013 ref的应用"></a>013 ref的应用</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    a =100</span><br><span class="line">    myref= React.createRef()</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;/* &lt;input ref=&quot;mytest1&quot; /&gt; */&#125;</span><br><span class="line">                &lt;input ref=&#123;this.myref&#125; /&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    // 匿名函数  </span><br><span class="line">                &#125;</span><br><span class="line">                &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                    //    console.log(&quot;click&quot;,this.refs.mytest1.value)</span><br><span class="line">                    console.log(&#x27;click&#x27;,this.myref.current.value)</span><br><span class="line"></span><br><span class="line">                &#125;&#125;&gt;add1&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">                &lt;button onClick=&#123;this.handleClick2&#125;&gt;add2&lt;/button&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick2 = ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click2&quot;,this.myref.current.value)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h1 id="14-状态初体验"><a href="#14-状态初体验" class="headerlink" title="14 状态初体验"></a>14 状态初体验</h1><p>react用状态来改变</p>
+<p>必须用setState修改状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    a =1 </span><br><span class="line">    state=&#123;</span><br><span class="line">        mytext:&quot;收藏&quot;,</span><br><span class="line">        show:true</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        var text=&quot;收藏&quot;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">              &lt;h1&gt;欢迎&lt;/h1&gt;</span><br><span class="line">              &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                //   this.state.mytext=&quot;取消收藏&quot;   // 不要直接修改</span><br><span class="line">                //   this.setState(&#123;</span><br><span class="line">                //       mytext:&quot;取消收藏&quot;  </span><br><span class="line">                //   &#125;)  // 间接修改</span><br><span class="line"></span><br><span class="line">                this.setState(&#123;</span><br><span class="line">                    show:!this.state.show</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;&#125;&gt;&#123;this.state.show?&quot;收藏&quot;:&quot;取消收藏&quot;&#125;&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>状态是组件内部的数据载体</p>
+<h2 id="通过构造器"><a href="#通过构造器" class="headerlink" title="通过构造器"></a>通过构造器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">       super()</span><br><span class="line">       this.state= &#123;</span><br><span class="line">        mytext:&quot;收藏&quot;,</span><br><span class="line">        show:true,</span><br><span class="line">        myname:&quot;darren&quot;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // a =1 </span><br><span class="line">    // state=&#123;</span><br><span class="line">    //     mytext:&quot;收藏&quot;,</span><br><span class="line">    //     show:true</span><br><span class="line">    // &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        var text=&quot;收藏&quot;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">              &lt;h1&gt;欢迎 &#123;this.state.myname&#125;&lt;/h1&gt;</span><br><span class="line">              &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                //   this.state.mytext=&quot;取消收藏&quot;   // 不要直接修改</span><br><span class="line">                //   this.setState(&#123;</span><br><span class="line">                //       mytext:&quot;取消收藏&quot;  </span><br><span class="line">                //   &#125;)  // 间接修改</span><br><span class="line"></span><br><span class="line">                this.setState(&#123;</span><br><span class="line">                    show:!this.state.show,</span><br><span class="line">                    myname : &quot;小米&quot;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">              &#125;&#125;&gt;&#123;this.state.show?&quot;收藏&quot;:&quot;取消收藏&quot;&#125;&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="015-列表渲染"><a href="#015-列表渲染" class="headerlink" title="015 列表渲染"></a>015 列表渲染</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class  App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state =&#123;</span><br><span class="line">        list:[&quot;111&quot;,&quot;222&quot;,&quot;333&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        var newlist = this.state.list.map(item=&gt;&lt;li&gt;&#123;item&#125;&lt;/li&gt;)</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                  </span><br><span class="line">                     &#123;</span><br><span class="line">                        newlist</span><br><span class="line">                     &#125;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">原生js  map方法</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">var list =[&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;]</span><br><span class="line">var newlist = list.map(item=&gt;`&lt;li&gt;darren&lt;li&gt;`)</span><br><span class="line">console.log(newlist.join(&quot;&quot;))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="key值解析"><a href="#key值解析" class="headerlink" title="key值解析"></a>key值解析</h1><p>为了列表的复用和重排，设置key值，提高性能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class  App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state =&#123;</span><br><span class="line">        list:[&#123;</span><br><span class="line">            id:1,</span><br><span class="line">            text:&quot;111&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            id:2,</span><br><span class="line">            text:&quot;222&quot;</span><br><span class="line">        &#125; ,</span><br><span class="line">        &#123;</span><br><span class="line">            id:3,</span><br><span class="line">            text:&quot;333&quot;</span><br><span class="line">        &#125;</span><br><span class="line">     ]</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        // var newlist = this.state.list.map(item=&gt;&lt;li&gt;&#123;item&#125;&lt;/li&gt;)</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                  </span><br><span class="line">                     &#123;</span><br><span class="line">                        this.state.list.map((item,index)=&gt;&lt;li key=&#123;item.id&#125;&gt;&#123;item.text&#125;---&#123;index&#125;&lt;/li&gt;)</span><br><span class="line">                     &#125;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">原生js  map方法</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">var list =[&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;]</span><br><span class="line">var newlist = list.map(item=&gt;`&lt;li&gt;darren&lt;li&gt;`)</span><br><span class="line">console.log(newlist.join(&quot;&quot;))</span><br></pre></td></tr></table></figure>
+
+<h1 id="todolist-增加"><a href="#todolist-增加" class="headerlink" title="todolist 增加"></a>todolist 增加</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    myref =React.createRef()</span><br><span class="line"></span><br><span class="line">    // state=&#123;</span><br><span class="line">    //     list : [&quot;1&quot;]</span><br><span class="line">    // &#125;</span><br><span class="line">    state=&#123;</span><br><span class="line">        list:[</span><br><span class="line">            &#123;id :1 ,mytext:&quot;aaa&quot;&#125;,</span><br><span class="line">            &#123;id :2 ,mytext:&quot;bbb&quot;&#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input ref=&#123;this.myref&#125; /&gt;</span><br><span class="line">                &lt;button onClick=&#123;this.handleClick2&#125;&gt;add2&lt;/button&gt;  </span><br><span class="line"></span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                         this.state.list.map(item=&gt;</span><br><span class="line">                            &lt;li key=&#123;item.id&#125;&gt;&#123;item.mytext&#125;&lt;/li&gt;</span><br><span class="line">                            )</span><br><span class="line">                    &#125;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick2 = ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click2&quot;,this.myref.current.value)</span><br><span class="line">        //不要直接修改状态，可能造成不可预期的问题</span><br><span class="line">        /*</span><br><span class="line">        this.state.list.push(this.myref.current.value)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            list :this.state.list</span><br><span class="line">        &#125;)</span><br><span class="line">        */</span><br><span class="line">       // 这是引用复制,不提倡</span><br><span class="line">       /*</span><br><span class="line">       let newlist =this.state.list</span><br><span class="line">       newlist.push(this.myref.current.value)</span><br><span class="line">       this.setState(&#123;</span><br><span class="line">        list :newlist</span><br><span class="line">       &#125;)</span><br><span class="line">       */</span><br><span class="line"></span><br><span class="line">       // </span><br><span class="line">       let newlist =[...this.state.list]</span><br><span class="line">       newlist.push(&#123;</span><br><span class="line">           id:Math.random()*100000000,  // 生成不同id的函数</span><br><span class="line">           mytext:this.myref.current.value</span><br><span class="line">       &#125;)</span><br><span class="line">       this.setState(&#123;</span><br><span class="line">        list :newlist</span><br><span class="line">       &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="todolist-删除"><a href="#todolist-删除" class="headerlink" title="todolist 删除"></a>todolist 删除</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line">    myref =React.createRef()</span><br><span class="line"></span><br><span class="line">    // state=&#123;</span><br><span class="line">    //     list : [&quot;1&quot;]</span><br><span class="line">    // &#125;</span><br><span class="line">    state=&#123;</span><br><span class="line">        list:[</span><br><span class="line">            &#123;id :1 ,mytext:&quot;aaa&quot;&#125;,</span><br><span class="line">            &#123;id :2 ,mytext:&quot;bbb&quot;&#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input ref=&#123;this.myref&#125; /&gt;</span><br><span class="line">                &lt;button onClick=&#123;this.handleClick2&#125;&gt;add2&lt;/button&gt;  </span><br><span class="line"></span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                         this.state.list.map((item,index)=&gt;</span><br><span class="line">                            &lt;li key=&#123;item.id&#125;&gt;&#123;item.mytext&#125;</span><br><span class="line">                            &#123;/* &lt;button onClick=&#123;this.handleDel.bind(this,index)&#125;&gt;del&lt;/button&gt; */&#125;</span><br><span class="line">                            &lt;button onClick=&#123;()=&gt;&#123;</span><br><span class="line">                                this.handleDel(index)</span><br><span class="line">                            &#125;&#125;&gt;del&lt;/button&gt; </span><br><span class="line">                            &lt;/li&gt;</span><br><span class="line">                            )</span><br><span class="line">                    &#125;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick2 = ()=&gt;&#123;</span><br><span class="line">        console.log(&quot;click2&quot;,this.myref.current.value)</span><br><span class="line">        //不要直接修改状态，可能造成不可预期的问题</span><br><span class="line">        /*</span><br><span class="line">        this.state.list.push(this.myref.current.value)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            list :this.state.list</span><br><span class="line">        &#125;)</span><br><span class="line">        */</span><br><span class="line">       // 这是引用复制,不提倡</span><br><span class="line">       /*</span><br><span class="line">       let newlist =this.state.list</span><br><span class="line">       newlist.push(this.myref.current.value)</span><br><span class="line">       this.setState(&#123;</span><br><span class="line">        list :newlist</span><br><span class="line">       &#125;)</span><br><span class="line">       */</span><br><span class="line"></span><br><span class="line">       // </span><br><span class="line">       let newlist =[...this.state.list]</span><br><span class="line">       newlist.push(&#123;</span><br><span class="line">           id:Math.random()*100000000,  // 生成不同id的函数</span><br><span class="line">           mytext:this.myref.current.value</span><br><span class="line">       &#125;)</span><br><span class="line">       this.setState(&#123;</span><br><span class="line">        list :newlist</span><br><span class="line">       &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleDel(index)&#123;</span><br><span class="line">        console.log(&quot;del&quot;,index)</span><br><span class="line">           //不要直接修改状态，可能造成不可预期的问题</span><br><span class="line">           let newlist = this.state.list.concat()</span><br><span class="line">           newlist.splice(index,1)</span><br><span class="line">           this.setState(&#123;</span><br><span class="line">               list:newlist</span><br><span class="line">           &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="020-dangerouslySetInnerHtml"><a href="#020-dangerouslySetInnerHtml" class="headerlink" title="020-dangerouslySetInnerHtml"></a>020-dangerouslySetInnerHtml</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state =&#123;</span><br><span class="line">        myhtml: `&lt;b&gt;i love you&lt;/b&gt;`</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line"></span><br><span class="line">                &#123;/* &#123;this.state.myhtml&#125; */&#125;</span><br><span class="line"></span><br><span class="line">                &lt;div dangerouslySetInnerHTML=&#123;</span><br><span class="line">                    &#123;</span><br><span class="line">                    __html:this.state.myhtml</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="021-案例选项卡"><a href="#021-案例选项卡" class="headerlink" title="021 案例选项卡"></a>021 案例选项卡</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import &quot;./css/02-maizuo.css&quot;</span><br><span class="line">import Center from &quot;./maizuocomponent/Center&quot;;</span><br><span class="line">import Cinema from &quot;./maizuocomponent/Cinema&quot;;</span><br><span class="line">import Film from &quot;./maizuocomponent/Film&quot;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state =&#123;</span><br><span class="line">        list :[</span><br><span class="line">            &#123;</span><br><span class="line">                id:1,</span><br><span class="line">                text:&quot;电影&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                id:2,</span><br><span class="line">                text:&quot;影院&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                id:3,</span><br><span class="line">                text:&quot;我的&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">        ],</span><br><span class="line">        current : 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    witch()&#123;</span><br><span class="line">        switch(this.state.current)&#123;</span><br><span class="line">            case 0:</span><br><span class="line">                return &lt;Film&gt;&lt;/Film&gt;</span><br><span class="line">            case 1:</span><br><span class="line">                return &lt;Cinema&gt;&lt;/Cinema&gt;    </span><br><span class="line">            case 2:</span><br><span class="line">                return &lt;Center&gt;&lt;/Center&gt;    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">               &#123;/* &#123;</span><br><span class="line">                   this.state.current ==0 &amp;&amp; &lt;Film&gt;&lt;/Film&gt;</span><br><span class="line">               &#125;</span><br><span class="line">                 &#123;</span><br><span class="line">                   this.state.current ==1 &amp;&amp; &lt;Cinema&gt;&lt;/Cinema&gt;</span><br><span class="line">               &#125;</span><br><span class="line">                 &#123;</span><br><span class="line">                   this.state.current ==2 &amp;&amp;  &lt;Center&gt;&lt;/Center&gt;</span><br><span class="line">               &#125; */&#125;</span><br><span class="line">                &#123;</span><br><span class="line">                    this.witch()</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">               </span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                        this.state.list.map((item,index)=&gt;</span><br><span class="line">                            &lt;li onClick=&#123;()=&gt;this.handleClick(index)&#125; className=&#123;this.state.current===index?&#x27;active&#x27;:&quot;&quot;&#125; item=&#123;item.id&#125;&gt;&#123;item.text&#125;&lt;/li&gt;</span><br><span class="line">                            )</span><br><span class="line">                    &#125;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     handleClick(index)&#123;</span><br><span class="line">      console.log(index)</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">          current:index</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="22-数据请求"><a href="#22-数据请求" class="headerlink" title="22 数据请求"></a>22 数据请求</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">          url:&quot;https://napi.fdcfabric.com/common/getChengfen&quot;,</span><br><span class="line">          method:&quot;get&quot;,</span><br><span class="line">          headers:&#123;</span><br><span class="line">              &quot;xxx&quot;:&quot;xxx&quot;</span><br><span class="line">          &#125;,</span><br><span class="line">      </span><br><span class="line">        &#125;).then(res=&gt;&#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="23-模糊搜索"><a href="#23-模糊搜索" class="headerlink" title="23 模糊搜索"></a>23 模糊搜索</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> handleInput=(event)=&gt;&#123;</span><br><span class="line">        console.log(&quot;input&quot;,event.target.value)</span><br><span class="line"></span><br><span class="line">       var newarr= this.state.bcinemaList.filter(item=&gt;item.key.toUpperCase().includes(event.target.value.toUpperCase()) || </span><br><span class="line">       item.value.toUpperCase().includes(event.target.value.toUpperCase()) )</span><br><span class="line">       console.log(newarr)</span><br><span class="line"></span><br><span class="line">       this.setState(&#123;</span><br><span class="line">           cinemaList:newarr</span><br><span class="line">       &#125;)</span><br><span class="line"></span><br><span class="line">       // cinemalist 每次都会覆盖,引入 bcinemaList</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="24-状态再体验-1"><a href="#24-状态再体验-1" class="headerlink" title="24 状态再体验-1"></a>24 状态再体验-1</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state= &#123;</span><br><span class="line">        count :1 </span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line"></span><br><span class="line">        return (&lt;div&gt;</span><br><span class="line">              &#123;this.state.count&#125;</span><br><span class="line">              &lt;button onClick=&#123;this.handleAdd1&#125;&gt;add1&lt;/button&gt;</span><br><span class="line">              &lt;button onClick=&#123;this.handleAdd2&#125;&gt;add1&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleAdd1= ()=&gt;&#123;</span><br><span class="line">        // 看出是否同步执行或者异步执行  面试题 </span><br><span class="line"></span><br><span class="line">         this.setState(&#123;</span><br><span class="line">             count:this.state.count+1</span><br><span class="line">         &#125;)</span><br><span class="line"></span><br><span class="line">         console.log(this.state.count)</span><br><span class="line">         this.setState(&#123;</span><br><span class="line">            count:this.state.count+1</span><br><span class="line">        &#125;)</span><br><span class="line">        console.log(this.state.count)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            count:this.state.count+1</span><br><span class="line">        &#125;)</span><br><span class="line">       // setState 异步更新状态 </span><br><span class="line">        console.log(this.state.count)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleAdd2=()=&gt;&#123;</span><br><span class="line">        // 同步更新状态 </span><br><span class="line">        // setState 处于在同步的逻辑中，异步更新状态</span><br><span class="line">        // setState 处在异步逻辑中，同步更新状态</span><br><span class="line">        setTimeout(()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">         this.setState(&#123;</span><br><span class="line">            count:this.state.count+1</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        console.log(this.state.count)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">           count:this.state.count+1</span><br><span class="line">       &#125;)</span><br><span class="line">       console.log(this.state.count)</span><br><span class="line">       this.setState(&#123;</span><br><span class="line">           count:this.state.count+1</span><br><span class="line">       &#125;)</span><br><span class="line">        // setState 异步更新状态 </span><br><span class="line">       console.log(this.state.count)</span><br><span class="line">        &#125;,0)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>setState 处于在同步的逻辑中，异步更新状态<br>setState 处在异步逻辑中，同步更新状态</p>
+<p>setState 接受第二参数，回调函数 dom更新完成之后就会触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">getData()&#123;</span><br><span class="line">      var list = [1,2,3,4,5,6,4,4,3,5,6,5,6,5,67,5,645,6]</span><br><span class="line">      // 同步更新</span><br><span class="line">      // this.setState(&#123;</span><br><span class="line">      //     list:list</span><br><span class="line">      // &#125;,()=&gt;&#123;</span><br><span class="line">      //     console.log(this.state.list)</span><br><span class="line">      //     console.log(document.querySelectorAll(&#x27;li&#x27;))</span><br><span class="line">      //     new BScroll(&quot;.wrapper&quot;)</span><br><span class="line">      // &#125;)</span><br><span class="line"></span><br><span class="line">      // 异步更新</span><br><span class="line">      setTimeout(()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                list:list</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            console.log(this.state.list)</span><br><span class="line">            console.log(document.querySelectorAll(&#x27;li&#x27;))</span><br><span class="line">            new BScroll(&quot;.wrapper&quot;)</span><br><span class="line">      &#125;,0)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="026-属性初识"><a href="#026-属性初识" class="headerlink" title="026 属性初识"></a>026 属性初识</h1><p>状态在内部使用，外面不能调用修改<br>组件复用性<br>组件通信 </p>
+<ul>
+<li><p>传输方</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line">import NavBar from &#x27;./Navbar/index&#x27;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&#123;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                &lt;h2&gt;首页&lt;/h2&gt;  </span><br><span class="line"></span><br><span class="line">                &lt;NavBar title=&quot;首页&quot; leftshow=&#123;false&#125; /&gt; </span><br><span class="line">                &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                &lt;h2&gt;列表&lt;/h2&gt;    </span><br><span class="line">                &lt;NavBar  title=&quot;列表&quot; leftshow=&#123;true&#125;  /&gt; </span><br><span class="line">                &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                &lt;h2&gt;购物车&lt;/h2&gt;    </span><br><span class="line">                &lt;NavBar  title=&quot;购物车&quot; leftshow=&#123;true&#125;  /&gt; </span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>接收方</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class NavBar extends Component</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 状态在内部使用，外面不能调用修改</span><br><span class="line"></span><br><span class="line">    // 属性是父组件拿来的 </span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line">        let &#123;title,leftshow&#125; = this.props</span><br><span class="line"></span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt; </span><br><span class="line">                &#123;leftshow &amp;&amp; &lt;button&gt;返回&lt;/button&gt; &#125;</span><br><span class="line">                 navbar - &#123;title&#125; </span><br><span class="line">                 &lt;button&gt;首页&lt;/button&gt;</span><br><span class="line">                 &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="027-属性验证"><a href="#027-属性验证" class="headerlink" title="027 属性验证"></a>027 属性验证</h1><p>react 做属性验证<br>类属性 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &quot;react&quot;</span><br><span class="line">import darrenPropTypes from &#x27;prop-types&#x27;</span><br><span class="line">console.log(darrenPropTypes)</span><br><span class="line"></span><br><span class="line">export default class NavBar extends Component</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    static propTypes= &#123;</span><br><span class="line">        title:  darrenPropTypes.string, // 验证是不是字符串的方法</span><br><span class="line">        leftshow: darrenPropTypes.bool // 验证是不是bool的方法</span><br><span class="line">    &#125;</span><br><span class="line">    // 状态在内部使用，外面不能调用修改</span><br><span class="line">    // 属性是父组件拿来的 </span><br><span class="line">    render()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line">        let &#123;title,leftshow&#125; = this.props</span><br><span class="line"></span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt; </span><br><span class="line">                &#123;leftshow &amp;&amp; &lt;button&gt;返回&lt;/button&gt; &#125;</span><br><span class="line">                 navbar - &#123;title&#125; </span><br><span class="line">                 &lt;button&gt;首页&lt;/button&gt;</span><br><span class="line">                 &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//类属性</span><br><span class="line">class Test&#123;</span><br><span class="line">    a =10    // 对象属性</span><br><span class="line">    static b=100 //类型属性</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类属性</span><br><span class="line">Test.a=100</span><br><span class="line">console.log(Test.a)</span><br><span class="line"></span><br><span class="line">var obj=new Test();</span><br><span class="line">console.log(obj.a);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="28-默认属性"><a href="#28-默认属性" class="headerlink" title="28 默认属性"></a>28 默认属性</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 默认值</span><br><span class="line"></span><br><span class="line">NavBar.defaultProps =&#123;</span><br><span class="line">    leftshow:true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="29-属性注意"><a href="#29-属性注意" class="headerlink" title="29 属性注意"></a>29 属性注意</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">// 函数式的组件</span><br><span class="line">import React from &quot;react&quot;</span><br><span class="line">// 用props形参传递</span><br><span class="line">export default function Sidebar(props)&#123;</span><br><span class="line">    console.log(props);</span><br><span class="line"></span><br><span class="line">    let &#123;bg,position&#125; = props</span><br><span class="line">    console.log(bg)</span><br><span class="line"></span><br><span class="line">    var obj1=&#123;</span><br><span class="line">        left:0</span><br><span class="line">    &#125;</span><br><span class="line">    var obj2=&#123;</span><br><span class="line">        right:0</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    var obj =&#123;</span><br><span class="line">        background:bg</span><br><span class="line">        ,width:&quot;200px&quot;,</span><br><span class="line">        position:&quot;fixed&quot;,</span><br><span class="line">   </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var styleobj = position===&quot;left&quot;?&#123;...obj,...obj1&#125;:&#123;...obj,...obj2&#125;</span><br><span class="line">    return (</span><br><span class="line">        &lt;div style=&#123;styleobj&#125;&gt;  </span><br><span class="line"></span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;1111&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">            </span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="30-属性-VS-状态"><a href="#30-属性-VS-状态" class="headerlink" title="30 属性 VS 状态"></a>30 属性 VS 状态</h1><ul>
+<li><p>相同地方： 都是js对象，都会触发render函数，都具有确定性</p>
+</li>
+<li><p>不同点： </p>
+<ul>
+<li>属性可以从父组件传递，状态不能</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>多写没有state的组件 </p>
+<h1 id="表单中的受控组件和非受控组件"><a href="#表单中的受控组件和非受控组件" class="headerlink" title="表单中的受控组件和非受控组件"></a>表单中的受控组件和非受控组件</h1><ul>
+<li>非受控组件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; ref=&#123;this.myusername&#125;  value=&quot;darren&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>受控组件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; ref=&#123;this.myusername&#125;  defaultValue=&quot;darren&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="32-受控影院查询"><a href="#32-受控影院查询" class="headerlink" title="32 受控影院查询"></a>32 受控影院查询</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">import &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class Cinema extends Component&#123;</span><br><span class="line"> </span><br><span class="line">    constructor()&#123;</span><br><span class="line">        super()</span><br><span class="line">        // 请求数据</span><br><span class="line"> </span><br><span class="line">        // axios 第三方库 专门用于请求数据</span><br><span class="line">        // axios.get(&quot;https://napi.fdcfabric.com/common/getChengfen&quot;).then(res=&gt;&#123;</span><br><span class="line">        //   console.log(res);</span><br><span class="line"></span><br><span class="line">        // &#125;).catch(err=&gt;&#123;</span><br><span class="line">        //     console.log(err)</span><br><span class="line">        // &#125;)</span><br><span class="line"></span><br><span class="line">        this.state =&#123;</span><br><span class="line">            cinemaList: [],</span><br><span class="line">            mytext:&quot;&quot;</span><br><span class="line">            // bcinemaList:[]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        axios(&#123;</span><br><span class="line">            url:&quot;https://napi.fdcfabric.com/common/getChengfen&quot;,</span><br><span class="line">            method:&quot;get&quot;,</span><br><span class="line">            headers:&#123;</span><br><span class="line">                &quot;xxx&quot;:&quot;xxx&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">        </span><br><span class="line">          &#125;).then(res=&gt;&#123;</span><br><span class="line">              console.log(res.data.data)</span><br><span class="line">              this.setState(&#123;</span><br><span class="line">                  cinemaList:res.data.data,</span><br><span class="line">                  bcinemaList:res.data.data</span><br><span class="line">              &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    // 后面声明周期函数 更适合发送ajax请求</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;&#123;this.state.mytext&#125;</span><br><span class="line"></span><br><span class="line">                &lt;input value=&#123;this.state.mytext&#125; onChange=&#123;(evt)=&gt;&#123;</span><br><span class="line">                    this.setState(&#123;</span><br><span class="line">                        mytext:evt.target.value</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;&#125; /&gt;</span><br><span class="line">              </span><br><span class="line">                  &#123;</span><br><span class="line">                      this.getCinemaList().map(item=&gt;</span><br><span class="line">                        &lt;dl key=&#123;item.id&#125;&gt;</span><br><span class="line">                            &lt;dt&gt;&#123;item.key&#125;&lt;/dt&gt;</span><br><span class="line">                            &lt;dd&gt;&#123;item.value&#125;&lt;/dd&gt;</span><br><span class="line">                            &lt;/dl&gt;</span><br><span class="line">                        )</span><br><span class="line">                  &#125;</span><br><span class="line">               </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    getCinemaList()&#123;</span><br><span class="line">        return this.state.cinemaList.filter(item=&gt;item.key.toUpperCase().includes(this.state.mytext.toUpperCase()) || </span><br><span class="line">      item.value.toUpperCase().includes(this.state.mytext.toUpperCase()) )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // handleInput=(event)=&gt;&#123;</span><br><span class="line">    //     console.log(&quot;input&quot;,event.target.value)</span><br><span class="line"></span><br><span class="line">    //    var newarr= this.state.bcinemaList.filter(item=&gt;item.key.toUpperCase().includes(event.target.value.toUpperCase()) || </span><br><span class="line">    //    item.value.toUpperCase().includes(event.target.value.toUpperCase()) )</span><br><span class="line">    //    console.log(newarr)</span><br><span class="line"></span><br><span class="line">    //    this.setState(&#123;</span><br><span class="line">    //        cinemaList:newarr</span><br><span class="line">    //    &#125;)</span><br><span class="line"></span><br><span class="line">    //    // cinemalist 每次都会覆盖,引入 bcinemaList</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">filter</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">var arr =[&quot;aaa&quot;,&quot;abc&quot;,&quot;bcc&quot;]</span><br><span class="line">var newarr =arr.filter(item=&gt;item.includes(&quot;a&quot;))</span><br><span class="line">console.log(newarr)</span><br></pre></td></tr></table></figure>
+
+<p>输入框，mytext变化，然后过滤</p>
+<p>受控组件更加方便的传递数据</p>
+<h1 id="Flux与Redux"><a href="#Flux与Redux" class="headerlink" title="Flux与Redux"></a>Flux与Redux</h1><p>Action –&gt;Dipatcher —&gt;store —&gt;view –&gt; action –&gt;dipatcher </p>
+<p>Redux 应用状态的管理</p>
+<h1 id="Redux工作流"><a href="#Redux工作流" class="headerlink" title="Redux工作流"></a>Redux工作流</h1><p>component–&gt;dispatcher-&gt;action —&gt;store —&gt; reducers —&gt;store–&gt;state</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：1-1React</li>
+        <li>Post author：DarrenLi</li>
+        <li>Create time：2020-06-03 10:13:02</li>
+        <li>
+            Post link：https://www.ai-lijia.com/2020/06/03/1-1React/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/React/">#React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/04/27/5-0rust/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">rust</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/06/01/7-0Algorithm-md/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">7-0Algorithm.md</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script 
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script >
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '1d734d55b657ee3b84d9',
+                    clientSecret: '9fff6e6af74dde8847b2dcce34f90726b793f65f',
+                    repo: 'darrenli6.github.io',
+                    owner: 'darrenli6',
+                    admin: ['darrenli6'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('false') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">DarrenLi</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%84%9A%E6%89%8B%E6%9E%B6create-react-app"><span class="nav-number">1.</span> <span class="nav-text">脚手架create-react-app</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAreact%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">编写第一个react程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-JSX%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">5 JSX语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA-%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">6 组件的创建-类组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA-%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">7 组件的创建-函数组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA-%E5%B5%8C%E5%A5%97"><span class="nav-number">6.</span> <span class="nav-text">组件的创建- 嵌套</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">组件的样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#010-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%861"><span class="nav-number">8.</span> <span class="nav-text">010-事件处理1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#011-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-2"><span class="nav-number">9.</span> <span class="nav-text">011  事件处理-2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#012-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-3"><span class="nav-number">10.</span> <span class="nav-text">012 - 事件处理 -3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#013-ref%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">11.</span> <span class="nav-text">013 ref的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E7%8A%B6%E6%80%81%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-number">12.</span> <span class="nav-text">14 状态初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">12.1.</span> <span class="nav-text">通过构造器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#015-%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">13.</span> <span class="nav-text">015 列表渲染</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#key%E5%80%BC%E8%A7%A3%E6%9E%90"><span class="nav-number">14.</span> <span class="nav-text">key值解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#todolist-%E5%A2%9E%E5%8A%A0"><span class="nav-number">15.</span> <span class="nav-text">todolist 增加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#todolist-%E5%88%A0%E9%99%A4"><span class="nav-number">16.</span> <span class="nav-text">todolist 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#020-dangerouslySetInnerHtml"><span class="nav-number">17.</span> <span class="nav-text">020-dangerouslySetInnerHtml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#021-%E6%A1%88%E4%BE%8B%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="nav-number">18.</span> <span class="nav-text">021 案例选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82"><span class="nav-number">19.</span> <span class="nav-text">22 数据请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-%E6%A8%A1%E7%B3%8A%E6%90%9C%E7%B4%A2"><span class="nav-number">20.</span> <span class="nav-text">23 模糊搜索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-%E7%8A%B6%E6%80%81%E5%86%8D%E4%BD%93%E9%AA%8C-1"><span class="nav-number">21.</span> <span class="nav-text">24 状态再体验-1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#026-%E5%B1%9E%E6%80%A7%E5%88%9D%E8%AF%86"><span class="nav-number">22.</span> <span class="nav-text">026 属性初识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#027-%E5%B1%9E%E6%80%A7%E9%AA%8C%E8%AF%81"><span class="nav-number">23.</span> <span class="nav-text">027 属性验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-%E9%BB%98%E8%AE%A4%E5%B1%9E%E6%80%A7"><span class="nav-number">24.</span> <span class="nav-text">28 默认属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-%E5%B1%9E%E6%80%A7%E6%B3%A8%E6%84%8F"><span class="nav-number">25.</span> <span class="nav-text">29 属性注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-%E5%B1%9E%E6%80%A7-VS-%E7%8A%B6%E6%80%81"><span class="nav-number">26.</span> <span class="nav-text">30 属性 VS 状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E4%B8%AD%E7%9A%84%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">27.</span> <span class="nav-text">表单中的受控组件和非受控组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-%E5%8F%97%E6%8E%A7%E5%BD%B1%E9%99%A2%E6%9F%A5%E8%AF%A2"><span class="nav-number">28.</span> <span class="nav-text">32 受控影院查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flux%E4%B8%8ERedux"><span class="nav-number">29.</span> <span class="nav-text">Flux与Redux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redux%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">30.</span> <span class="nav-text">Redux工作流</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
