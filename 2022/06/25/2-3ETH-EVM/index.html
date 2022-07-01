@@ -9,7 +9,7 @@
     
     <title>
         
-            套利 |
+            2-3ETH_EVM |
         
         Blog
     </title>
@@ -165,7 +165,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">套利</span>
+            <span class="title-hover-animation">2-3ETH_EVM</span>
         </div>
 
         
@@ -184,16 +184,31 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-04-14 19:27:00</span>
-        <span class="mobile">2022-04-14 19:27</span>
+        <span class="pc">2022-06-25 09:39:06</span>
+        <span class="mobile">2022-06-25 09:39</span>
     </span>
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ETH/">ETH</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/EVM/">EVM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>13 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>300 Words</span>
         </span>
     
     
@@ -210,14 +225,24 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="Establish-an-arbitrage-strategy"><a href="#Establish-an-arbitrage-strategy" class="headerlink" title="Establish an arbitrage strategy"></a>Establish an arbitrage strategy</h1><h2 id="pick-an-arbitrage-strategy"><a href="#pick-an-arbitrage-strategy" class="headerlink" title="pick an arbitrage strategy"></a>pick an arbitrage strategy</h2><ul>
-<li><p>simple arbitrage</p>
-</li>
-<li><p>triangular arbitrage </p>
-</li>
-<li><p>mean reversion</p>
-</li>
-</ul>
+            <h1 id="EVM"><a href="#EVM" class="headerlink" title="EVM"></a>EVM</h1><p><img src="/images/web3/evm1.png" alt="image"></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.evm.codes/" >evm.codes<i class="fas fa-external-link-alt"></i></a>  </p>
+<p>汇编操作花费的gas费 </p>
+<p>智能合约编译出xx.json<br>里面有object，opcodes<br>60 push1</p>
+<p>608060<br>6000f3fe</p>
+<p><img src="/images/web3/evm2.png" alt="image"></p>
+<p>PUSH1 0X80<br>PUSH1 0X40<br>MSTORE </p>
+<p>初始化内存</p>
+<h1 id="Ethers如何获取链上数据"><a href="#Ethers如何获取链上数据" class="headerlink" title="Ethers如何获取链上数据?"></a>Ethers如何获取链上数据?</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line"></span><br><span class="line">npm install -g ts-node</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://emn178.github.io/online-tools/keccak_256.html" >https://emn178.github.io/online-tools/keccak_256.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><img src="/images/web3/keccak1.png" alt="images"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ethers&#125; from &#x27;ethers&#x27;</span><br><span class="line"></span><br><span class="line">async function main()&#123;</span><br><span class="line">   const provider = new ethers.providers.WebSocketProvider(&quot;wss://eth-rinkeby.alchemyapi.io/v2/wlSefEw7ZYKLXkmSNDM82KQRWxyI9pPV&quot;)</span><br><span class="line">   </span><br><span class="line">   provider.on(&quot;block&quot;,async(block)=&gt;&#123;</span><br><span class="line">  </span><br><span class="line">    // 获取一个合约的</span><br><span class="line">    let contractAddress = &quot;0x1526651967fec009D5E61385D65bA30B88631422&quot;</span><br><span class="line"></span><br><span class="line">    let topic  =ethers.utils.id(&quot;IdoInvitation(address,address)&quot;)</span><br><span class="line">    console.log(topic)</span><br><span class="line">    </span><br><span class="line">    let filter=&#123;</span><br><span class="line">        fromBlock:10919300,</span><br><span class="line">        address : contractAddress,</span><br><span class="line">        topics : [topic]</span><br><span class="line">    &#125;</span><br><span class="line">    //0xfc9790fbc3d9f4784441e9793c41a7ed13f83b0486c728dcc9ca344db464bb30</span><br><span class="line">    provider.getLogs(filter).then(result=&gt;&#123;</span><br><span class="line">      console.log(result)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 主动拉取数据 </span><br><span class="line">    // latest 最新的区块</span><br><span class="line">    // ealiest 最早的区块</span><br><span class="line">    // pending 正在打包的区块</span><br><span class="line">    // 往后数10个区块</span><br><span class="line">    // 10888844</span><br><span class="line">    // provider.getBlock(-10).then(result=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 监听 </span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // let filter = &#123;</span><br><span class="line">    //     address : contractAddress</span><br><span class="line">    // &#125;</span><br><span class="line"></span><br><span class="line">    // 监听事件</span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">       // 获取区块编号</span><br><span class="line">    //    console.log(block)</span><br><span class="line">    // 获取block内容</span><br><span class="line">    // const blockInfo = await provider.getBlock(block);</span><br><span class="line">    /*</span><br><span class="line">      hash: &#x27;0x041099c0e022d42bd3720a07f9d917220f962b0130ba7dab08209f62228936b9&#x27;,</span><br><span class="line">  parentHash: &#x27;0x8de446faab4cf3c747a7f724005749d80cb7ceacd56dc78ae407d92740ebeb9f&#x27;,</span><br><span class="line">    */</span><br><span class="line">    // console.log(blockInfo)</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">    // 获取block内容以及交易数据 </span><br><span class="line"></span><br><span class="line">    // const blockWithTransactions =await provider.getBlockWithTransactions(block)</span><br><span class="line">    // console.log(blockWithTransactions)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">//    provider.on(&quot;pending&quot;,async(tx)=&gt;&#123;</span><br><span class="line">//        console.log(tx)</span><br><span class="line">//       // 交易</span><br><span class="line">//        const txDetail  = await provider.getTransaction(tx);</span><br><span class="line">//        console.log(txDetail);</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">//    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
         </div>
 
@@ -225,11 +250,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：套利</li>
+        <li>Post title：2-3ETH_EVM</li>
         <li>Post author：DarrenLi</li>
-        <li>Create time：2022-04-14 19:27:00</li>
+        <li>Create time：2022-06-25 09:39:06</li>
         <li>
-            Post link：https://www.ai-lijia.com/2022/04/14/arbitrage-flashloan/
+            Post link：https://www.ai-lijia.com/2022/06/25/2-3ETH-EVM/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -241,33 +266,30 @@
         
 
         
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/ETH/">#ETH</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/EVM/">#EVM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
             <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/06/18/1-2Nextjs-React/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">1-2Nextjs-React</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
                 
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/04/10/Oracle/"
+                           href="/2022/06/18/1-2Nextjs-React/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Oracle</span>
+                                <span class="post-nav-title-item">1-2Nextjs-React</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -440,7 +462,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Establish-an-arbitrage-strategy"><span class="nav-number">1.</span> <span class="nav-text">Establish an arbitrage strategy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pick-an-arbitrage-strategy"><span class="nav-number">1.1.</span> <span class="nav-text">pick an arbitrage strategy</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EVM"><span class="nav-number">1.</span> <span class="nav-text">EVM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethers%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E9%93%BE%E4%B8%8A%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">Ethers如何获取链上数据?</span></a></li></ol>
     </div>
 </div>
         </aside>
