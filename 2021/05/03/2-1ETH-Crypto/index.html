@@ -46,113 +46,313 @@
     <div class="page-main-content">
 
         <div class="page-main-content-top">
-            <header class="header-wrapper">
+            $logo-title-font-size = 2rem;
+$pc-search-icon-font-size = 1.5rem;
+$menu-bar-line-height = 2.5px;
+$logo-image-box-width = 46px;
 
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Blog
-            </a>
-        </div>
+.header-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  padding-top: $scroll-progress-bar-height;
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+  hover-style(false, 0, 0);
 
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-        </ul>
-    </div>
+  .header-content {
+    position: relative;
+    height: 100%;
+    width: $main-content-width;
+    max-width: $content-max-width;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: $z-index-5;
 
-    <div class="window-mask"></div>
 
-</header>
+    &.has-first-screen {
+      max-width: $content-max-width * 1.2;
+    }
 
+    +keep-tablet() {
+      width: $main-content-width-tablet;
+    }
+
+    +keep-mobile() {
+      width: $main-content-width-mobile;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      transition-t("transform", "0", "0.2", "linear");
+
+      .header-shrink & {
+        transform: scale(0.72);
+        transform-origin: left;
+      }
+
+
+      if (hexo-config('base_info.logo_img') && hexo-config('base_info.logo_img') != '') {
+        .logo-image {
+          width: $logo-image-box-width;
+          height: $logo-image-box-width;
+          margin-right: 8px;
+
+
+          +keep-tablet() {
+            width: $logo-image-box-width * 0.9;
+            height: $logo-image-box-width * 0.9;
+          }
+
+          +keep-mobile() {
+            width: $logo-image-box-width * 0.8;
+            height: $logo-image-box-width * 0.8;
+          }
+
+          img {
+            border-radius: 6px;
+            width: 100%;
+          }
+        }
+
+      }
+
+      .logo-title {
+        font-size: $logo-title-font-size;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: var(--first-text-color);
+
+        +keep-tablet() {
+          font-size: $logo-title-font-size * 0.9;
+        }
+
+        +keep-mobile() {
+          font-size: $logo-title-font-size * 0.8;
+        }
+      }
+
+    }
+
+
+    .right {
+
+      .pc {
+
+        .menu-list {
+          display: flex;
+          align-items: center;
+
+          +keep-tablet() {
+            display: none;
+          }
+
+
+          .menu-item {
+            float: left;
+            position: relative;
+            margin-left: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--default-text-color);
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+
+            a:hover, .active {
+
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                transform: translateX(-50%);
+                background: var(--primary-color);
+                transition-t("transform, bottom", "0, 0", "0.2, 0.2", "linear, linear");
+
+                .header-shrink & {
+                  bottom: -($header-shrink-height / 2 - 12);
+                }
+              }
+            }
+
+            &.search {
+              font-size: $pc-search-icon-font-size;
+              margin-left: 26px;
+
+              i {
+                color: var(--default-text-color);
+              }
+
+            }
+          }
+
+
+        }
+
+      }
+
+
+      .mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon-item {
+          display: none;
+          position: relative;
+          cursor: pointer;
+          font-size: 18px;
+          margin-left: 12px;
+          width: 20px;
+          height: 20px;
+          color: var(--default-text-color);
+
+          i {
+            color: var(--default-text-color);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          +keep-tablet() {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .menu-bar {
+
+          .menu-bar-middle {
+            width: 18px;
+            height: $menu-bar-line-height;
+            position: relative;
+            background: var(--default-text-color);
+
+            .header-drawer-show & {
+              background: transparent;
+            }
+
+
+            &::before, &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              width: 100%;
+              height: $menu-bar-line-height;
+              background: var(--default-text-color);
+              transition-t("transform", "0", "0.38", "ease");
+            }
+
+
+            &::before {
+              top: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(6px) rotate(45deg);
+              }
+            }
+
+
+            &::after {
+              bottom: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(-6px) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .header-drawer {
+    width: 100%;
+    padding: $header-height 0 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    z-index: $z-index-2;
+    background: var(--background-color);
+    transition-t("transform", "0", "0.38", "ease");
+
+    .header-drawer-show & {
+      transform: scaleY(1);
+    }
+
+    .drawer-menu-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .drawer-menu-item {
+        font-size: 1rem;
+        margin: 6px 0;
+        height: 38px;
+
+        a {
+          padding: 6px 20px;
+          border-radius: 20px;
+          color: var(--default-text-color);
+
+          &:hover {
+            color: var(--second-text-color);
+            border: 1px solid var(--default-text-color);
+          }
+
+
+          &.active {
+            border: 1px solid var(--default-text-color);
+            color: var(--second-text-color);
+          }
+        }
+
+
+      }
+    }
+  }
+
+
+  .window-mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: $z-index-1;
+    visibility: hidden;
+    opacity: 0;
+    transition-t("transform, opacity", "0, 0", "0.38, 0.38", "ease, ease");
+
+    .header-drawer-show & {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+}
+
+.header-drawer-show {
+  overflow: hidden;
+}
 
         </div>
 
@@ -204,7 +404,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>268 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>380 Words</span>
         </span>
     
     
@@ -239,6 +439,10 @@
 <h2 id="以太坊的签名算法是-secp256k1"><a href="#以太坊的签名算法是-secp256k1" class="headerlink" title="以太坊的签名算法是 secp256k1"></a>以太坊的签名算法是 secp256k1</h2><h1 id="了解椭圆曲线理论基础。"><a href="#了解椭圆曲线理论基础。" class="headerlink" title="了解椭圆曲线理论基础。"></a>了解椭圆曲线理论基础。</h1><h2 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h2><ul>
 <li>就是一个二元三次方程上的所有的点的集合。</li>
 </ul>
+<h1 id="Luna和UST"><a href="#Luna和UST" class="headerlink" title="Luna和UST"></a>Luna和UST</h1><p><img src="/images/web3/luna1.png" alt="images"></p>
+<p>luna:UST&#x3D;1:1</p>
+<p>当UST高于1美金的话，用户就会用1美金购买luna,兑换ust,ust变多，UST回归1美金。<br>当UST低于1美金的话，用户就会用少于1美金购买ust,兑换1美金的luna,ust变少，UST回归1美金。</p>
+<p>有一个鲸鱼大量抛售UST,同时做空luna,UST变多，低于1美金，用户购买UST，兑换luna,市场上的luna多了，价格跌了。</p>
 
         </div>
 
@@ -469,7 +673,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">数据签名算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECDSA%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">ECDSA数字签名算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#secp256k1%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">secp256k1签名算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94%E7%89%B9%E5%B8%81%E9%80%89%E6%8B%A9secp256k1%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%B6%E4%BB%96%E5%B7%B2%E6%B5%81%E8%A1%8C%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">为什么比特币选择secp256k1签名算法而不是其他已流行的算法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95%E6%98%AF-secp256k1"><span class="nav-number">1.4.</span> <span class="nav-text">以太坊的签名算法是 secp256k1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">了解椭圆曲线理论基础。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF"><span class="nav-number">2.1.</span> <span class="nav-text">椭圆曲线</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">数据签名算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECDSA%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">ECDSA数字签名算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#secp256k1%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">secp256k1签名算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94%E7%89%B9%E5%B8%81%E9%80%89%E6%8B%A9secp256k1%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%B6%E4%BB%96%E5%B7%B2%E6%B5%81%E8%A1%8C%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">为什么比特币选择secp256k1签名算法而不是其他已流行的算法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95%E6%98%AF-secp256k1"><span class="nav-number">1.4.</span> <span class="nav-text">以太坊的签名算法是 secp256k1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">了解椭圆曲线理论基础。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF"><span class="nav-number">2.1.</span> <span class="nav-text">椭圆曲线</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Luna%E5%92%8CUST"><span class="nav-number">3.</span> <span class="nav-text">Luna和UST</span></a></li></ol>
     </div>
 </div>
         </aside>
